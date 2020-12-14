@@ -24,13 +24,13 @@
 		<table>
 			<thead>
 				<tr>
-					<td colspan="2">´ç½ÅÀ» À§ÇÑ ÃßÃµ ¿µÈ­</td>
+					<td colspan="2">ë‹¹ì‹ ì„ ìœ„í•œ ì¶”ì²œ ì˜í™”</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="m: ${movieRecommend}">
 					<td><img th:src="@{'/img_movie/'+${m.poster}}" width="100"></td>
-					<td th:utext="${m.title} +'<br>' + ${m.genre}" >¿µÈ­Á¦¸ñ</td>
+					<td th:utext="${m.title} +'<br>' + ${m.genre}" >ì˜í™”ì œëª©</td>
 				</tr>
 			</tbody>
 		</table>
