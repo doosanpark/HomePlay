@@ -19,7 +19,7 @@ public class HomeController {
 	   private MovieRepository movieRepository;
 	
 	
-	   @RequestMapping(value="/home",
+	   @RequestMapping(value={"/home","/"},
 		         method=RequestMethod.GET)
 		   public ModelAndView body_center() {
 		      ModelAndView rec = new ModelAndView();

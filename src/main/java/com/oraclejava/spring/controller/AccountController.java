@@ -17,14 +17,6 @@ public class AccountController {
 	@Autowired
 	private UserRepository userRepository;
 
-
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public ModelAndView index() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home/main");
-
-		return mav;
-	}
 	
 	/* 로그인 화면 구현 */
 	@RequestMapping(value = { "account/login" }, method = RequestMethod.GET)
@@ -83,25 +75,25 @@ public class AccountController {
 	}
 	
 	/* 회원가입 로직 구현 */
-	@RequestMapping(value = { "account/join" }, method = RequestMethod.POST)
-	public String join(@ModelAttribute MemberForm form,
-								 BindingResult bindingResult,
-								 Model model) {
-		
-		if (bindingResult.hasErrors()) {
-			return "redirect:/account/join";
-		}
-		
-		R_member member = userRepository.findById(form.getId()).get();
-		member.setId(form.getId());
-		member.setPass(form.getPass());
-		member.setEmail(form.getEmail());
-		
-		/* ID 중복 체크 */
-		
-		
-		userRepository.save(member);
-		
-		return "redirect:/";
-	}
+//	@RequestMapping(value = { "account/join" }, method = RequestMethod.POST)
+//	public String join(@ModelAttribute MemberForm form,
+//								 BindingResult bindingResult,
+//								 Model model) {
+//		
+//		if (bindingResult.hasErrors()) {
+//			return "redirect:/account/join";
+//		}
+//		
+//		R_member member = userRepository.findById(form.getId()).get();
+//		member.setId(form.getId());
+//		member.setPass(form.getPass());
+//		member.setEmail(form.getEmail());
+//		
+//		/* ID 중복 체크 */
+//		
+//		
+//		userRepository.save(member);
+//		
+//		return "redirect:/";
+//	}
 }
