@@ -25,7 +25,7 @@ public class AccountController {
 	}
 	
 	/* 로그인 화면 구현 */
-	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "account/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		System.out.println("/login...(ok)");
 
@@ -36,7 +36,7 @@ public class AccountController {
 	}
 	
 	/* 로그인 로직 구현 */
-	@RequestMapping(value = { "/loginsuccess" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "account/loginsuccess" }, method = RequestMethod.POST)
 	public ModelAndView id_ck(@ModelAttribute R_member form) {
 		System.out.println("/login/loginsuccess...(ok) : " + form.getId());
 		
@@ -57,6 +57,13 @@ public class AccountController {
 		}
 	}
 	
-	
-
+	/* 회원가입 화면 구현 */
+	@RequestMapping(value = {"account/join"}, method = RequestMethod.GET)
+	public ModelAndView join() {
+		System.out.println("/join...(ok)");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("account/join");
+		return mav;
+	}
 }
