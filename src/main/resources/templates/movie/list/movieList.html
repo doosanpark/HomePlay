@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>영화 리스트</title>
-</head>
-<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
-<body>
-
+<th:block th:replace="includes/header :: header"></th:block>
 <div>
 	<h4><strong>감성 저격 로맨스 영화</strong></h4><a href="#">더보기</a>
 	<table>
@@ -52,6 +41,3 @@
 		</tr>
 	</table>
 </div>
-
-</body>
-</html>
