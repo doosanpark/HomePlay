@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상세 화면</title>
+</head>
+<body>
+<div th:object="${detail}">
+		<span th:text="*{no}">no</span><br>
+		<span th:text="*{title}">제목</span><br>
+		<span th:text="*{genre}">장르</span><br>
+		<span th:text="*{summary_title}">요약내용</span><br>
+		<span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
+		<span th:text="*{age_limit}">연령제한</span><br>
+		<span th:text="*{poster}">포스터</span><br>
+		<span th:text="*{thumbnail}">썸네일</span><br>
+		<span th:text="*{screening}">상영여부</span><br>
+		<span th:text="*{reg_date}">REG_DATE</span><br>
+		
+	
+	</div>
+
+</body>
+</html>
