@@ -18,7 +18,6 @@ public class HomeController {
 	  @Autowired
 	   private MovieRepository movieRepository;
 	
-	
 	   @RequestMapping(value={"/home","/"},
 		         method=RequestMethod.GET)
 		   public ModelAndView body_center() {

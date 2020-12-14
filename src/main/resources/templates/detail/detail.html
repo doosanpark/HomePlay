@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>상세 화면</title>
-</head>
-<body>
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+
+<div id="page-wrapper">
+
 <div th:object="${detail}">
 		<span th:text="*{no}">no</span><br>
 		<span th:text="*{title}">제목</span><br>
@@ -19,6 +17,4 @@
 		
 	
 	</div>
-
-</body>
-</html>
+</div>

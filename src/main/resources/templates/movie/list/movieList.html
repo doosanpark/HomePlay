@@ -1,43 +1,54 @@
 <th:block th:replace="includes/header :: header"></th:block>
-<div>
-	<h4><strong>감성 저격 로맨스 영화</strong></h4><a href="#">더보기</a>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<div id="page-wrapper">
+
+
+	<h4>
+		<strong>감성 저격 로맨스 영화</strong>
+	</h4>
+	<a href="#">더보기</a>
 	<table>
 		<tr>
-			<td th:each="m : ${movieListRomance}" width="197">
-				<a href="#"><img alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a>
-				<a href="#"><span th:text="${m.title}">영화제목</span></a>
-				<span th:text="${m.genre}"></span>
-			</td>
+			<td th:each="m : ${movieListRomance}" width="197"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <span
+				th:text="${m.genre}"></span></td>
 		</tr>
 	</table>
-	<h4><strong>긴장감 넘치는 통쾌한 액션 영화</strong></h4><a href="#">더보기</a>
+	<h4>
+		<strong>긴장감 넘치는 통쾌한 액션 영화</strong>
+	</h4>
+	<a href="#">더보기</a>
 	<table>
 		<tr>
-			<td th:each="m : ${movieListAction}" width="197">
-				<a href="#"><img alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a>
-				<a href="#"><span th:text="${m.title}">영화제목</span></a>
-				<span th:text="${m.genre}"></span>
-			</td>
+			<td th:each="m : ${movieListAction}" width="197"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <span
+				th:text="${m.genre}"></span></td>
 		</tr>
 	</table>
-	<h4><strong>올해도 크리스마스도 케빈과 함께! 연휴 특선 영화</strong></h4><a href="#">더보기</a>
+	<h4>
+		<strong>올해도 크리스마스도 케빈과 함께! 연휴 특선 영화</strong>
+	</h4>
+	<a href="#">더보기</a>
 	<table>
 		<tr>
-			<td th:each="m : ${movieListAni}" width="197">
-				<a href="#"><img alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a>
-				<a href="#"><span th:text="${m.title}">영화제목</span></a>
-				<span th:text="${m.genre}"></span>
-			</td>
+			<td th:each="m : ${movieListAni}" width="197"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <span
+				th:text="${m.genre}"></span></td>
 		</tr>
 	</table>
-	<h4><strong>오늘만 무료공개! 기간 한정 영화</strong></h4><a href="#">더보기</a>
+	<h4>
+		<strong>오늘만 무료공개! 기간 한정 영화</strong>
+	</h4>
+	<a href="#">더보기</a>
 	<table>
 		<tr>
-			<td th:each="m : ${movieListComi}" width="197">
-				<a href="#"><img alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a>
-				<a href="#"><span th:text="${m.title}">영화제목</span></a>
-				<span th:text="${m.genre}"></span>
-			</td>
+			<td th:each="m : ${movieListComi}" width="197"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <span
+				th:text="${m.genre}"></span></td>
 		</tr>
 	</table>
 </div>
