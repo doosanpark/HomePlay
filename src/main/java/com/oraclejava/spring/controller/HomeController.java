@@ -19,11 +19,11 @@ public class HomeController {
 	   private MovieRepository movieRepository;
 	
 	
-	   @RequestMapping(value="body/center",
+	   @RequestMapping(value="/home",
 		         method=RequestMethod.GET)
 		   public ModelAndView body_center() {
 		      ModelAndView rec = new ModelAndView();
-		      rec.setViewName("includes/body_center");
+		      rec.setViewName("home/main");
 		      List<R_movie> lists = 
 		            movieRepository.findAll();
 		      rec.addObject("movieRecommend", lists);

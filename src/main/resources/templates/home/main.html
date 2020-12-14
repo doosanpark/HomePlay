@@ -1,23 +1,37 @@
 <th:block th:replace="includes/header :: header"></th:block>
 
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
-	</div>
-	<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+<div class="container">
+		<table>
+			<tbody >
+				<tr th:each="m: ${movieRecommend}">
+					<td></td>
+				</tr>
+				
 
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
-			</div>
-		</div>
-	<!-- end panel -->
+			</tbody>
+
+		</table>
+
+
+
+
+
 	</div>
-</div>
-<!-- /.row -->
+
+
+
+	<div class="container">
+		<table>
+			<thead>
+				<tr>
+					<td colspan="2">당신을 위한 추천 영화</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="m: ${movieRecommend}">
+					<td><img th:src="@{'/img_movie/'+${m.poster}}" width="100"></td>
+					<td th:utext="${m.title} +'<br>' + ${m.genre}" >영화제목</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
