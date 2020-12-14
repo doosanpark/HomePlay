@@ -45,14 +45,27 @@ public class AccountController {
 
 		try {
 			R_member r_member = userRepository.findById(form.getId()).get();
-			mav.addObject("msg1", r_member.getId());
-			mav.addObject("msg2", r_member.getPass());
-			mav.addObject("msg3", r_member.getEmail());
+			
+			String DB_Pass = r_member.getPass();
+			
+			if (form.getPass().equals(DB_Pass)) {
+				
+				mav.addObject("msg1", r_member.getId());
+				mav.addObject("msg2", r_member.getPass());
+				mav.addObject("msg3", r_member.getEmail());
+			}else {
+				mav.addObject("msg1", r_member.getId()+"님 ");
+				mav.addObject("msg2", "비밀번호가 틀립니다.ㅜㅠ");
+				mav.addObject("msg3", "다시 입력해 주세요");
+				
+			}
+			
 			return mav;
 
 		} catch (Exception e) {
-			mav.addObject("msg1", "찾을 수 없는 ID입니다.");
-			mav.addObject("msg2", e);
+			mav.addObject("msg1", "아이디를 찾을 수 없습니다.");
+			mav.addObject("msg2", "다시 입력해 주세요");
+			mav.addObject("msg3", "Message:"+e);
 			return mav;
 		}
 	}
