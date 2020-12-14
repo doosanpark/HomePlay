@@ -15,6 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
 		// TODO Auto-generated method stub
 		registry.addResourceHandler("/webjars/**")
 		.addResourceLocations("/webjars/");
+		registry.addResourceHandler("/design/**")
+		.addResourceLocations("classpath:/static/design/");
 		registry.addResourceHandler("/**")
 		.addResourceLocations("classpath:/static/");
 		
