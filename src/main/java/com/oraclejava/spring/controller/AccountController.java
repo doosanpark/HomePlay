@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oraclejava.spring.model.R_member;
+
 @Controller
-public class HelloController {
+public class AccountController {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -23,6 +25,7 @@ public class HelloController {
 		return mav;
 	}
 	
+	/* 로그인 화면 구현 */
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		System.out.println("/login...(ok)");
@@ -33,10 +36,10 @@ public class HelloController {
 		return mav;
 	}
 	
+	/* 로그인 로직 구현 */
 	@RequestMapping(value = { "/login/id_ck" }, method = RequestMethod.POST)
 	public ModelAndView id_ck(@ModelAttribute R_member form) {
 		System.out.println("/login/id_ck...(ok)");
-		
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/account/login_ck_result");
@@ -53,7 +56,6 @@ public class HelloController {
 			mav.addObject("msg2", e);
 			return mav;
 		}
-		
 	}
 	
 	
