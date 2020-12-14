@@ -12,7 +12,7 @@ public class HelloController {
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
-		mav.addObject("msg", "안녕 디지몬");
+		mav.addObject("msg", "안녕 여러분");
 
 		return mav;
 	}
