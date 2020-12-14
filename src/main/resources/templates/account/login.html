@@ -6,19 +6,25 @@
 </head>
 <body>
 	<!-- 로그인 form -->
-	<div class="wrap">
-		<form th:action="@{/account/login}" id="login" method="post">
-			<input type="text" name="id" placeholder="Username"><br />
-			<input type="password" name="pass" placeholder="Password"><br />
-			<button class="submit">로그인</button>
-			<br /> 회원이 아니세요? <a th:href="@{/account/join}">회원가입</a>
-		</form>
-	</div>
+	<h1><P th:text="${msg}"/></h1>
 
-	<!-- 에러 alert -->
-	<div th:if="${param.error}">아이디 혹은 패스워드가 다릅니다.</div>
-	
-	<!-- 로그아웃 alert -->
-	<div th:if="${param.logout}">정상적으로 로그아웃 되었습니다.</div>
+	<table border="1">
+	<form action="/loginsuccess" method="post">
+	<tr>
+		<td>사용자ID</td><td><input type="text" name="id" placeholder="아이디"></td>
+	</tr>
+	<tr>
+		<td>비밀번호</td><td><input type="password" name="pass" placeholder="비밀번호"></td>
+	</tr>
+	<tr>
+	<td colspan="2" align="center">
+		<input type="submit" value="로 그 인">
+		<input type="submit" value="회원가입" name="join"/>
+		<input type="reset" value="작업취소" />
+	</td>
+	</tr>
+	</form>
+	</table>
+
 </body>
 </html>

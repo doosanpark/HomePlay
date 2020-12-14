@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Login</title>
-
-<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
-
+<meta charset="UTF-8">
+<title>로그인 화면</title>
 </head>
 <body>
-
+	<!-- 로그인 form -->
 	<h1><P th:text="${msg}"/></h1>
 
 	<table border="1">
-	<form action="/login/id_ck/" method="post">
+	<form action="/loginsuccess" method="post">
 	<tr>
 		<td>사용자ID</td><td><input type="text" name="id" placeholder="아이디"></td>
 	</tr>

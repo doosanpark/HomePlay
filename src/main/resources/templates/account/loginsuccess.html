@@ -6,10 +6,12 @@
 </head>
 <body>
 	<div>
-		<h3>환영합니다, <span th:text="${#authentication.name}"/>님 </h3>
-		<form th:action="@{/logout}" method="post"> 
-		<input type="submit" value="Logout"/> 
-		</form>
+
+	<h1><P th:text="${msg1}"/></h1>
+
+	<h1><P "사용자ID : " + th:text="${msg2}"/></h1>
+	<h1><P "비밀번호 : " + th:text="${msg3}"/></h1>
+
 	</div>
 </body>
 </html>

@@ -19,8 +19,7 @@ public class AccountController {
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
-		mav.addObject("msg", "안녕 여러분");
+		mav.setViewName("home/main");
 
 		return mav;
 	}
@@ -31,18 +30,18 @@ public class AccountController {
 		System.out.println("/login...(ok)");
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/account/login_basic");
-		mav.addObject("msg", "(login_basic.html)");
+		mav.setViewName("account/login");
+		mav.addObject("msg", "(login.html)");
 		return mav;
 	}
 	
 	/* 로그인 로직 구현 */
-	@RequestMapping(value = { "/login/id_ck" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/loginsuccess" }, method = RequestMethod.POST)
 	public ModelAndView id_ck(@ModelAttribute R_member form) {
-		System.out.println("/login/id_ck...(ok)");
+		System.out.println("/login/loginsuccess...(ok) : " + form.getId());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/account/login_ck_result");
+		mav.setViewName("account/loginsuccess");
 
 		try {
 			R_member r_member = userRepository.findById(form.getId()).get();

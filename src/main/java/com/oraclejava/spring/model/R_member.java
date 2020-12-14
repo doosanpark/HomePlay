@@ -16,17 +16,18 @@ import lombok.Setter;
 @Setter
 public class R_member {
 	
-	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 					generator = "memberGenerator")
 	@SequenceGenerator(name = "memberGenerator",
 					   sequenceName = "MEMBER_NO_SEQ",
 					   allocationSize = 1)
 	private int no;
+	
+	@Id
 	private String id;
 	private String pass;
 	private String email;
-	private Date date;
+	private Date reg_date;
 	
 	public R_member() {}
 	
@@ -36,7 +37,7 @@ public class R_member {
 		this.id = id;
 		this.pass = pass;
 		this.email = email;
-		this.date = date;
+		this.reg_date = reg_date;
 	}
 	
 	
