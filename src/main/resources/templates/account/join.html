@@ -1,18 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
+
+<th:block th:replace="includes/header :: header"></th:block>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form id="register" action="" class="input-group">
-		<input type="text" class="input-field"
-			placeholder="User name or Email" required> <input
-			type="email" class="input-field" placeholder="Your Email" required>
-		<input type="password" class="input-field"
-			placeholder="Enter Password" required> <input type="checkbox"
-			class="checkbox"><span>Terms and conditions</span>
-		<button class="submit">REGISTER</button>
-	</form>
-</body>
-</html>
+<title>회원가입 화면</title>
+
+<!-- 회원가입 form -->
+<div class="col-md-4 col-md-offset-4">
+	<div class="login-panel panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">회원가입</h3>
+		</div>
+		<div class="panel-body">
+			<form action="/" enctype="multipart/form-data"  method="post" th:object="${R_member}">
+				<fieldset>
+					<div class="form-group">
+						<input class="form-control" placeholder="아이디" name="id" autofocus="">
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="비밀번호" name="pass1" type="password" value="">
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="비밀번호 확인" name="pass2" type="password" value="">
+					</div>
+					<div class="form-group">
+						<input class="form-control" placeholder="이메일" name="email" type="email" value="">
+					</div>
+					
+					<!-- Change this to a button or input when using this as a form -->
+					
+					<input class="btn btn-lg btn-success btn-block" type="submit" value="회원가입" name="join">
+					
+ 				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+	

@@ -73,7 +73,7 @@ public class AccountController {
 	}
 	
 	/* 회원가입 화면 구현 */
-	@RequestMapping(params="join",value = { "account/loginsuccess" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "account/join" }, method = RequestMethod.GET)
 	public ModelAndView join() {
 		System.out.println("/join...(ok)");
 		
@@ -83,8 +83,8 @@ public class AccountController {
 	}
 	
 	/* 회원가입 로직 구현 */
-	@RequestMapping(value = {"account/join"}, method = RequestMethod.POST)
-	public String join_ck(@ModelAttribute MemberForm form,
+	@RequestMapping(value = { "account/join" }, method = RequestMethod.POST)
+	public String join(@ModelAttribute MemberForm form,
 								 BindingResult bindingResult,
 								 Model model) {
 		
@@ -102,6 +102,6 @@ public class AccountController {
 		
 		userRepository.save(member);
 		
-		return "redirect:/home/main";
+		return "redirect:/";
 	}
 }
