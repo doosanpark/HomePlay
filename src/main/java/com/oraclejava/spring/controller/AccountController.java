@@ -2,6 +2,8 @@ package com.oraclejava.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,12 +73,35 @@ public class AccountController {
 	}
 	
 	/* 회원가입 화면 구현 */
-	@RequestMapping(value = {"account/join"}, method = RequestMethod.GET)
+	@RequestMapping(params="join",value = { "account/loginsuccess" }, method = RequestMethod.POST)
 	public ModelAndView join() {
 		System.out.println("/join...(ok)");
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/join");
 		return mav;
+	}
+	
+	/* 회원가입 로직 구현 */
+	@RequestMapping(value = {"account/join"}, method = RequestMethod.POST)
+	public String join_ck(@ModelAttribute MemberForm form,
+								 BindingResult bindingResult,
+								 Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return "redirect:/account/join";
+		}
+		
+		R_member member = userRepository.findById(form.getId()).get();
+		member.setId(form.getId());
+		member.setPass(form.getPass());
+		member.setEmail(form.getEmail());
+		
+		/* ID 중복 체크 */
+		
+		
+		userRepository.save(member);
+		
+		return "redirect:/home/main";
 	}
 }
