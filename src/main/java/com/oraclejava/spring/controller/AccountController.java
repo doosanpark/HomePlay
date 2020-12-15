@@ -1,5 +1,7 @@
 package com.oraclejava.spring.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.persistence.SequenceGenerator;
@@ -98,21 +100,50 @@ public class AccountController {
 	
 	/* 회원가입 로직 구현 */
 	@RequestMapping(params="db_join", value = { "account/sc_join" }, method = RequestMethod.POST)
-	public String join(@ModelAttribute R_member form, Model model) {
+	public String join(@ModelAttribute R_member form, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("/join params=db_join...(ok)");
 		
 		R_member rmember = new R_member();
+		
+		String id = form.getId();
+		String pass = form.getPass();
+		String email = form.getEmail();
 		Date today = new Date();
+
+		String idReg = "^[a-z]+[a-z0-9]{5,19}$";
 		
-		
-			
 		/* 'no'field는 Sequence 자동 작동 */
 		//rmember.setNo();
-		rmember.setId(form.getId());
+		
 		rmember.setPass(form.getPass());
 		rmember.setEmail(form.getEmail());
 		rmember.setReg_date(today);
 		
+		/* ID CHECK */
+		if (id.isEmpty()) { // NULL CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('ID가 공란입니다.'); history.go(-1);</script>");
+			out.flush();
+
+		} else if (id.equals(rmember.getId())) { // Duplicate CHECK   id.equals(rmember.())
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이미 존재하는 ID입니다. 다른 아이디를 사용해 주세요.'); history.go(-1);</script>");
+			out.flush();
+			
+		} else if (!id.matches(idReg)) { // 정규식 CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자여야 합니다.'); history.go(-1);</script>");
+			out.flush();
+		
+		} else {
+			rmember.setId(form.getId());
+		}
+			
+			
 		System.out.println(form.getId());
 		System.out.println(form.getPass());
 		System.out.println(form.getEmail());
