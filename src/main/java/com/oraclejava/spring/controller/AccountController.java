@@ -4,6 +4,10 @@ import java.util.Date;
 
 import javax.persistence.SequenceGenerator;
 import javax.persistence.SequenceGenerators;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,8 @@ public class AccountController {
 
 	@Autowired
 	private UserRepository userRepository;
+	private HttpServletRequest HttpServletRequest;
+	private HttpServletResponse HttpServletResponse;
 
 	
 	/* 로그인 화면 구현 */
@@ -37,7 +43,7 @@ public class AccountController {
 	
 	/* 로그인 로직 구현 */
 	@RequestMapping(value = { "account/loginsuccess" }, method = RequestMethod.POST)
-	public ModelAndView id_ck(@ModelAttribute R_member form) {
+	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("/login/loginsuccess...(ok) : " + form.getId());
 		
 		ModelAndView mav = new ModelAndView();
@@ -50,9 +56,16 @@ public class AccountController {
 			
 			if (form.getPass().equals(DB_Pass)) {
 				
+				/* Session 등록 */
+				
+				HttpSession session = request.getSession();
+				request.setCharacterEncoding("utf-8");
+				session.setAttribute("user_id", r_member.getId());
+				
 				mav.addObject("msg1", r_member.getId());
 				mav.addObject("msg2", r_member.getPass());
 				mav.addObject("msg3", r_member.getEmail());
+				mav.addObject("msg4", session.getAttribute("user_id"));
 				
 				System.out.println("Session...(ok) : " + form.getId());
 				
