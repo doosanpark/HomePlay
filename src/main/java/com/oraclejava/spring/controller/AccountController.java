@@ -108,10 +108,12 @@ public class AccountController {
 		
 		String id = form.getId();
 		String pass = form.getPass();
-		String email = form.getEmail();
+		String pass2 = form.getPass2();
 		Date today = new Date();
 
 		String idReg = "^[a-z]+[a-z0-9]{5,19}$";
+		String passReg = "^(?=.*\\d)(?=.*[a-z]).{8,}$"; // 영문 숫자를 포함한 8글자 이상. 특문 제외 (?=.*[~`!@#$%\\^&*()-])
+
 		
 		/* 'no'field는 Sequence 자동 작동 */
 		//rmember.setNo();
@@ -124,25 +126,58 @@ public class AccountController {
 		if (id.isEmpty()) { // NULL CHECK
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('ID가 공란입니다.'); history.go(-1);</script>");
+			out.println("<script>alert('ID가 공란입니다.');</script>");
 			out.flush();
 
-		} else if (id.equals(rmember.getId())) { // Duplicate CHECK   id.equals(rmember.())
+		} else if (id.equals(rmember.getId())) { // Duplicate CHECK
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('이미 존재하는 ID입니다. 다른 아이디를 사용해 주세요.'); history.go(-1);</script>");
+			out.println("<script>alert('이미 존재하는 ID입니다. 다른 아이디를 사용해 주세요.');</script>");
 			out.flush();
 			
 		} else if (!id.matches(idReg)) { // 정규식 CHECK
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자여야 합니다.'); history.go(-1);</script>");
+			out.println("<script>alert('아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자여야 합니다.');</script>");
 			out.flush();
 		
 		} else {
 			rmember.setId(form.getId());
 		}
+		
+		/* PASSWORD CHECK */
+		if (pass.isEmpty()) { // NULL CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 공란입니다.');</script>");
+			out.flush();
 			
+		} else if (!pass.matches(passReg)) { // 정규식 CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호는 영문자, 숫자를 포함하는 8글자 이상이어야 합니다.');</script>");
+			out.flush();
+		
+		} else {
+			rmember.setPass(form.getPass());
+		}
+		
+		/* PASSWORD 2 CHECK */
+		if (pass.isEmpty()) { // NULL CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호를 한번 더 입력해주세요.');</script>");
+			out.flush();
+			
+		} else if (!pass2.equals(pass)) { // Duplicate CHECK
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호 확인과 비밀번호의 값이 다릅니다.');</script>");
+			out.flush();
+		
+		} else {
+			rmember.setPass(form.getPass());
+		}
 			
 		System.out.println(form.getId());
 		System.out.println(form.getPass());
