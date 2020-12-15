@@ -97,6 +97,7 @@ public class AccountController {
 	@RequestMapping(params="db_join", value = { "account/sc_join" }, method = RequestMethod.POST)
 	public String join(@ModelAttribute MemberForm form, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		System.out.println("/join params=db_join...(ok)");
 		
 		R_member rmember = new R_member();
@@ -105,17 +106,13 @@ public class AccountController {
 		String pass = form.getPass();
 		String pass2 = form.getPass2();
 		Date today = new Date();
-
+		
+		R_member r_member = userRepository.findById(id).get();
+		String DB_id = r_member.getId();
+		
 		String idReg = "^[a-z]+[a-z0-9]{5,19}$";
 		String passReg = "^(?=.*\\d)(?=.*[a-z]).{8,}$"; // 영문 숫자를 포함한 8글자 이상. 특문 제외 (?=.*[~`!@#$%\\^&*()-])
 
-		
-		/* 'no'field는 Sequence 자동 작동 */
-		//rmember.setNo();
-		
-		rmember.setPass(form.getPass());
-		rmember.setEmail(form.getEmail());
-		rmember.setReg_date(today);
 		
 		/* ID CHECK */
 		if (id.isEmpty()) { // NULL CHECK
@@ -124,7 +121,7 @@ public class AccountController {
 			out.println("<script>alert('ID가 공란입니다.');</script>");
 			out.flush();
 
-		} else if (id.equals(rmember.getId())) { // Duplicate CHECK
+		} else if (id.equals(DB_id)) { // Duplicate CHECK
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('이미 존재하는 ID입니다. 다른 아이디를 사용해 주세요.');</script>");
@@ -174,13 +171,19 @@ public class AccountController {
 			rmember.setPass(form.getPass());
 		}
 		
-			
+		/* 'no'field는 Sequence 자동 작동 */
+		//rmember.setNo();
+		rmember.setEmail(form.getEmail());
+		rmember.setReg_date(today);
+		
+		userRepository.save(rmember);
+
+		
 		System.out.println(form.getId());
 		System.out.println(form.getPass());
 		System.out.println(form.getEmail());
 		System.out.println(today);
-		
-		userRepository.save(rmember);
+
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -188,5 +191,24 @@ public class AccountController {
 		out.flush();
 		
 		return "redirect:/";
+	}
+	
+	/* 정보 수정 화면 구현 */
+	@RequestMapping(value = { "account/modify" }, method = RequestMethod.GET)
+	public ModelAndView modify() {
+		System.out.println("/modify...(ok)");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("account/modify");
+		return mav;
+	}
+	
+	/* 정보 수정 로직 구현 */
+	@RequestMapping(params="modify", value = { "account/modify" }, method = RequestMethod.POST)
+	public ModelAndView modify (@ModelAttribute MemberForm form, Model model) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("account/modify");
+		
+		return mav;
 	}
 }
