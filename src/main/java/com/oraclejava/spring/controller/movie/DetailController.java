@@ -1,4 +1,4 @@
-package com.oraclejava.spring.controller;
+package com.oraclejava.spring.controller.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oraclejava.spring.dao.DetailRepository;
+import com.oraclejava.spring.dao.movie.DetailRepository;
 
 @Controller
 public class DetailController {
 
+	
+	
 	
 	@Autowired
 	private DetailRepository detailRepository;

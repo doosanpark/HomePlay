@@ -1,4 +1,4 @@
-package com.oraclejava.spring.model.detail;
+package com.oraclejava.spring.model.movie;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
