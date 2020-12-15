@@ -1,12 +1,18 @@
 package com.oraclejava.spring.controller;
 
+import java.util.Date;
+
+import javax.persistence.SequenceGenerator;
+import javax.persistence.SequenceGenerators;
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oraclejava.spring.model.R_member;
@@ -47,6 +53,9 @@ public class AccountController {
 				mav.addObject("msg1", r_member.getId());
 				mav.addObject("msg2", r_member.getPass());
 				mav.addObject("msg3", r_member.getEmail());
+				
+				System.out.println("Session...(ok) : " + form.getId());
+				
 			}else {
 				mav.addObject("msg1", r_member.getId()+"님 ");
 				mav.addObject("msg2", "비밀번호가 틀립니다.ㅜㅠ");
@@ -65,7 +74,7 @@ public class AccountController {
 	}
 	
 	/* 회원가입 화면 구현 */
-	@RequestMapping(value = { "account/join" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "account/sc_join" }, method = RequestMethod.GET)
 	public ModelAndView join() {
 		System.out.println("/join...(ok)");
 		
@@ -75,25 +84,29 @@ public class AccountController {
 	}
 	
 	/* 회원가입 로직 구현 */
-//	@RequestMapping(value = { "account/join" }, method = RequestMethod.POST)
-//	public String join(@ModelAttribute MemberForm form,
-//								 BindingResult bindingResult,
-//								 Model model) {
-//		
-//		if (bindingResult.hasErrors()) {
-//			return "redirect:/account/join";
-//		}
-//		
-//		R_member member = userRepository.findById(form.getId()).get();
-//		member.setId(form.getId());
-//		member.setPass(form.getPass());
-//		member.setEmail(form.getEmail());
-//		
-//		/* ID 중복 체크 */
-//		
-//		
-//		userRepository.save(member);
-//		
-//		return "redirect:/";
-//	}
+	@RequestMapping(params="db_join", value = { "account/sc_join" }, method = RequestMethod.POST)
+	public String join(@ModelAttribute R_member form, Model model) {
+		System.out.println("/join params=db_join...(ok)");
+		
+		R_member rmember = new R_member();
+		Date today = new Date();
+		
+		
+			
+		/* 'no'field는 Sequence 자동 작동 */
+		//rmember.setNo();
+		rmember.setId(form.getId());
+		rmember.setPass(form.getPass());
+		rmember.setEmail(form.getEmail());
+		rmember.setReg_date(today);
+		
+		System.out.println(form.getId());
+		System.out.println(form.getPass());
+		System.out.println(form.getEmail());
+		System.out.println(today);
+		
+		userRepository.save(rmember);
+		
+		return "redirect:/";
+	}
 }

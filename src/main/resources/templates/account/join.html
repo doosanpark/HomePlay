@@ -11,13 +11,13 @@
 			<h3 class="panel-title">회원가입</h3>
 		</div>
 		<div class="panel-body">
-			<form action="/" enctype="multipart/form-data"  method="post" th:object="${R_member}">
+			<form action="" enctype="multipart/form-data"  method="post" th:object="${R_member}">
 				<fieldset>
 					<div class="form-group">
 						<input class="form-control" placeholder="아이디" name="id" autofocus="">
 					</div>
 					<div class="form-group">
-						<input class="form-control" placeholder="비밀번호" name="pass1" type="password" value="">
+						<input class="form-control" placeholder="비밀번호" name="pass" type="password" value="">
 					</div>
 					<div class="form-group">
 						<input class="form-control" placeholder="비밀번호 확인" name="pass2" type="password" value="">
@@ -28,7 +28,7 @@
 					
 					<!-- Change this to a button or input when using this as a form -->
 					
-					<input class="btn btn-lg btn-success btn-block" type="submit" value="회원가입" name="join">
+					<input class="btn btn-lg btn-success btn-block" type="submit" value="회원가입" name="db_join">
 					
  				</fieldset>
 			</form>
