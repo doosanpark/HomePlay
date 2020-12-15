@@ -1,20 +1,52 @@
 <th:block th:replace="includes/header :: header"></th:block>
 <th:block th:replace="includes/sider :: sider"></th:block>
 
+<meta charset="UTF-8">
+
+<style>
+#d_position {
+   padding-left: 10%;
+   padding-right: 10%;
+}
+
+#two {
+   width: 100%;
+}
+
+.left {
+   width: 50%;
+   float: left;
+}
+
+.right {
+   width: 50%;
+   float: right;
+}
+</style>
+
 <div id="page-wrapper">
 
 
 
-<div th:object="${detail}">
-		<span th:text="*{title}">TITLE</span><br>
-		<span th:text="*{genre}">GENRE</span><br>
-		<hr>
-		<span th:text="*{summary_title}">SUMMATY_TITLE</span><br>
-		<span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
-		
-		<span th:text="*{poster}">POSTER</span><br>
-		<span th:text="*{screening}">SCREENING</span><br>
-		
-	
-	</div>
+   <div id="two" th:object="${detail}">
+      <div class="left">
+         <div class="page-header">
+            <h1>
+               <span th:text="*{title}">TITLE</span><br>
+            </h1>
+            <span th:text="*{genre}">GENRE</span><br>
+         </div>
+      </div>
+      <div style="position: relative; right: -10%; top: 10px;" class="right">
+         <img  th:src="@{'/img_movie/' + *{poster}}" height="350"   width="350"><br>
+      </div>
+
+      <span th:text="*{summary_title}">SUMMATY_TITLE</span><br>
+      <div style="position: relative; left: 0%; top: 10px;">
+         <span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
+      </div>
+   </div>
+
+  
 </div>
+
