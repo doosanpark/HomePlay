@@ -11,8 +11,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Entity
-public class R_movie {
+@Entity(name="R_movie")
+public class Movie {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,

@@ -1,54 +1,95 @@
 <th:block th:replace="includes/header :: header"></th:block>
 <th:block th:replace="includes/sider :: sider"></th:block>
 <div id="page-wrapper">
+	<style type="text/css">
+.movieList {
+	margin: 0 auto;
+}
 
+span {
+	color: #000;
+}
 
-	<h4>
-		<strong>감성 저격 로맨스 영화</strong>
-	</h4>
-	<a href="#">더보기</a>
-	<table>
-		<tr>
-			<td th:each="m : ${movieListRomance}" width="197"><a href="#"><img
-					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a> <span
-				th:text="${m.genre}"></span></td>
-		</tr>
-	</table>
-	<h4>
-		<strong>긴장감 넘치는 통쾌한 액션 영화</strong>
-	</h4>
-	<a href="#">더보기</a>
-	<table>
-		<tr>
-			<td th:each="m : ${movieListAction}" width="197"><a href="#"><img
-					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a> <span
-				th:text="${m.genre}"></span></td>
-		</tr>
-	</table>
-	<h4>
-		<strong>올해도 크리스마스도 케빈과 함께! 연휴 특선 영화</strong>
-	</h4>
-	<a href="#">더보기</a>
-	<table>
-		<tr>
-			<td th:each="m : ${movieListAni}" width="197"><a href="#"><img
-					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a> <span
-				th:text="${m.genre}"></span></td>
-		</tr>
-	</table>
-	<h4>
-		<strong>오늘만 무료공개! 기간 한정 영화</strong>
-	</h4>
-	<a href="#">더보기</a>
-	<table>
-		<tr>
-			<td th:each="m : ${movieListComi}" width="197"><a href="#"><img
-					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a> <span
-				th:text="${m.genre}"></span></td>
-		</tr>
-	</table>
+.more {
+	text-align: right;
+	margin: -30px 0 15px 0;
+}
+.moremi{
+	color: #000;
+	font-weight: bold;
+}
+.moli li {
+	list-style-type: none;
+	float: left;
+}
+
+.moli {
+	display: inline-block;
+	width: 100%;
+	height: 180px;
+}
+
+.listre {
+	width: 25%;
+	height: 100%;
+	padding: 0 3% 3% 0;
+	text-align: center;
+}
+
+.pic {
+	width: 100%;
+	padding-bottom: 10px;
+	height: 100%;
+}
+</style>
+	<div class="movieList">
+		<h3>
+			<strong>감성 저격 로맨스 영화</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/movie/list/로맨스/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${movieListRomance}" class="listre"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster	}}" class="pic" /></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+		<h3>
+			<strong>긴장감 넘치는 통쾌한 액션 영화</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/movie/list/액션/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${movieListAction}" class="listre"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+		<h3>
+			<strong>올해도 크리스마스도 케빈과 함께! 연휴 특선 영화</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/movie/list/애니메이션/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${movieListAni}" class="listre"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+		<h3>
+			<strong>오늘만 무료공개! 기간 한정 영화</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/movie/list/코미디/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${movieListComi}" class="listre"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+	</div>
 </div>

@@ -1,0 +1,31 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<div id="page-wrapper">
+<h3><strong th:text="${genreName}"></strong> <strong>영화</strong></h3>
+<hr>
+<div class="container">
+	<table class="table table-hover">
+		<tr th:each="m:${movieList}">
+			<td>
+				<a>
+					<img alt="사진" th:src="@{'/img/' + ${m.poster}}" />
+				</a>
+			</td>
+			<a>
+				<td th:text="${m.title}">영화제목</td>
+			</a>
+			<td th:text="${m.genre}">젠르</td>
+		</tr>
+	</table>
+	<div>
+		<ul class="pagination">
+			<li th:each="i : ${#numbers.sequence(beginIndex, endIndex)}"
+			class="page-item" th:classappend="${currentIndex == i} ? 'active' : '' ">
+				<a class="page-link" th:href="'/' + ${i} " >
+					<span th:text="${i}"></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
