@@ -16,6 +16,7 @@
 .left {
 	width: 50%;
 	float: left;
+	
 }
 
 .right {
@@ -38,9 +39,10 @@
 			</div>
 		</div>
 		<div style="position: relative; right: -10%; top: 10px;" class="right">
-			<img th:src="@{'/img_movie/' + *{poster}}" width="350"><br>
+			<img th:src="@{'/img_movie/' + *{poster}}" height="350" width="350"><br>
 		</div>
-
+		<div style="clear:both"></div>
+		<h3>줄거리</h3>
 		<span th:text="*{summary_title}">SUMMATY_TITLE</span><br>
 		<div style="position: relative; left: 0%; top: 10px;">
 			<span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
