@@ -194,13 +194,29 @@ public class AccountController {
 	}
 	
 	/* 정보 수정 화면 구현 */
-	@RequestMapping(value = { "account/modify" }, method = RequestMethod.GET)
-	public ModelAndView modify() {
-		System.out.println("/modify...(ok)");
+	@RequestMapping(value = { "account/modify" }, method = RequestMethod.POST)
+	public ModelAndView modify(@ModelAttribute MemberForm form, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("[CHECK] modify...(ok)");
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("account/modify");
-		return mav;
+		/* 현재 Session ID값을 구한다.*/
+		HttpSession session = request.getSession();
+		String s_id = (String) session.getAttribute("user_id");
+		System.out.println("[CHECK] Session : "+s_id);
+
+		/* Session ID에 해당하는 R_MEMBER 정보를 구한다.*/
+		R_member r_member1 = userRepository.findById(s_id).get();
+		ModelAndView mav1 = new ModelAndView();
+		
+		mav1.setViewName("account/modify"); 
+		mav1.addObject("p_id", r_member1.getId());
+		mav1.addObject("p_pass", r_member1.getPass()); 
+		mav1.addObject("p_email", r_member1.getEmail());
+		System.out.println("[CHECK] p_id : "+r_member1.getId());
+		System.out.println("[CHECK] p_pass : "+r_member1.getPass());
+		System.out.println("[CHECK] p_email : "+r_member1.getEmail());
+		 
+		return mav1;
 	}
 	
 	/* 정보 수정 로직 구현 */
