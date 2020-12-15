@@ -1,9 +1,14 @@
 package com.oraclejava.spring.model.movie;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -14,7 +19,7 @@ import lombok.Setter;
 @Table(name = "R_MOVIE")
 @Getter
 @Setter
-public class Detail {
+public class Detail { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 	generator = "movieNoGenerator")
@@ -43,5 +48,11 @@ public class Detail {
 	 * reg_date; }
 	 */
 	
+	public Detail() {
+	}
+
+	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
+	@OrderBy("reg_date desc")
+	private Set<r_review> review; // r_review 테이블과 조인
 	
 }
