@@ -7,6 +7,8 @@
 <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/769921875d.js" crossorigin="anonymous"></script>
 
+<title>HomePlay</title>
+
 <style>
 .category{
 	padding: 0 20px;
@@ -52,6 +54,7 @@
 	<style>
 		#wrapper{
 		width: 100%;
+		height: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -124,7 +127,7 @@
 
 						<sec:authorize access="isAnonymous()">
 
-							<li><a href="/customLogin"><i
+							<li><a href="/account/login"><i
 									class="fa fa-sign-out fa-fw"></i> Login</a></li>
 						</sec:authorize>
 					</ul> <!-- /.dropdown-user --></li>

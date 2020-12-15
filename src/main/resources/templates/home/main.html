@@ -1,39 +1,47 @@
 <th:block th:replace="includes/header :: header"></th:block>
-<div id="home-wrapper">
-			<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-			<script src="/resources/js/jquery.min.js"></script>
-<div class="container">
-		<table>
-			<tbody >
-				<tr th:each="m: ${movieRecommend}">
-					<td></td>
+<th:block th:replace="includes/sidemenu:: sidemenu"></th:block>
+<div id="home-wrapper" style="height: 95%;">
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<script src="/resources/js/jquery.min.js"></script>
+
+	<div class="container">
+		<table width="500" border="1">
+			<tbody>
+				<tr>
+					<td><img th:src="@{'/img_movie/'+${movieRecommend[0].poster}}"
+						width="250" height="150"></td>
+					<td><img th:src="@{'/img_movie/'+${movieRecommend[1].poster}}"
+						width="250" height="150"></td>
 				</tr>
-				
+				<tr>
+					<td><img th:src="@{'/img_movie/'+${movieRecommend[2].poster}}"
+						width="250" height="150"></td>
+					<!-- <td><img th:src="@{'/img_movie/'+${movieRecommend[3].poster}}" width="250" height="150"></td> -->
+				</tr>
 
 			</tbody>
 
 		</table>
-
-
-
-
-
 	</div>
 
-
-
 	<div class="container">
-		<table>
+		<table width="400" style="background-color: #D8D8D8;">
 			<thead>
 				<tr>
-					<td colspan="2">당신을 위한 추천 영화</td>
+					<td colspan="2"><h4>당신을 위한 추천 영화</h3></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="m: ${movieRecommend}">
-					<td><img th:src="@{'/img_movie/'+${m.poster}}" width="100"></td>
-					<td th:utext="${m.title} +'<br>' + ${m.genre}" >영화제목</td>
+					<td height="140"><img th:src="@{'/img_movie/'+${m.poster}}"
+						height="150" width="220"></td>
+					<td th:utext="${m.title} +'<br>' + ${m.genre}">영화제목</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+
+</div>
+
+<th:block th:replace="/home/movieList:: movies"></th:block>
+</div>
