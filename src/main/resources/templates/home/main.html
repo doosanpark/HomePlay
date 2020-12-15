@@ -1,14 +1,15 @@
 <th:block th:replace="includes/header :: header"></th:block>
-<div id="home-wrapper">
-			<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-			<script src="/resources/js/jquery.min.js"></script>
-<div class="container">
+<th:block th:replace="includes/sidemenu:: sidemenu"></th:block>
+<div id="home-wrapper" style="height: 95%;">
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<script src="/resources/js/jquery.min.js"></script>
+	<div class="container">
 		<table>
-			<tbody >
+			<tbody>
 				<tr th:each="m: ${movieRecommend}">
 					<td></td>
 				</tr>
-				
+
 
 			</tbody>
 
@@ -32,8 +33,11 @@
 			<tbody>
 				<tr th:each="m: ${movieRecommend}">
 					<td><img th:src="@{'/img_movie/'+${m.poster}}" width="100"></td>
-					<td th:utext="${m.title} +'<br>' + ${m.genre}" >영화제목</td>
+					<td th:utext="${m.title} +'<br>' + ${m.genre}">영화제목</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+
+	<th:block th:replace="/home/movieList:: movies"></th:block>
+</div>
