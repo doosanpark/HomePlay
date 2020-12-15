@@ -18,7 +18,6 @@ public class R_member {
 	
 	private String id;
 	private String pass;
-	private String pass2;
 	private String email;
 	private Date reg_date;
 	
@@ -56,14 +55,6 @@ public class R_member {
 
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
-
-	public String getPass2() {
-		return pass2;
-	}
-
-	public void setPass2(String pass2) {
-		this.pass2 = pass2;
 	}
 
 	public String getEmail() {

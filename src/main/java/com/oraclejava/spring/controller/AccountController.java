@@ -4,13 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import javax.persistence.SequenceGenerator;
-import javax.persistence.SequenceGenerators;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oraclejava.spring.model.R_member;
@@ -100,7 +95,7 @@ public class AccountController {
 	
 	/* 회원가입 로직 구현 */
 	@RequestMapping(params="db_join", value = { "account/sc_join" }, method = RequestMethod.POST)
-	public String join(@ModelAttribute R_member form, Model model,
+	public String join(@ModelAttribute MemberForm form, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("/join params=db_join...(ok)");
 		
@@ -169,7 +164,7 @@ public class AccountController {
 			out.println("<script>alert('비밀번호를 한번 더 입력해주세요.');</script>");
 			out.flush();
 			
-		} else if (!pass2.equals(pass)) { // Duplicate CHECK
+		} else if (!pass2.equals(pass)) { // pass1 = pass2?
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호 확인과 비밀번호의 값이 다릅니다.');</script>");
@@ -178,6 +173,7 @@ public class AccountController {
 		} else {
 			rmember.setPass(form.getPass());
 		}
+		
 			
 		System.out.println(form.getId());
 		System.out.println(form.getPass());
@@ -185,6 +181,11 @@ public class AccountController {
 		System.out.println(today);
 		
 		userRepository.save(rmember);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('축하합니다! 회원가입에 성공하셨습니다.'); </script>");
+		out.flush();
 		
 		return "redirect:/";
 	}
