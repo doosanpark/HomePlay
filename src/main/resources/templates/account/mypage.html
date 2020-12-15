@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="container">
+		<table border="1">
+			<thead>
+				<tr>
+					<td colspan="6" ><h3>마이 페이지</h3></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>아이디</td>
+					<td th:text="${user_info[0].id}"></td>
+					<td>이메일 주소</td>	
+					<td th:text="${user_info[0].email}"></td>
+				</tr>
+				<tr>
+					
+					<td>등급</td>	
+<!-- 					<td th:text="${user_info[0].grade}"></td> -->
+<!-- 					<td th:text="&{user_info[0].id"></td> -->
+<!-- 					<td th:utext="${m.grade}">grade</td> -->
+<!-- 					<td>가입일자</td>	 -->
+<!-- 					<td th:utext="${m.reg_date}">reg_date</td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+</body>
+</html>
