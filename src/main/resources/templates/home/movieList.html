@@ -1,0 +1,15 @@
+<div th:fragment="movies">
+
+	<h4>
+		<strong>감성 저격 로맨스 영화</strong>
+	</h4>
+	<table>
+		<tr>
+			<td th:each="m : ${movieListRomance}" width="197"><a href="#"><img
+					alt="사진" th:src="@{'/img/' + ${m.thumbnail}}" width="197"></a> <a
+				href="#"><span th:text="${m.title}">영화제목</span></a> <span
+				th:text="${m.genre}"></span></td>
+		</tr>
+	</table>
+
+</div>
