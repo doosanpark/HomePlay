@@ -28,9 +28,9 @@ public class AccountController {
 
 	
 	/* 로그인 화면 구현 */
-	@RequestMapping(value = { "account/login" }, method = RequestMethod.GET)
+	@RequestMapping(value="account/login", method = RequestMethod.GET)
 	public ModelAndView login() {
-		System.out.println("/login...(ok)");
+		System.out.println("/login...(try)");
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/login");
@@ -39,7 +39,7 @@ public class AccountController {
 	}
 	
 	/* 로그인 로직 구현 */
-	@RequestMapping(value = { "account/loginsuccess" }, method = RequestMethod.POST)
+	@RequestMapping(value="account/loginsuccess", method = RequestMethod.POST)
 	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("/login/loginsuccess...(ok) : " + form.getId());
 		
@@ -84,7 +84,7 @@ public class AccountController {
 	}
 	
 	/* 회원가입 화면 구현 */
-	@RequestMapping(value = { "account/sc_join" }, method = RequestMethod.GET)
+	@RequestMapping(value="account/sc_join", method = RequestMethod.GET)
 	public ModelAndView join() {
 		System.out.println("/join...(ok)");
 		
@@ -94,7 +94,7 @@ public class AccountController {
 	}
 	
 	/* 회원가입 로직 구현 */
-	@RequestMapping(params="db_join", value = { "account/sc_join" }, method = RequestMethod.POST)
+	@RequestMapping(params="db_join", value="account/sc_join", method = RequestMethod.POST)
 	public String join(@ModelAttribute MemberForm form, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
@@ -172,7 +172,6 @@ public class AccountController {
 		}
 		
 		/* 'no'field는 Sequence 자동 작동 */
-		//rmember.setNo();
 		rmember.setEmail(form.getEmail());
 		rmember.setReg_date(today);
 		
@@ -194,7 +193,7 @@ public class AccountController {
 	}
 	
 	/* 정보 수정 화면 구현 */
-	@RequestMapping(value = { "account/modify" }, method = RequestMethod.POST)
+	@RequestMapping(params="sc_modify", value="account/modify", method = RequestMethod.POST)
 	public ModelAndView modify(@ModelAttribute MemberForm form, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("[CHECK] modify...(ok)");
@@ -209,22 +208,60 @@ public class AccountController {
 		ModelAndView mav1 = new ModelAndView();
 		
 		mav1.setViewName("account/modify"); 
-		mav1.addObject("p_id", r_member1.getId());
-		mav1.addObject("p_pass", r_member1.getPass()); 
-		mav1.addObject("p_email", r_member1.getEmail());
-		System.out.println("[CHECK] p_id : "+r_member1.getId());
-		System.out.println("[CHECK] p_pass : "+r_member1.getPass());
-		System.out.println("[CHECK] p_email : "+r_member1.getEmail());
+		mav1.addObject("no", r_member1.getNo());
+		mav1.addObject("id", r_member1.getId());
+		mav1.addObject("pass", r_member1.getPass()); 
+		mav1.addObject("email", r_member1.getEmail());
+		System.out.println("[CHECK] no : "+r_member1.getNo());
+		System.out.println("[CHECK] id : "+r_member1.getId());
+		System.out.println("[CHECK] pass : "+r_member1.getPass());
+		System.out.println("[CHECK] email : "+r_member1.getEmail());
 		 
 		return mav1;
 	}
 	
 	/* 정보 수정 로직 구현 */
-	@RequestMapping(params="modify", value = { "account/modify" }, method = RequestMethod.POST)
-	public ModelAndView modify (@ModelAttribute MemberForm form, Model model) {
+	@RequestMapping(params="db_modify", value="account/modify", method = RequestMethod.POST)
+	public ModelAndView modify(@ModelAttribute R_member form, Model model, HttpServletRequest request) {
+		System.out.println("[Check] r_member update Start...(ok)");
+		System.out.println("[Check] r_member update Target PK No...("+form.getNo()+")");
+		
+		/* 업데이트할 대상 레코드를 검색한다. */
+		R_member user = userRepository.findById(form.getNo()).get();
+		
+		/* DB update를 위한 레코드검색, 셋팅값 적용, 저장 실행*/
+		//user.setNo(form.getNo());
+		//user.setId(form.getId());
+		user.setPass(form.getPass());
+		user.setEmail(form.getEmail());
+		user.setReg_date(new Date());
+
+		userRepository.save(user);
+		
+		/* 현재 Session ID값을 구한다.*/
+		HttpSession session = request.getSession();
+		String s_id = (String) session.getAttribute("user_id");
+
+
+		System.out.println("[Check] r_member update Compleat...(ok)");
+		
+		/* 수정된 내용을 loginsuccess로 반환해서 확인할 수 있도록 한다. */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("account/modify");
+		mav.setViewName("account/loginsuccess");
+		mav.addObject("msg1", form.getId());
+		mav.addObject("msg2", form.getPass());
+		mav.addObject("msg3", form.getEmail());
+		mav.addObject("msg4", s_id);
 		
 		return mav;
+		
 	}
+	
+	/* 정보 수정 로직 구현 */
+	@RequestMapping(params="del_member", value="account/modify", method = RequestMethod.GET)
+	public ModelAndView modify(Model model,	HttpServletRequest request) {
+		return null;
+		
+	}
+
 }

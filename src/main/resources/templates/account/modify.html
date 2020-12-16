@@ -21,22 +21,23 @@
 		</div>
 		
 		<div class="panel-body">
-			<form action="" enctype="multipart/form-data"  method="post" th:object="${R_member}">
+			<form action="/account/modify" enctype="multipart/form-data"  method="post" th:object="${R_member}">
 				<fieldset>
-					<div class="form-group">ID
-						<input class="form-control" name="p_id" th:text="${p_id}">
+					<div class="form-group">Primary key No : <label th:text="${no}"></div>
+					<div class="form-group">User ID : <label th:text="${id}">
 					</div>
 					<div class="form-group">비밀번호
-						<input class="form-control" name="p_pass" type="password" th:text="${p_pass}">
+						<input class="form-control" th:value="${pass}" type="password" name="pass" >
 					</div>
 					<div class="form-group">E-Mail
-						<input class="form-control" name="p_email" type="email" th:text="${p_email}">
+						<input class="form-control" th:value="${email}" type="email" name="email" >
 					</div>
 					
 					<!-- Change this to a button or input when using this as a form -->
-					
-					<input class="btn btn-lg btn-success btn-block" type="submit" value="수정" name="modify"/>
-					<input class="btn btn-lg btn-success btn-block" type="submit" value="정보 삭제" name="delete"/>
+					<input type="hidden" name="no" th:value="${no}">
+					<input type="hidden" name="id" th:value="${id}">
+					<input class="btn btn-lg btn-success btn-block" type="submit" value="수정" name="db_modify"/>
+					<input class="btn btn-lg btn-success btn-block" type="submit" value="정보 삭제" name="del_member"/>
  				</fieldset>
 			</form>
 		</div>
