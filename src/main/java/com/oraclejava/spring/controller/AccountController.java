@@ -40,11 +40,14 @@ public class AccountController {
 
 	/* 로그인 로직 구현 */
 	@RequestMapping(value = "account/mypage", method = RequestMethod.POST)
-	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("/login/mypage...(ok) : " + form.getId());
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/mypage");
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 
 		try {
 			R_member r_member = userRepository.findById(form.getId()).get();
@@ -68,18 +71,15 @@ public class AccountController {
 				System.out.println("Session...(ok) : " + form.getId());
 
 			} else {
-				mav.addObject("msg1", r_member.getId() + "님 ");
-				mav.addObject("msg2", "비밀번호가 틀립니다.ㅜㅠ");
-				mav.addObject("msg3", "다시 입력해 주세요");
-
+				out.println("<script>alert('아이디 혹은 비밀번호가 다릅니다.'); history.go(-1);</script>");
+				out.flush();
 			}
 
 			return mav;
 
 		} catch (Exception e) {
-			mav.addObject("msg1", "아이디를 찾을 수 없습니다.");
-			mav.addObject("msg2", "다시 입력해 주세요");
-			mav.addObject("msg3", "Message:" + e);
+			out.println("<script>alert('Unknown Error'); history.go(-1);</script>");
+			out.flush();
 			return mav;
 		}
 	}
@@ -174,7 +174,7 @@ public class AccountController {
 			out.println("<script>alert('축하합니다! 회원가입에 성공하셨습니다.'); location.href = \"/\"; </script>");
 			out.flush();
 		}
-		
+
 		return "redirect:/";
 	}
 
@@ -228,7 +228,7 @@ public class AccountController {
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("user_id");
 
-		System.out.println("[Check] r_member update Compleat...(ok)");
+		System.out.println("[Check] r_member update Complete...(ok)");
 
 		/* 수정된 내용을 mypage로 반환해서 확인할 수 있도록 한다. */
 		ModelAndView mav = new ModelAndView();
@@ -242,14 +242,24 @@ public class AccountController {
 
 	}
 
-	/* 정보 수정 로직 구현 */
-	@RequestMapping(params = "go_home", value = "account/modify", method = RequestMethod.POST)
-	public String modify() {
-		return "redirect:/home";
+	/* 정보 수정 화면 구현 */
+	@RequestMapping(params = "logout", value = "account/logout")
+	public ModelAndView modify(@ModelAttribute MemberForm form, HttpServletResponse response, HttpSession session)
+			throws IOException {
+		session.invalidate();
+		ModelAndView mav = new ModelAndView("redirect:/");
 
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('성공적으로 로그아웃 되었습니다.');</script>");
+		System.out.println("Logout complete");
+
+		/* 세션을 끊고 홈으로 돌아간다. */
+		return mav;
 	}
 
-	/* 정보 수정 로직 구현 */
+
+	/* 정보 삭제 로직 구현 */
 	@RequestMapping(params = "del_member", value = "account/modify", method = RequestMethod.POST)
 	public String modify(@ModelAttribute R_member form) {
 		System.out.println("삭제 메소드 del_member가 실행되었습니다.");
@@ -261,5 +271,6 @@ public class AccountController {
 		return "redirect:/home";
 
 	}
+
 
 }
