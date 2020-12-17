@@ -30,7 +30,7 @@ public class DetailController {
 	 * String indexTop() { return "redirect:/detail/detail/1"; }
 	 */
 	
-	@RequestMapping(value="/detail/detail/{NO}", method=RequestMethod.GET)
+	@RequestMapping(value="/detail/{NO}", method=RequestMethod.GET)
 	public ModelAndView index( @PathVariable Integer NO) {
 	ModelAndView mav = new ModelAndView();
 	
@@ -40,19 +40,21 @@ public class DetailController {
 	return mav;
 	}
 	
-	@RequestMapping(path = "/detail/detail/{NO}", method = RequestMethod.POST)
+	@RequestMapping(path = "/detail/{NO}", method = RequestMethod.POST)
 	public String review(@ModelAttribute r_review r_review, BindingResult bindingResult, Model model) {
 		int movie_no=r_review.getDetail().getNo();
 		String review =r_review.getContent();
+		int grade=r_review.getGrade();
+		String title= r_review.getTitle();
 		Detail detail=detailRepository.findById(movie_no).get();
 		
 		Date time = new Date();
 		  
-		 detail.getReview().add(new r_review(5,"ab",review,4 ,time,detail));
+		 detail.getReview().add(new r_review(5,title,review,grade ,time,detail));
 		
 		detailRepository.save(detail);
 		
-		return "redirect:/detail/detail/"+movie_no;
+		return "redirect:/detail/"+movie_no;
 	}
 	
 	
