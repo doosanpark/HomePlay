@@ -29,7 +29,7 @@ public class Movie {
     private String poster;
     private String thumbnail;
     private String screening;
-    private String reg_date;
+    private Date reg_date;
     
     
 }
