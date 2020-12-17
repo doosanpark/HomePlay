@@ -1,0 +1,119 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<style type="text/css">
+.category {
+	padding-right: 10px;
+	padding-left: 0px;
+	color: #333333;
+	font-weight: bold;
+	font-size: 18px;
+	font-weight: bold;;
+}
+
+.title_contents {
+	top: 230px;
+	left: 280px;
+	width: 750px;
+	height: 96px;
+}
+
+.genre_contents {
+	top: 395px;
+	left: 80px;
+	width: 710px;
+	height: 30px;
+	font-weight: bold;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 18px
+}
+
+.contents {
+	font-weight: bold;
+	font-size: 36px;
+	color: #333333;
+}
+
+.genre {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.story_title {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.story_contents, content {
+	left: 335px;
+	width: 802px;
+	height: 96px;
+	font-weight: bold;
+}
+
+.poster {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+
+</style>
+<div id="page-wrapper">
+	<h2>
+		<span class="contents">컨텐츠 정보입력</span>
+	</h2>
+	</br>
+	<form action="" method="post">
+		<div>
+			<span class="category">카테고리</span> <select>
+				<option>영화</option>
+				<option>드라마</option>
+				<option>게임</option>
+			</select>
+		</div>
+		</br>
+		<div class="title">
+			<span>제목</span>
+	
+	</br> <input class="title_contents" type="text" placeholder="내용을 입력해주세요" /></br>
+</div>
+</br>
+<span class="genre">장르</span>
+<input class="genre_contents" type="text" data-min-width="60"
+	data-min-height="30" placeholder="내용을 입력해주세요" />
+</br>
+</br>
+<div class="story_title">줄거리 제목</div>
+<input type="text" class="story_contents" placeholder="내용을 입력해주세요" />
+</br>
+</br>
+<div class="story_title">줄거리 내용</div>
+<input type="text" class="story_contents" placeholder="내용을 입력해주세요" />
+</br>
+</br>
+<div>
+	<span class="category">연령제한</span> <select>
+		<option>7</option>
+		<option>12</option>
+		<option>15</option>
+		<option>19</option>
+	</select>
+</div>
+
+</br>
+<div class="poster">
+	포스터<input type="file" name="phoneImage" id="phoneImage" /><br>
+
+	<div>
+		썸네일<input type="file" name="Thumbnail" id="Thumbnail" /><br>
+
+		
+			상영여부&nbsp&nbsp&nbsp<label><input type="checkbox" name="label">Y</label>&nbsp&nbsp <label><input
+				type="checkbox" name="label">N</label>
+		</div>
+			<input type="submit" value="등록">
+		</form>
+	</div>
+	

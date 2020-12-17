@@ -1,21 +1,36 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<th:block th:replace="includes/header :: header"></th:block>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div>
+<title>정보 수정 화면</title>
+<style>
+#join-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-	<h1><P th:text="${msg1}"/></h1>
 
-	<h1><P "사용자ID : " + th:text="${msg2}"/></h1>
-	<h1><P "비밀번호 : " + th:text="${msg3}"/></h1>
+</style>
+<div id="modify-form">
+<!-- 회원가입 form -->
+<div class="col-md-4 col-md-offset-4">
+	<div class="login-panel panel panel-default">
+		<div class="panel-heading">
+			<h1 class="panel-title">로그인 사용자 정보 확인</h1>
+		</div>
+		
+	<div class="panel-body">
+	<h2><P th:text="${'User ID : ' + msg1}"/></h2>
+	<h2><P th:text="${'Password : ' + msg2+'***'}"/></h2>
+	<h2><P th:text="${'e-mail : ' + msg3}"/></h2>
+	<h2><p th:text="${'session value : '+ msg4}" /></h2>
 	
-	<h1><p "session : "+ th:text="${msg4}" /></h1>
-<!-- 	<h1><p "session : "+ th:text="${session.getAttribute('user_id')}" /></h1>
- -->	
-
+	<form action="/account/modify" enctype="multipart/form-data"  method="post" th:object="${R_member}">
+		<input class="btn btn-lg btn-success btn-block" type="submit" value="정보수정" name="sc_modify"/>
+		<input class="btn btn-lg btn-success btn-block" type="submit" value="돌아가기" name="go_home"/>
+	</form>
+	
 	</div>
-</body>
-</html>
+	</div>
+</div>
+		
