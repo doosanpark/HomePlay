@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oraclejava.spring.model.R_member;
 
@@ -239,19 +240,29 @@ public class AccountController {
 		mav.addObject("msg4", s_id);
 
 		return mav;
-
 	}
-
-	/* 정보 수정 화면 구현 */
-	@RequestMapping(params = "logout", value = "account/logout")
-	public ModelAndView modify(@ModelAttribute MemberForm form, HttpServletResponse response, HttpSession session)
+	
+	
+	/* 헤더 로그아웃 구현 */
+	public ModelAndView logout() {
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
+	
+	/* 로그아웃 로직 구현 */
+	@RequestMapping(params = "logout", value = "account/modify", method = RequestMethod.POST)
+	public ModelAndView logout(@ModelAttribute MemberForm form,
+			HttpServletResponse response, HttpSession session, RedirectAttributes redirAttrs)
 			throws IOException {
 		session.invalidate();
 		ModelAndView mav = new ModelAndView("redirect:/");
 
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>alert('성공적으로 로그아웃 되었습니다.');</script>");
+		redirAttrs.addFlashAttribute("logoutMessage", "성공적으로 로그아웃 되었습니다.");
+//		response.setContentType("text/html; charset=UTF-8");
+//		PrintWriter out = response.getWriter();
+//		out.println("<script>alert('성공적으로 로그아웃 되었습니다.');</script>");
 		System.out.println("Logout complete");
 
 		/* 세션을 끊고 홈으로 돌아간다. */
