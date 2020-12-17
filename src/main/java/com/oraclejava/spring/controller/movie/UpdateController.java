@@ -21,18 +21,20 @@ public class UpdateController {
 		
 		Movie movie = movieRepository.findById(no).get();
 		MovieForm form = new MovieForm();
-		movie.setTitle(form.getTitle());
-		movie.setGenre(form.getGenre());
-		movie.setSummary_title(form.getSummary_title());
-		movie.setSummary_content(form.getSummary_content());
-		movie.setAge_limit(form.getAge_limit());
+		form.setTitle(movie.getTitle());
+		form.setGenre(movie.getGenre());
+		form.setSummary_title(movie.getSummary_title());
+		form.setSummary_content(movie.getSummary_content());
+		form.setAge_limit(movie.getAge_limit());
 //		movie.setPoster();
 //		movie.setThumbnail();
-		movie.setScreening(form.getScreening());
-		model.addAttribute("MovieForm", movie);
+		form.setScreening(movie.getScreening());
+		model.addAttribute("movie", form);
+		
+		System.out.println("title: "+ form.getTitle());
 		
 		
-		return "/movie/update";
+		return "movie/updatePre";
 	}
 
 	
