@@ -36,7 +36,7 @@
 	color: #333333;
 }
 
-.genre {
+.genrecss {
 	font-weight: bold;
 	font-size: 18px;
 }
@@ -60,12 +60,14 @@
 
 
 </style>
+
+
 <div id="page-wrapper">
 	<h2>
 		<span class="contents">컨텐츠 정보입력</span>
 	</h2>
 	</br>
-	<form action="" method="post">
+	<form action="" method="post" enctype="multipart/form-data">
 		<div>
 			<span class="category">카테고리</span> <select>
 				<option>영화</option>
@@ -77,24 +79,28 @@
 		<div class="title">
 			<span>제목</span>
 	
-	</br> <input class="title_contents" type="text" placeholder="내용을 입력해주세요" /></br>
+	</br> <input class="title_contents" name="title" type="text" placeholder="내용을 입력해주세요" /></br>
 </div>
 </br>
-<span class="genre">장르</span>
-<input class="genre_contents" type="text" data-min-width="60"
-	data-min-height="30" placeholder="내용을 입력해주세요" />
+ <span  class="genrecss">장르&nbsp&nbsp</span>
+ <select name="genre">
+				<option>로맨스</option>
+				<option>애니메이션</option>
+				<option>액션</option>
+				<option>코미디</option>
+			</select>
 </br>
 </br>
 <div class="story_title">줄거리 제목</div>
-<input type="text" class="story_contents" placeholder="내용을 입력해주세요" />
+<input type="text" class="story_contents" name="summary_title" placeholder="내용을 입력해주세요" />
 </br>
 </br>
 <div class="story_title">줄거리 내용</div>
-<input type="text" class="story_contents" placeholder="내용을 입력해주세요" />
+<input type="text" class="story_contents" name="summary_content" placeholder="내용을 입력해주세요" />
 </br>
 </br>
 <div>
-	<span class="category">연령제한</span> <select>
+	<span class="category">연령제한</span> <select name="age_limit">
 		<option>7</option>
 		<option>12</option>
 		<option>15</option>
@@ -104,14 +110,14 @@
 
 </br>
 <div class="poster">
-	포스터<input type="file" name="phoneImage" id="phoneImage" /><br>
+	포스터<input type="file" name="poster_image" id="poster_image" /><br>
 
 	<div>
-		썸네일<input type="file" name="Thumbnail" id="Thumbnail" /><br>
+		썸네일<input type="file" name="thumbnail_image" id="thumbnail_image" /><br>
 
 		
-			상영여부&nbsp&nbsp&nbsp<label><input type="checkbox" name="label">Y</label>&nbsp&nbsp <label><input
-				type="checkbox" name="label">N</label>
+			상영여부&nbsp&nbsp&nbsp<label><input type="checkbox" name="screening" value="Y">Y</label>&nbsp&nbsp <label><input
+				type="checkbox" name="screening" value="N">N</label>
 		</div>
 			<input type="submit" value="등록">
 		</form>

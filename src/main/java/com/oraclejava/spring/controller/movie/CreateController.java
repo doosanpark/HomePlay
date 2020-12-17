@@ -22,7 +22,7 @@ public class CreateController {
 	@Autowired
 	private MovieRepository movieRepository;
 
-	@Value("img.absolute.location")
+	@Value("${img.absolute.location}")
 	private String imageLocation;
 
 	// contents 추가완료
@@ -62,6 +62,7 @@ public class CreateController {
 		movie.setScreening(form.getScreening());
 		movie.setReg_date(new Date());
 		movieRepository.save(movie);
+		
 		return "/movie/createSuccess";
 		
 	}
