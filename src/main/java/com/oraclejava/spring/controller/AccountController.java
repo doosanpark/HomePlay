@@ -3,6 +3,7 @@ package com.oraclejava.spring.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oraclejava.spring.dao.movie.FavoritesRepository;
 import com.oraclejava.spring.model.R_member;
+import com.oraclejava.spring.model.movie.Favorites;
 
 @Controller
 public class AccountController {
+
+	@Autowired
+	private FavoritesRepository favoritesRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -41,7 +47,8 @@ public class AccountController {
 
 	/* 로그인 로직 구현 */
 	@RequestMapping(value = "account/mypage", method = RequestMethod.POST)
-	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		System.out.println("/login/mypage...(ok) : " + form.getId());
 
 		ModelAndView mav = new ModelAndView();
@@ -70,6 +77,11 @@ public class AccountController {
 				mav.addObject("msg4", session.getAttribute("user_id"));
 
 				System.out.println("Session...(ok) : " + form.getId());
+
+				String id = (String) session.getAttribute("user_id");
+
+				List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
+				mav.addObject("findFavorite", findFavorite);
 
 			} else {
 				out.println("<script>alert('아이디 혹은 비밀번호가 다릅니다.'); history.go(-1);</script>");
@@ -241,25 +253,21 @@ public class AccountController {
 
 		return mav;
 	}
-	
-	
+
 	/* 헤더 로그아웃 구현 */
 	@RequestMapping(value = "account/logout", method = RequestMethod.POST)
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView mav = new ModelAndView("redirect:/");
-		
+
 		session.invalidate();
-		
-		
+
 		return mav;
 	}
-	
-	
+
 	/* 로그아웃 로직 구현 */
 	@RequestMapping(params = "logout", value = "account/modify", method = RequestMethod.POST)
-	public ModelAndView logout(@ModelAttribute MemberForm form,
-			HttpServletResponse response, HttpSession session, RedirectAttributes redirAttrs)
-			throws IOException {
+	public ModelAndView logout(@ModelAttribute MemberForm form, HttpServletResponse response, HttpSession session,
+			RedirectAttributes redirAttrs) throws IOException {
 		session.invalidate();
 		ModelAndView mav = new ModelAndView("redirect:/");
 
@@ -273,7 +281,6 @@ public class AccountController {
 		return mav;
 	}
 
-
 	/* 정보 삭제 로직 구현 */
 	@RequestMapping(params = "del_member", value = "account/modify", method = RequestMethod.POST)
 	public String modify(@ModelAttribute R_member form) {
@@ -286,6 +293,5 @@ public class AccountController {
 		return "redirect:/home";
 
 	}
-
 
 }
