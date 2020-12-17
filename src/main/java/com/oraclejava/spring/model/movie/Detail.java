@@ -56,4 +56,9 @@ public class Detail {
 	@OrderBy("reg_date desc")
 	private List<RReview> review; // r_review 테이블과 조인
 	
+	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
+	private List<Favorite> favorites; // r_review 테이블과 조인
+	
+	
+	
 }

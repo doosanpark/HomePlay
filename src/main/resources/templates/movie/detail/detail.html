@@ -53,8 +53,9 @@
 
 		<form method="post" action="favorite">
 			<!-- 관심 등록 기능  -->
-			<input type="hidden" name="rno" th:value="${detail.no}"> <input
-				type="submit" value="" name="favorite" id="favorite"> 
+			<input type="hidden" name="count" th:value="${favoriteCount}">
+			<input type="hidden" name="detail.no" th:value="*{no}">
+			<input type="submit" value="" name="favorite" id="favorite">
 		</form>
 
 		<div style="clear: both"></div>
@@ -109,8 +110,10 @@
 			<br>
 
 			<div>
-				<img style="position: relative; left: -40%; top: 10px;"
+				<img style="position: relative; left: -46%; top: 10px;"
 					th:src="@{'/img/'+ ${r.grade}+'.jpg'}" height="25px;" width="100">
+			</div>
+			<div>
 				<span
 					style="position: relative; right: -41.5%; top: 10px; font-weight: bolder;"
 					th:text="${r.member_id}">작성자 아이디</span> <span

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,11 +24,17 @@ public class Favorite {
 	
 	private String id;
 	
-	private int rno;
 
-	public Favorite(String id, int rno) {
+	public Favorite(String id) {
 		this.id = id;
-		this.rno = rno;
 	}
+	
+	public Favorite() {
+	}
+	
+	@ManyToOne //다대일
+	@JoinColumn(name = "rno") // Detail 테이블의 no column과 조인
+	private Detail detail;
+	
 	
 }
