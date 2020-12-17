@@ -22,7 +22,7 @@ public class RReview {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ris")
-	@SequenceGenerator(name = "ris", sequenceName = "review_no_sequence", allocationSize = 1)
+	@SequenceGenerator(name = "ris", sequenceName = "review_no_seq", allocationSize = 1)
 	private int no;
 	
 	private int member_no;
