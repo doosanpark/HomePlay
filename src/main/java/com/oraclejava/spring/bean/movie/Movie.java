@@ -1,5 +1,7 @@
 package com.oraclejava.spring.bean.movie;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
