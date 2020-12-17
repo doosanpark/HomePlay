@@ -1,27 +1,71 @@
 <th:block th:replace="includes/header :: header"></th:block>
 <th:block th:replace="includes/sider :: sider"></th:block>
+<style type="text/css">
+.detailList{
+	list-style-type: none;
+}
+.thumb{
+float: left;
+margin-right: 20px;
+}
+.boundary{
+clear: both;
+margin-bottom: 30px;
+}
+.pic{
+width: 99px;
+height: 141px;
+}
+.movieDd dt{
+float: left;
+line-height: 18px;
+}
+.movieDd dd{
+margin: 4px 0 4px 40px;
+}
+.movieTitle{
+float: left;
+}
+</style>
 <div id="page-wrapper">
 <h3><strong th:text="${genreName}"></strong> <strong>영화</strong></h3>
-<hr>
-<div class="container">
-	<table class="table table-hover">
-		<tr th:each="m:${movieList}">
-			<td>
-				<a>
-					<img alt="사진" th:src="@{'/img/' + ${m.poster}}" />
+<div class="deCon">
+	<ul class="detailList">
+		<li th:each="m:${movieList}" >
+			<div class="thumb">
+				<a th:href="@{'/detail/' + ${m.no}}">
+					<img alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic" />
 				</a>
-			</td>
-			<a>
-				<td th:text="${m.title}">영화제목</td>
-			</a>
-			<td th:text="${m.genre}">젠르</td>
-		</tr>
-	</table>
+			</div>
+				<dl class="movieTitle">
+					<dt>
+						<a th:href="@{'/detail/' + ${m.no}}">
+							<span th:text="${m.title}" >영화제목</span><br>
+						</a>
+					</dt>
+					<dd class="movieDd">
+						<dl>
+							<dt>개요<dt>
+							<dd>
+								<a th:href="@{'/movie/list/' + ${genreName}} + '/1'">
+									<span th:text="${genreName}">젠르</span>					
+								</a>
+							</dd>
+							<dt>연령</dt>
+							<dd>
+								<span th:text="${m.age_limit}"></span>
+							</dd>
+						</dl>
+					</dd>
+				</dl>
+				<hr class="boundary">
+		</li>
+	</ul>
 	<div>
 		<ul class="pagination">
 			<li th:each="i : ${#numbers.sequence(beginIndex, endIndex)}"
 			class="page-item" th:classappend="${currentIndex == i} ? 'active' : '' ">
-				<a class="page-link" th:href="'/' + ${i} " >
+				<a class="page-link" th:href="'/movie/list/' + ${genreName} + '/' + ${i} " >
 					<span th:text="${i}"></span>
 				</a>
 			</li>
