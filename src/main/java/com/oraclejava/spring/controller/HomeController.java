@@ -29,7 +29,7 @@ public class HomeController {
 		Collections.shuffle(lists); // 리스트 내 값 랜덤으로 순서 재배치
 
 		// 총 영화 리스트 중 4개 항목만 리스트에 저장
-		for (int i = 4; i <= lists.size(); i++) {
+		for (int i = 4; i < lists.size(); i++) {
 			lists.remove(i);
 
 		}
