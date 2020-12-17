@@ -1,0 +1,126 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-
+ scale=1.0,maximum-scale=1.0,user-scalable=no"
+	charset="UTF-8">
+
+<style>
+#d_position {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+#two {
+	width: 100%;
+}
+
+.left {
+	width: 50%;
+	float: left;
+}
+
+.right {
+	width: 50%;
+	float: right;
+}
+
+#favorite {
+	background: url("/img/favorite.jpg");
+	background-repeat: no-repeat;
+	width: 268px;
+	height: 50px;
+	border-color: transparent;
+}
+</style>
+
+<div id="page-wrapper">
+
+
+
+	<div id="two" th:object="${detail}">
+		<div class="left">
+			<div class="page-header">
+				<h1>
+					<span th:text="*{title}">TITLE</span><br>
+				</h1>
+				<span th:text="*{genre}">GENRE</span><br>
+			</div>
+		</div>
+		<div style="position: relative; right: -10%; top: 10px;" class="right">
+			<img th:src="@{'/img_movie/' + *{poster}}" height="350" width="350"><br>
+		</div>
+
+		<form method="post" action="favorite">
+			<!-- 관심 등록 기능  -->
+			<input type="hidden" name="rno" th:value="${detail.no}"> <input
+				type="submit" value="" name="favorite" id="favorite"> 
+		</form>
+
+		<div style="clear: both"></div>
+		<h3>줄거리</h3>
+		<span th:text="*{summary_title}">SUMMATY_TITLE</span><br>
+		<div style="position: relative; left: 0%; top: 10px;">
+			<span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
+		</div>
+	</div>
+
+
+	<div style="position: relative; right: 0%; top: 50px;" id="d_position"
+		align="center">
+		<h2 style="position: relative; left: -45%; top: -10px;">댓글 작성</h2>
+		<!-- 댓글 작성 기능  -->
+		<div
+			style="border-style: groove; border-radius: 10px; width: 500px; position: relative; left: -30%; top: -10px;">
+			<form method="post" action="">
+				<input type="hidden" name="detail" th:value="${detail.no}">
+
+				<div align="left">
+					<label for="title"> 제목 :</label> <input type="text" name="title"
+						id="title"
+						style="width: 450px; margin-bottom: 5px; margin-top: 5px;">
+					<br> <label for="content"> 내용 :</label> <input type="text"
+						name="content" id="content"
+						style="width: 450px; margin-bottom: 5px; margin-top: 5px;">
+					<br> <label for="grade"> 별점 :</label> <select name="grade"
+						id="grade"
+						style="width: 50px; margin-bottom: 5px; margin-top: 5px;"><option
+							value=5 selected="selected">5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select> <input type="submit" value="작성">
+				</div>
+			</form>
+		</div>
+
+
+		<br>
+		<h2 style="position: relative; left: -44%; top: -10px;">관람객 리뷰</h2>
+		<!-- 관람객 리뷰 출력 기능  -->
+		<div align="center" th:each="r: ${detail.review}">
+			<hr style="border: solid 1px lightgray; width: 101.5%;">
+			<div align="left">
+				<span style="font-weight: bold; font-size: large;"
+					th:text="${r.title}">댓글 제목</span> <br> <span
+					th:text="${r.content}">댓글 내용</span>
+			</div>
+			<br>
+
+			<div>
+				<img style="position: relative; left: -40%; top: 10px;"
+					th:src="@{'/img/'+ ${r.grade}+'.jpg'}" height="25px;" width="100">
+				<span
+					style="position: relative; right: -41.5%; top: 10px; font-weight: bolder;"
+					th:text="${r.member_id}">작성자 아이디</span> <span
+					style="position: relative; right: -41.5%; top: 10px;"
+					th:text="${r.reg_date}">작성 날짜</span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+

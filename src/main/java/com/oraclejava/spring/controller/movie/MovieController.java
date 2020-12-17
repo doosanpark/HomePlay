@@ -30,19 +30,6 @@ public class MovieController {
 	   public ModelAndView index() {
 	      ModelAndView mav = new ModelAndView();
 	      mav.setViewName("movie/list/movieList");
-	      List<Movie> lists = 
-	            movieRepository.findGenre("로맨스", PageRequest.of(0, 4));
-	      List<Movie> lists2 = 
-		            movieRepository.findGenre("액션", PageRequest.of(0, 4));
-	      List<Movie> lists3 = 
-	    		  movieRepository.findGenre("애니메이션", PageRequest.of(0, 4));
-	      List<Movie> lists4 = 
-	    		  movieRepository.findGenre("코미디", PageRequest.of(0, 4));
-	      mav.addObject("movieListRomance", lists);
-	      mav.addObject("movieListAction", lists2);
-	      mav.addObject("movieListAni", lists3);
-	      mav.addObject("movieListComi", lists4);
-	      
 	      return mav;
 	   }
 	   
@@ -50,14 +37,6 @@ public class MovieController {
 	   public String genreList(@PathVariable String genre, Integer pageNumber, Model model) {
 		  
 		   pageNumber = (pageNumber == null) ? 1 : pageNumber;
-		   Page<Movie> movies = movieRepository.findGenreList(genre, PageRequest.of(pageNumber - 1, PAGE_SIZE));		   
-		   int begin = 1;
-		   int end = movies.getTotalPages();
-		   int current = movies.getNumber() + 1;
-		   model.addAttribute("movieList", movies.getContent());
-		   model.addAttribute("beginIndex", begin);
-		   model.addAttribute("endIndex", end);
-		   model.addAttribute("currentIndex", current);
 		   
 		   return "movie/list/movieListDetail";
 	   }

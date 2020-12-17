@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
@@ -16,14 +19,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oraclejava.spring.dao.movie.DetailRepository;
+import com.oraclejava.spring.dao.movie.Movie_favoriteRepository;
 import com.oraclejava.spring.model.movie.Detail;
 import com.oraclejava.spring.model.movie.RReview;
+import com.oraclejava.spring.model.movie.Favorite;
 
 @Controller
 public class DetailController {
 
 	@Autowired
 	private DetailRepository detailRepository;
+	@Autowired
+	private Movie_favoriteRepository favoriteRepository;
 
 	/*
 	 * @RequestMapping(value="/detail/detail", method=RequestMethod.GET) public
@@ -37,17 +44,29 @@ public class DetailController {
 		mav.setViewName("movie/detail/detail");
 		mav.addObject("detail", detailRepository.findById(NO).get());
 		
-		List<RReview> rev = detailRepository.findById(NO).get().getReview();
-        int id=rev.get(1).getMember_no();
-        String m_id=detailRepository.findId(id);
-        
-        
 
 		return mav;
 	}
+	
+	
+	@RequestMapping(path = "/detail/favorite", method = RequestMethod.POST)
+	public String favorite(@ModelAttribute Favorite favorite ,BindingResult bindingResult, Model model, HttpServletRequest request) {
+		int movie_no = favorite.getRno();
+		
+		HttpSession session = request.getSession();
+		String s_id = (String) session.getAttribute("user_id");
+		
+	    favorite.setRno(movie_no);
+	    favorite.setId(s_id);
 
+	    favoriteRepository.save(favorite);
+		
+		return "redirect:/detail/" + movie_no;
+		
+	}
+	
 	@RequestMapping(path = "/detail/{NO}", method = RequestMethod.POST)
-	public String review(@ModelAttribute RReview r_review, BindingResult bindingResult, Model model) {
+	public String review(@ModelAttribute RReview r_review, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		int movie_no = r_review.getDetail().getNo();
 		String review = r_review.getContent();
 		int grade = r_review.getGrade();
@@ -56,7 +75,11 @@ public class DetailController {
 		
 		Date time = new Date();
 
-		detail.getReview().add(new RReview(5, title, review, grade, time, detail));
+		HttpSession session = request.getSession();
+		String s_id = (String) session.getAttribute("user_id");
+		int s_no =  (int) session.getAttribute("user_no");
+
+		detail.getReview().add(new RReview(s_no, title, review, grade, time, detail, s_id));
 
 		detailRepository.save(detail);
 
