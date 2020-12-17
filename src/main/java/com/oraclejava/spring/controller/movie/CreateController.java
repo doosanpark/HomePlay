@@ -60,7 +60,6 @@ public class CreateController {
 		movie.setPoster(sourceFileName1);
 		movie.setThumbnail(sourceFileName);
 		movie.setScreening(form.getScreening());
-		movie.setReg_date(new Date());
 		movieRepository.save(movie);
 		return "/movie/createSuccess";
 		
