@@ -16,7 +16,7 @@ public class UpdateController {
 	@Autowired
 	private MovieRepository movieRepository;
 
-	@RequestMapping(path = "/movie/updatePre/{no}", method = RequestMethod.GET)
+	@RequestMapping(path = "/movie/updatepre/{no}", method = RequestMethod.GET)
 	public String index(@PathVariable Integer no, Model model) {
 		
 		Movie movie = movieRepository.findById(no).get();
@@ -29,6 +29,8 @@ public class UpdateController {
 //		movie.setPoster();
 //		movie.setThumbnail();
 		movie.setScreening(form.getScreening());
+		model.addAttribute("MovieForm", movie);
+		
 		
 		return "/movie/update";
 	}
