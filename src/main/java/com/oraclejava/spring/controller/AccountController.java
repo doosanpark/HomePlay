@@ -58,6 +58,7 @@ public class AccountController {
 				HttpSession session = request.getSession();
 				request.setCharacterEncoding("utf-8");
 				session.setAttribute("user_id", r_member.getId());
+				session.setAttribute("user_no", r_member.getNo());
 
 				mav.addObject("msg1", r_member.getId());
 				mav.addObject("msg2", r_member.getPass());
