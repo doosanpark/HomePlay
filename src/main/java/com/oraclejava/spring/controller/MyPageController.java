@@ -1,5 +1,7 @@
 package com.oraclejava.spring.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,14 +31,20 @@ public class MyPageController {
 		
 	HttpSession session = request.getSession();
 	String id = (String)session.getAttribute("user_id");
+	long accessTime = (long)session.getCreationTime();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+	String createTimeString = dateFormat.format(new Date(accessTime));
 
 	System.out.println(id);
+	System.out.println(accessTime);
 	
 	
 	List<R_member> user_info = userRepository.findUser(id);
 	mav.addObject("user_info", user_info);
-	
+	mav.addObject("accessTime", createTimeString);
 	return mav;
 	}
+	
+	
 
 }

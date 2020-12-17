@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Profile</title>
 </head>
 <body>
 
@@ -10,24 +10,23 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<td colspan="6" ><h3>마이 페이지</h3></td>
+					<td colspan="6"><h3>유저 프로필</h3></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>아이디</td>
-					<td th:text="${user_info[0].id}"></td>
-					<td>이메일 주소</td>	
-					<td th:text="${user_info[0].email}"></td>
+					<td th:text="${user_info[0].id}">id</td>
+					<td>이메일 주소</td>
+					<td th:text="${user_info[0].email}">email</td>
 				</tr>
 				<tr>
-					
-					<td>등급</td>	
-<!-- 					<td th:text="${user_info[0].grade}"></td> -->
-<!-- 					<td th:text="&{user_info[0].id"></td> -->
-<!-- 					<td th:utext="${m.grade}">grade</td> -->
-<!-- 					<td>가입일자</td>	 -->
-<!-- 					<td th:utext="${m.reg_date}">reg_date</td> -->
+					<td>가입일자</td>
+					<td th:utext="${user_info[0].reg_date}">reg_date</td>
+				</tr>
+				<tr>
+					<td>접속시간</td>
+					<td th:utext="${accessTime}">접속시간</td>
 				</tr>
 			</tbody>
 		</table>
