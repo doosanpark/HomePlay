@@ -256,11 +256,24 @@ public class AccountController {
 		return mav;
 		
 	}
+
+	/* 정보 수정 로직 구현 */
+	@RequestMapping(params="go_home", value="account/modify", method = RequestMethod.POST)
+	public String modify() {
+		return "redirect:/home";
+		
+	}
 	
 	/* 정보 수정 로직 구현 */
-	@RequestMapping(params="del_member", value="account/modify", method = RequestMethod.GET)
-	public ModelAndView modify(Model model,	HttpServletRequest request) {
-		return null;
+	@RequestMapping(params="del_member", value="account/modify", method = RequestMethod.POST)
+	public String modify(@ModelAttribute R_member form) {
+		System.out.println("삭제 메소드 del_member가 실행되었습니다.");
+		
+		/* 업데이트할 대상 레코드를 검색한다. */
+		/* 실행 ID가 Admin인지 확인하는 절차 필요*/
+		userRepository.deleteById(form.getNo());
+		
+		return "redirect:/home";
 		
 	}
 
