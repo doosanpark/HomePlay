@@ -105,7 +105,7 @@
 
 	function redir(no){
 		
-		$(location).attr('href', 'http://localhost:7080/detail/detail/'+no);
+		$(location).attr('href', 'http://localhost:7080/detail/'+no);
 		
 	}
 	
@@ -148,11 +148,11 @@
 				<h4><strong>당신을 위한 추천영화</strong></h4>
 			</div>
 			<div class="listre" th:each="m : ${movieRecommend}">
-			<a th:href="@{'/detail/detail/'+${m.no}}">
+			<a th:href="@{'/detail/'+${m.no}}">
 				<img id="poster" th:src="@{'/img_movie/'+${m.poster}}">
 				</a> 
 				<div class="container" style="height:12vh; width: 100%">
-					<a th:href="@{'/detail/detail/'+${m.no}}" >
+					<a th:href="@{'/detail/'+${m.no}}" >
 					<h4 style="margin: 0;"><strong><span id="title" th:text="${m.title}">영화제목</span></strong></h4>
 					<span id="genre" th:text="${m.genre}">영화장르</span>
 					</a>
