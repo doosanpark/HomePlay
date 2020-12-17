@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class r_review {
+@Table(name = "r_review")
+public class RReview {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ris")
@@ -33,11 +35,11 @@ public class r_review {
 	@JoinColumn(name = "movie_no") // Detail 테이블의 no column과 조인
 	private Detail detail;
 	
-	public r_review() {
+	public RReview() {
 		
 	}
 
-	public r_review(int member_no, String title, String content, int grade, Date reg_date) {
+	public RReview(int member_no, String title, String content, int grade, Date reg_date) {
 		this.member_no = member_no;
 		this.title = title;
 		this.content = content;
@@ -45,7 +47,7 @@ public class r_review {
 		this.reg_date = reg_date;
 	}
 
-	public r_review(int member_no, String title, String content, int grade, Date reg_date,
+	public RReview(int member_no, String title, String content, int grade, Date reg_date,
 			Detail detail) {
 		this.member_no = member_no;
 		this.title = title;
