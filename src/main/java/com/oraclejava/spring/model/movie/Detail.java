@@ -1,5 +1,6 @@
 package com.oraclejava.spring.model.movie;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,6 +54,6 @@ public class Detail {
 
 	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
 	@OrderBy("reg_date desc")
-	private Set<r_review> review; // r_review 테이블과 조인
+	private List<RReview> review; // r_review 테이블과 조인
 	
 }
