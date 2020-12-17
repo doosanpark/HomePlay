@@ -19,7 +19,7 @@
 			<h3 class="panel-title">User Login</h3>
 		</div>
 		<div class="panel-body">
-			<form action="/account/loginsuccess" enctype="multipart/form-data"  method="post" th:object="${R_member}">
+			<form action="/account/mypage" enctype="multipart/form-data"  method="post" th:object="${R_member}">
 				<fieldset>
 					<div class="form-group">
 						<input class="form-control" placeholder="아이디" name="id" autofocus="">
@@ -29,7 +29,7 @@
 					</div>
 					<!-- Change this to a button or input when using this as a form -->
 					
-					<input class="btn btn-lg btn-success btn-block" type="submit" value="로 그 인" name="Loginsuccess"><br/>
+					<input class="btn btn-lg btn-success btn-block" type="submit" value="로 그 인" name="mypage"><br/>
 					<center>아직 회원이 아니세요? <a href="sc_join">회원가입</a></center>
 					
  				</fieldset>
