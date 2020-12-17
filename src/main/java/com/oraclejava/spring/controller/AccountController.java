@@ -244,8 +244,12 @@ public class AccountController {
 	
 	
 	/* 헤더 로그아웃 구현 */
-	public ModelAndView logout() {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "account/logout", method = RequestMethod.POST)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView("redirect:/");
+		
+		session.invalidate();
+		
 		
 		return mav;
 	}
