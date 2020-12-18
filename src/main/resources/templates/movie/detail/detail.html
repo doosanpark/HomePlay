@@ -5,12 +5,13 @@
  scale=1.0,maximum-scale=1.0,user-scalable=no"
 	charset="UTF-8">
 
-<style>
-#d_position {
-	padding-left: 10%;
-	padding-right: 10%;
+<script>
+function favoriteUpdate() {
+	alert("관심 등록되었습니다.");
 }
+</script>
 
+<style>
 #two {
 	width: 100%;
 }
@@ -21,7 +22,11 @@
 }
 
 .right {
-	width: 50%;
+ 
+	margin-top: 100px;
+	margin-right: 100px;
+ 	width: 450px;
+	height: 450px;
 	float: right;
 }
 
@@ -32,6 +37,55 @@
 	height: 50px;
 	border-color: transparent;
 }
+
+.box {
+	border-style: groove;
+	border-radius: 10px;
+	width: 500px;
+}
+
+.box2 {
+	border-style: groove;
+	border-radius: 10px;
+}
+
+.comment {
+	width: 450px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.listre {
+	width: 15%;
+	height: 100%;
+	padding: 0 3% 3% 0;
+	text-align: center;	
+}
+
+.pic {
+	width: 150px;
+	padding-bottom: 10px;
+	height: 150px;
+}
+
+.moli li {
+	list-style-type: none;
+	float: left;
+}
+
+.moli {
+	display: inline-block;
+	width: 100%;
+	height: 180px;
+	margin-left: 50px;
+}
+
+.margins{
+
+margin-top: 50px;
+margin-bottom: 75px;
+}
+
 </style>
 
 <div id="page-wrapper">
@@ -47,58 +101,74 @@
 				<span th:text="*{genre}">GENRE</span><br>
 			</div>
 		</div>
-		<div style="position: relative; right: -10%; top: 10px;" class="right">
-			<img th:src="@{'/img_movie/' + *{poster}}" height="350" width="350"><br>
-		</div>
 
-		<form method="post" action="favorite">
-			<!-- 관심 등록 기능  -->
-			<input type="hidden" name="count" th:value="${favoriteCount}">
-			<input type="hidden" name="detail.no" th:value="*{no}">
-			<input type="submit" value="" name="favorite" id="favorite">
-		</form>
+		<img class="right" th:src="@{'/img_movie/' + *{poster}}"><br>
 
-		<div style="clear: both"></div>
-		<h3>줄거리</h3>
-		<span th:text="*{summary_title}">SUMMATY_TITLE</span><br>
-		<div style="position: relative; left: 0%; top: 10px;">
-			<span th:text="*{summary_content}">SUMMARY_CONTENT</span><br>
+		<div style="width: 750px;">
+			<form method="post" action="favorite">
+				<!-- 관심 등록 기능  -->
+				<input type="hidden" name="count" th:value="${favoriteCount}">
+				<input type="hidden" name="detail.no" th:value="*{no}"> 
+				<input type="hidden" name="detail.no" th:value="*{no}"> <input
+					type="submit" value="" name="favorite" id="favorite" onclick="favoriteUpdate();">
+					
+			</form>
+			<h3>줄거리</h3>
+			<span th:text="*{summary_title}">SUMMATY_TITLE</span><br> <span
+				th:text="*{summary_content}">SUMMARY_CONTENT</span>
 		</div>
 	</div>
 
+	<br>
+	<div class="margins">
 
-	<div style="position: relative; right: 0%; top: 50px;" id="d_position"
-		align="center">
-		<h2 style="position: relative; left: -45%; top: -10px;">댓글 작성</h2>
+		<!-- 출연진 정보 출력 -->
+		<h2 style="font-weight: bolder;">배우 / 제작진</h2>
+
+		<ul class="moli">
+			<li th:each="l:${listStaff}" class="listre"><img alt="사진"
+				th:src="@{'/img_movie/' + ${l.photo}}" class="pic"> <br> <span
+				th:text="*{l.name}">이름</span><br> <span th:text="*{l.role}"></span>
+			</li>
+		</ul>
+	</div>
+	
+	
+	<div>
+		<h2>댓글 작성</h2>
 		<!-- 댓글 작성 기능  -->
-		<div
-			style="border-style: groove; border-radius: 10px; width: 500px; position: relative; left: -30%; top: -10px;">
+		<div class="box">
 			<form method="post" action="">
 				<input type="hidden" name="detail" th:value="${detail.no}">
 
 				<div align="left">
 					<label for="title"> 제목 :</label> <input type="text" name="title"
-						id="title"
-						style="width: 450px; margin-bottom: 5px; margin-top: 5px;">
-					<br> <label for="content"> 내용 :</label> <input type="text"
-						name="content" id="content"
-						style="width: 450px; margin-bottom: 5px; margin-top: 5px;">
-					<br> <label for="grade"> 별점 :</label> <select name="grade"
-						id="grade"
-						style="width: 50px; margin-bottom: 5px; margin-top: 5px;"><option
+						id="title" class="comment"> <br> <label for="content">
+						내용 :</label> <input type="text" name="content" id="content"> <br>
+					<label for="grade"> 별점 :</label> <select name="grade" id="grade"><option
 							value=5 selected="selected">5</option>
 						<option value=4>4</option>
 						<option value=3>3</option>
 						<option value=2>2</option>
 						<option value=1>1</option>
-					</select> <input type="submit" value="작성">
+					</select> <input style="" type="submit" value="작성">
 				</div>
 			</form>
 		</div>
 
 
-		<br>
-		<h2 style="position: relative; left: -44%; top: -10px;">관람객 리뷰</h2>
+		<br> <br>
+		<div>
+			<table>
+				<tr>
+					<td align="left" style="font-weight: bolder; font-size: x-large;">관람객
+						리뷰</td>
+					<td style="font-weight: bold; font-size: large;"
+						th:text="'('+${#lists.size(detail.review)+')'}">리뷰 갯수</td>
+				</tr>
+			</table>
+
+		</div>
 		<!-- 관람객 리뷰 출력 기능  -->
 		<div align="center" th:each="r: ${detail.review}">
 			<hr style="border: solid 1px lightgray; width: 101.5%;">
@@ -110,20 +180,14 @@
 			<br>
 
 			<div>
-				<img style="position: relative; left: -46%; top: 10px;"
-					th:src="@{'/img/'+ ${r.grade}+'.jpg'}" height="25px;" width="100">
+				<img align="left" th:src="@{'/img/'+ ${r.grade}+'.jpg'}"
+					height="25px;" width="100">
 			</div>
-			<div>
-				<span
-					style="position: relative; right: -41.5%; top: 10px; font-weight: bolder;"
-					th:text="${r.member_id}">작성자 아이디</span> <span
-					style="position: relative; right: -41.5%; top: 10px;"
-					th:text="${r.reg_date}">작성 날짜</span>
+			<div align="right">
+				<span style="font-weight: bolder;" th:text="${r.member_id}">작성자
+					아이디</span> <span th:text="${r.reg_date}">작성 날짜</span>
 			</div>
 		</div>
 
 	</div>
 </div>
-
-
-
