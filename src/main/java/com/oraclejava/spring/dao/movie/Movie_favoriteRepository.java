@@ -6,4 +6,5 @@ import com.oraclejava.spring.model.movie.Favorite;
 
 public interface Movie_favoriteRepository extends JpaRepository<Favorite, Integer>{
 
+
 }

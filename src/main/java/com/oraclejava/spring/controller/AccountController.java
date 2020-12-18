@@ -27,12 +27,13 @@ import com.oraclejava.spring.model.movie.Favorites;
 public class AccountController {
 
 	@Autowired
-	private FavoritesRepository favoritesRepository;
-
-	@Autowired
 	private UserRepository userRepository;
+	@Autowired
 	private HttpServletRequest HttpServletRequest;
+	@Autowired
 	private HttpServletResponse HttpServletResponse;
+	@Autowired
+	private FavoritesRepository favoritesRepository;
 
 	/* 로그인 화면 구현 */
 	@RequestMapping(value = "account/login", method = RequestMethod.GET)
