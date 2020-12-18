@@ -46,6 +46,29 @@ public class AccountController {
 		return mav;
 	}
 
+	@RequestMapping(value = { "account/mypage" }, method = RequestMethod.GET)
+	public ModelAndView mypage(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("account/mypage");
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("user_id");
+		String pass = (String) session.getAttribute("user_pass");
+		String email = (String) session.getAttribute("user_email");
+
+		System.out.println("account/mypage get로그인 아이디 "+id);
+
+		List<R_member> user_info = userRepository.findUser(id);
+		mav.addObject("user_info", user_info);
+
+		mav.addObject("msg1", id);
+		mav.addObject("msg2", pass);
+		mav.addObject("msg3", email);
+
+		return mav;
+	}
 
 	/* 로그인 로직 구현 */
 	@RequestMapping(value = "account/mypage", method = RequestMethod.POST)
@@ -58,38 +81,31 @@ public class AccountController {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		System.out.println("마이페이지 들어오긴 들어오는데");
+
 		try {
 			R_member r_member = userRepository.findById(form.getId()).get();
 
 			String DB_Pass = r_member.getPass();
 
 			if (form.getPass().equals(DB_Pass)) {
-				System.out.println("PassCheck OK");
 
 				/* Session 등록 */
-				HttpSession session = request.getSession();
-				System.out.println("getSession OK");
 
+				HttpSession session = request.getSession();
 				request.setCharacterEncoding("utf-8");
 				session.setAttribute("user_id", r_member.getId());
 				session.setAttribute("user_pass", r_member.getPass());
 				session.setAttribute("user_email", r_member.getEmail());
-				System.out.println("session get OK");
+				session.setAttribute("user_no", r_member.getNo());
 
-				String id = (String) session.getAttribute("user_id");
-				String pass = (String) session.getAttribute("user_pass");
-				String email = (String) session.getAttribute("user_email");
-
-				mav.addObject("msg1", id);
-				mav.addObject("msg2", pass);
-				mav.addObject("msg3", email);
-
-				System.out.println("찾아내자 msg1: " + id);
-				System.out.println("찾아내자 msg2: " + pass);
-				System.out.println("찾아내자 msg3: " + email);
+				mav.addObject("msg1", r_member.getId());
+				mav.addObject("msg2", r_member.getPass());
+				mav.addObject("msg3", r_member.getEmail());
+				mav.addObject("msg4", session.getAttribute("user_id"));
 
 				System.out.println("Session...(ok) : " + form.getId());
+
+				String id = (String) session.getAttribute("user_id");
 
 				List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
 				mav.addObject("findFavorite", findFavorite);
@@ -102,7 +118,7 @@ public class AccountController {
 			return mav;
 
 		} catch (Exception e) {
-			out.println("<script>alert('등록된 정보가 없습니다.'); history.go(-1);</script>");
+			out.println("<script>alert('Unknown Error'); history.go(-1);</script>");
 			out.flush();
 			return mav;
 		}
@@ -201,12 +217,6 @@ public class AccountController {
 
 		return "redirect:/";
 	}
-
-//	/* mypage에 null값을 받으면 팅겨내도록 설정 */
-//	@RequestMapping(value="account/mypage", method=RequestMethod.POST)
-//	public String mypage() {
-//		return "redirect:/1";
-//	}
 
 	/* 정보 수정 화면 구현 */
 	@RequestMapping(params = "sc_modify", value = "account/modify", method = RequestMethod.POST)
