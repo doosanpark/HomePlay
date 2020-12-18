@@ -109,8 +109,8 @@
 
 						<li class="divider"></li>
 						<sec:authorize access="isAuthenticated()" th:if="${session.user_id!=null}" >
-							<form name="myForm" action="/account/logout" method="POST" style="margin: 0;">
-								<li><a href="#" onclick="javascript:document.myForm.submit();">
+							<form name="logout" action="/account/logout" method="POST" style="margin: 0;">
+								<li><a href="#" onclick="javascript:document.logout.submit();">
 									<i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 							</form>
 						</sec:authorize>
