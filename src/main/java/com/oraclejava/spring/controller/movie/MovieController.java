@@ -31,17 +31,17 @@ public class MovieController {
          ModelAndView mav = new ModelAndView();
          mav.setViewName("movie/list/movieList");
          List<Movie> lists = 
-               movieRepository.findGenre("로맨스", PageRequest.of(0, 4));
+               movieRepository.findGenre("로맨스", PageRequest.of(0, 6));
          List<Movie> lists2 = 
-                  movieRepository.findGenre("액션", PageRequest.of(0, 4));
+                  movieRepository.findGenre("액션", PageRequest.of(0, 6));
          List<Movie> lists3 = 
-               movieRepository.findGenre("애니메이션", PageRequest.of(0, 4));
+               movieRepository.findGenre("애니메이션", PageRequest.of(0, 6));
          List<Movie> lists4 = 
-               movieRepository.findGenre("코미디", PageRequest.of(0, 4));
+               movieRepository.findGenre("SF", PageRequest.of(0, 6));
          mav.addObject("movieListRomance", lists);
          mav.addObject("movieListAction", lists2);
          mav.addObject("movieListAni", lists3);
-         mav.addObject("movieListComi", lists4);
+         mav.addObject("movieListSf", lists4);
          
          return mav;
       }
