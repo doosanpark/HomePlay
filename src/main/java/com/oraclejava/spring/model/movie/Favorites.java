@@ -25,5 +25,4 @@ public class Favorites {
     private String screening;
     private String reg_date;
 	
-	
 }
