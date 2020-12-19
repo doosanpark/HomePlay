@@ -1,21 +1,23 @@
 
 <th:block th:replace="includes/header :: header"></th:block>
 
-<meta charset="UTF-8">
-<title>로그인 화면</title>
 <style>
-#login-form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
+	#login-form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 120%;
+		
+	}
 </style>
-<div id="home-wrapper">
+<div id="home-wrapper" style="height: 95%; ">
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<script src="/design/js/jquery.min.js"></script>
 	<div id="login-form">
 	
 		<!-- 로그인 form -->
-		<div class="col-md-3 col-md-offset-5" style="margin-left:0px;">
-			<div class="login-panel panel panel-default">
+		<div class="col-md-3 col-md-offset-5" style="margin:0px; width: 300px;">
+			<div class="login-panel panel panel-default" style="margin: 0; width: 300px;">
 				<div class="panel-heading">
 					<h3 class="panel-title">User Login</h3>
 				</div>
@@ -37,7 +39,8 @@
 					</form>
 				</div>
 			</div>
-		</div>
+		</div>	<!-- 로그인 form -->
 		
 	</div>
+	
 </div>

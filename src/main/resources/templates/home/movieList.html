@@ -1,48 +1,45 @@
 <div th:fragment="movies" style="width:70%;" >
 
 <style type="text/css">
-	.movieList {
-		margin: 0 auto;
-	}
-	
-	span {
-		color: #000;
-	}
-	
-	.more {
-		text-align: right;
-		margin: -30px 0 15px 0;
-	}
-	
-	.moremi {
-		color: #000;
-		font-weight: bold;
-	}
-	
-	.moli li {
-		list-style-type: none;
-		float: left;
-	}
-	
-	.moli {
-		display: inline-block;
-		width: 100%;
-		height: 180px;
-		margin-left: 50px;
-	}
-	
-	.listre {
-		width: 25%;
-		height: 100%;
-		padding: 0 3% 3% 0;
-		text-align: center;
-	}
-	
-	.pic {
-		width: 100%;
-		padding-bottom: 10px;
-		height: 100%;
-	}
+.movieList {
+	margin: 0 auto;
+}
+
+span {
+	color: #000;
+}
+
+.more {
+	text-align: right;
+	margin: -30px 0 15px 0;
+}
+.moremi{
+	color: #000;
+	font-weight: bold;
+}
+.moli li {
+	list-style-type: none;
+	float: left;
+}
+
+.moli {
+	display: inline-block;
+	width: 100%;
+	height: 180px;
+}
+
+.listre {
+	width: 25%;
+	height: 100%;
+	padding: 0 3% 3% 0;
+	text-align: center;
+}
+
+.pic {
+	width: 100%;
+	padding-bottom: 10px;
+	height: 100%;
+}
 </style>
 	<div class="movieList">
 		<h3>
@@ -52,9 +49,9 @@
 			<a th:href="@{'/movie/list/로맨스/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListRomance}" class="listre"><a href="#"><img
+			<li th:each="m : ${movieListRomance}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster	}}" class="pic" /></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -64,9 +61,9 @@
 			<a th:href="@{'/movie/list/액션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAction}" class="listre"><a href="#"><img
+			<li th:each="m : ${movieListAction}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -76,9 +73,9 @@
 			<a th:href="@{'/movie/list/애니메이션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAni}" class="listre"><a href="#"><img
+			<li th:each="m : ${movieListAni}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a> <br> <span
+				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a> <br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -88,12 +85,11 @@
 			<a th:href="@{'/movie/list/코미디/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListComi}" class="listre"><a href="#"><img
+			<li th:each="m : ${movieListComi}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				href="#"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 	</div>
-
 
 </div>
