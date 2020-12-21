@@ -1,4 +1,3 @@
-
 //메인 홈 화면 내 랜덤으로 영화 4개 화면 이미지 출력
 //메인 홈 화면 하단부 장르별 영화 이미지 출력
 
@@ -33,7 +32,8 @@ public class HomeController {
 		Collections.shuffle(lists); // 리스트 내 값 랜덤으로 순서 재배치
 
 		// 총 영화 리스트 중 4개 항목만 리스트에 저장
-		for (int i = 4; i < lists.size(); i++) {
+		int listLen = lists.size();
+		for (int i = listLen-1; i >= 4; i--) {
 			lists.remove(i);
 
 		}

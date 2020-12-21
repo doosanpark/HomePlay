@@ -122,8 +122,6 @@
 				<img th:src="@{'/img/'+${movieRecommend[0].poster}}"
 					th:onclick="|redir(${movieRecommend[0].no})|"> <span
 					th:text="${movieRecommend[0].title}">영화제목</span>
-
-
 			</div>
 			<div id="box">
 				<img th:src="@{'/img/'+${movieRecommend[1].poster}}"
@@ -138,10 +136,8 @@
 			<div id="box">
 				<img th:src="@{'/img/'+${movieRecommend[3].poster}}"
 					th:onclick="|redir(${movieRecommend[3].no})|"> <span
-					th:text="${movieRecommend[2].title}">영화제목</span>
+					th:text="${movieRecommend[3].title}">영화제목</span>
 			</div>
-
-
 		</div>
 		<div class="recommend">
 			<div style="margin-bottom: 20px;">
@@ -151,7 +147,7 @@
 			</div>
 			<div class="listre" th:each="m : ${movieRecommend}">
 				<a th:href="@{'/detail/'+${m.no}}"> <img id="poster"
-					th:src="@{'/img_movie/'+${m.poster}}">
+					th:src="@{'/img/'+${m.poster}}">
 				</a>
 				<div class="container" style="height: 12vh; width: 100%">
 					<a th:href="@{'/detail/'+${m.no}}">
