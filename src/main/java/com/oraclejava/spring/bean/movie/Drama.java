@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Entity
+@Entity(name="R_drama")
 public class Drama {
 
 	@Id
