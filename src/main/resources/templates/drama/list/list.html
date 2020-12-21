@@ -1,0 +1,96 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<div id="page-wrapper">
+	<style type="text/css">
+span {
+	color: #000;
+}
+
+.more {
+	text-align: right;
+	margin: -30px 0 15px 0;
+}
+.moremi{
+	color: #000;
+	font-weight: bold;
+}
+.moli li {
+	list-style-type: none;
+	float: left;
+}
+
+.moli {
+	display: inline-block;
+}
+
+.listre {
+	width: 160px;
+    margin: 0 30px 10px 0;
+	text-align: center;
+}
+
+.pic {
+	width: 159px;
+	padding-bottom: 10px;
+	height: 191px;
+}
+</style>
+<div>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/drama/list/}" class="moremi">더보기</a>
+	</div>
+	<ul class="moli">
+		<li th:each="d : ${dramaListCri}" class="listre">
+			<a th:href="@{'detail/' + ${d.no}}">
+				<img th:href="@{'/img/' + ${d.poster}}" alt="드라마사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${d.no}}"><span th:text="${d.title}"></span></a>
+			<br>
+			<span th:text="${d.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/drama/list/}" class="moremi">더보기</a>
+	</div>
+	<ul>
+		<li th:each="d : ${dramaListMis}" class="listre">
+			<a th:href="@{'detail/' + ${d.no}}">
+				<img th:href="@{'/img/' + ${d.poster}}" alt="드라마사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${d.no}}"><span th:text="${d.title}"></span></a>
+			<br>
+			<span th:text="${d.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/drama/list/}" class="moremi">더보기</a>
+	</div>
+	<ul>
+		<li th:each="d : ${dramaListComi}" class="listre">
+			<a th:href="@{'detail/' + ${d.no}}">
+				<img th:href="@{'/img/' + ${d.poster}}" alt="드라마사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${d.no}}"><span th:text="${d.title}"></span></a>
+			<br>
+			<span th:text="${d.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/drama/list/}" class="moremi">더보기</a>
+	</div>
+	<ul>
+		<li th:each="d : ${dramaListComi}" class="listre">
+			<a th:href="@{'detail/' + ${d.no}}">
+				<img th:href="@{'/img/' + ${d.poster}}" alt="드라마사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${d.no}}"><span th:text="${d.title}"></span></a>
+			<br>
+			<span th:text="${d.genre}"></span>
+		</li>
+	</ul>
+</div>
+</div>

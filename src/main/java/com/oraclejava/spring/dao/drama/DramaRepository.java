@@ -11,9 +11,9 @@ import com.oraclejava.spring.bean.movie.Drama;
 import com.oraclejava.spring.bean.movie.Movie;
 
 public interface DramaRepository extends JpaRepository<Drama, Integer>{
-	 @Query("select m from R_movie m where m.genre like '%' || :genreName || '%' order by m.no") 
-		List<Movie> findGenre(String genreName, Pageable pageable);
+	 @Query("select m from R_drama m where m.genre like '%' || :genreName || '%' order by m.no") 
+		List<Drama> findGenre(String genreName, Pageable pageable);
 	  
-     @Query("select m from R_movie m where m.genre like '%' || :genreName || '%' order by m.title")
-	    Page<Movie> findGenreList(String genreName, Pageable pageable);
+     @Query("select m from R_drama m where m.genre like '%' || :genreName || '%' order by m.title")
+	    Page<Drama> findGenreList(String genreName, Pageable pageable);
 }
