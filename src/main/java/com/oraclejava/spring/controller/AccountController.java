@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oraclejava.spring.dao.movie.FavoritesRepository;
-import com.oraclejava.spring.model.R_member;
+import com.oraclejava.spring.model.member.R_member;
 import com.oraclejava.spring.model.movie.Favorites;
 
 @Controller

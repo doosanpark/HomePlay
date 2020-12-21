@@ -1,4 +1,4 @@
-package com.oraclejava.spring.model;
+package com.oraclejava.spring.model.member;
 
 import java.util.Date;
 
