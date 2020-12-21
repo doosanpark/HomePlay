@@ -1,3 +1,7 @@
+
+//메인 홈 화면 내 랜덤으로 영화 4개 화면 이미지 출력
+//메인 홈 화면 하단부 장르별 영화 이미지 출력
+
 package com.oraclejava.spring.controller;
 
 import java.util.Collections;

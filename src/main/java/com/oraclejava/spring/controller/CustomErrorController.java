@@ -1,3 +1,6 @@
+
+//에러코드 검출하여 해당 에러 페이지 출력
+
 package com.oraclejava.spring.controller;
 
 import javax.servlet.RequestDispatcher;
