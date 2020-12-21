@@ -56,8 +56,17 @@
 .poster {
 	font-weight: bold;
 	font-size: 18px;
+	padding-right: 10px;
+}
+
+.thumbnail1{
+	font-weight: bold;
+	font-size: 18px;
+	padding-right: 8px;
 }
 </style>
+
+
 
 
 <div id="page-wrapper">
@@ -67,53 +76,37 @@
 	</br>
 	<form action="" method="post" enctype="multipart/form-data"
 		th:object="${movie}">
-		<div>
-			<span class="category" value="영화">카테고리</span> <select>
-				<option>영화</option>
-				<option>드라마</option>
-				<option>게임</option>
-			</select>
-		</div>
-		</br>
+
+		<span class="category" value="영화">카테고리</span> <input type="text"
+			name=category value=""><br> </br>
 		<div class="title">
-			<span>제목</span> </br> 
-			<input class="title_contents" name="title" 
-			type="text" placeholder="내용을 입력해주세요" th:field="*{title}" /></br>
+			<span>제목</span> </br> <input class="title_contents" name="title"
+				type="text" placeholder="내용을 입력해주세요" th:field="*{title}" /></br>
 		</div>
-		</br> <span class="genrecss" th:field="*{genre}">장르&nbsp&nbsp</span> <select
-			name="genre">
-			<option>로맨스</option>
-			<option>애니메이션</option>
-			<option>액션</option>
-			<option>코미디</option>
-		</select> </br> </br>
+		</br> <span class="genrecss">장르&nbsp&nbsp</span> <input type="text"
+			class="genrecss" name="genre" th:field="*{genre}" /> </br>
+		</br>
 		<div class="story_title">줄거리 제목</div>
 		<input type="text" class="story_contents" name="summary_title"
-			placeholder="내용을 입력해주세요" /> </br> </br>
+			placeholder="내용을 입력해주세요" th:field="*{summary_title}" /> </br> </br>
 		<div class="story_title">줄거리 내용</div>
 		<input type="text" class="story_contents" name="summary_content"
-			placeholder="내용을 입력해주세요" /> </br> </br>
+			placeholder="내용을 입력해주세요" th:field="*{summary_content}" /> </br> </br>
 		<div>
-			<span class="category">연령제한</span> <select name="age_limit">
-				<option>7</option>
-				<option>12</option>
-				<option>15</option>
-				<option>19</option>
-			</select>
+			<span class="category">연령제한</span> <input type="text"
+				name="age_limit" th:field="*{age_limit}">
 		</div>
 
 		</br>
 		<div class="poster">
-			포스터<input type="file" name="poster_image" id="poster_image" /><br>
-
-			<div>
-				썸네일<input type="file" name="thumbnail_image" id="thumbnail_image" /><br>
-
-
-				상영여부&nbsp&nbsp&nbsp<label><input type="checkbox"
-					name="screening" value="Y">Y</label>&nbsp&nbsp <label><input
-					type="checkbox" name="screening" value="N">N</label>
+			포스터<input type="text" name="poster_image" id="poster_image" value="C:\upload\poster1.jpg"/><br>
 			</div>
-			<input type="submit" value="수정">
+
+			<div class="thumbnail1">
+				썸네일<input type="text" name="thumbnail_image" id="thumbnail_image" value="C:\upload\thumbnail1.jpg" /><br>
+				상영여부&nbsp&nbsp&nbsp<label><input type="text"
+					name="screening"  th:field="*{screening}"/>
+			</div>
+			<input type="submit" value="수정하기"/>
 	</form>
 </div>
