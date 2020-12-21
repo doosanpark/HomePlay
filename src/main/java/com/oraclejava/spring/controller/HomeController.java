@@ -43,11 +43,11 @@ public class HomeController {
 		List<Movie> movieLists = movieRepository.findGenre("로맨스", PageRequest.of(0, 4));
 		List<Movie> movieLists2 = movieRepository.findGenre("액션", PageRequest.of(0, 4));
 		List<Movie> movieLists3 = movieRepository.findGenre("애니메이션", PageRequest.of(0, 4));
-		List<Movie> movieLists4 = movieRepository.findGenre("코미디", PageRequest.of(0, 4));
+		List<Movie> movieLists4 = movieRepository.findGenre("SF", PageRequest.of(0, 4));
 		rec.addObject("movieListRomance", movieLists);
 		rec.addObject("movieListAction", movieLists2);
 		rec.addObject("movieListAni", movieLists3);
-		rec.addObject("movieListComi", movieLists4);
+		rec.addObject("movieListSf", movieLists4);
 
 		return rec;
 	}
