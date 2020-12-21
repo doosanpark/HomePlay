@@ -1,70 +1,93 @@
 <th:block th:replace="includes/header :: header"></th:block>
 <div id="home-wrapper">
-<style>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/769921875d.js"
+		crossorigin="anonymous"></script>
+
+	<style>
+.info {
+	top: 0;
+	text-align: center;
+	display: flex;
+	margin: 15px;
+}
+
+.info .img img {
+	width: 100%;
+	height: 100%;
+	max-width: 1000px;
+}
 
 
+.logo {
+	padding: 30px;
+	display: flex;
+}
+
+.logo .favorite {
+	font-size: 28px;
+}
+
+.logo .fav-detail {
+	margin-left: 1em; text-align : left;
+	color: grey;
+	text-align: left;
+}
 </style>
 
 
-<table border="1" style="margin: 0;">
-	<tr>
-		<td width="70%">
-			<!-- 회원가입 form -->
-			<center>
-				<img src="/img_movie/thumbnail1.jpg" width="400">
-			</center>
-		</td>
 
-		<td>
-			<!-- 회원가입 form -->
-			<div class="col-md-4 col-md-offset-4">
-				<div class="login-panel panel panel-default">
-					<div class="panel-heading">
-						<h5 class="panel-title" th:text="${msg1+ '님 환영합니다'}"></h5>
-					</div>
+	<div class="info">
+		<!-- 이미지 -->
+		<div class="img">
+			<img src="/img_movie/thumbnail1.jpg" />
+		</div>
 
-					<div class="panel-body">
-						<h6>
-							<P th:text="${'User ID : ' + msg1}" />
-						</h6>
-						<h6>
-							<P th:text="${'Password : ' + msg2+'***'}" />
-						</h6>
-						<h6>
-							<P th:text="${'e-mail : ' + msg3}" />
-						</h6>
-						<h6>
-							<p th:text="${'session value : '+ msg4}" />
-						</h6>
+		<!-- 정보 form -->
+		<div class="col-md-4 col-md-offset-1">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h5 class="panel-title" th:text="${msg1+ '님 환영합니다'}"></h5>
+				</div>
+				<div class="panel-body">
+					<h6>
+						<P th:text="${'User ID : ' + msg1}" />
+					</h6>
+					<h6>
+						<P th:text="${'Password : ' + msg2+'***'}" />
+					</h6>
+					<h6>
+						<P th:text="${'e-mail : ' + msg3}" />
+					</h6>
+					<h6>
+						<p th:text="${'session value : '+ msg4}" />
+					</h6>
 
-						<form action="/account/modify" enctype="multipart/form-data"
-							method="post" th:object="${R_member}">
-							<input class="btn btn-xs btn-success btn-block" type="submit"
-								value="정보수정" name="sc_modify" />
-							<button class="btn btn-xs btn-success btn-block" type="submit"
-								name="logout">로그아웃</button>
-						</form>
-
-
-					</div>
+					<form action="/account/modify" enctype="multipart/form-data"
+						method="post" th:object="${R_member}">
+						<input class="btn btn-xs btn-success btn-block" type="submit"
+							value="정보수정" name="sc_modify" />
+						<button class="btn btn-xs btn-success btn-block" type="submit"
+							name="logout">로그아웃</button>
+					</form>
 				</div>
 			</div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<h5>보관함</h5>
-		</td>
-	<tr>
-		<td colspan="2">
-			<div th:each="f: ${findFavorite}" align="center">
-				<div>
-					<img th:src="@{'/img_movie/'+${f.poster}}" height="160">
+		</div>
+	</div>
 
-					<p width="100" th:text=${f.title}>
-				</div>
-			</div>
-		</td>
-	</tr>
-</table>
+	<hr style="border: solid 1px lightgray; width: 101.5%;">
+
+	<div class="logo">
+		<span class="favorite"><b>보관함</b></span> <span class="fav-detail"><br />최근에
+			담은 영화부터 순서대로 표기됩니다.</span>
+	</div>
+
+	<div th:each="f: ${findFavorite}" align="center">
+		<div>
+			<img th:src="@{'/img_movie/'+${f.poster}}" height="160">
+
+			<p width="100" th:text=${f.title}>
+		</div>
+	</div>
 </div>
