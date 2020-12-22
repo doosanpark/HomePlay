@@ -156,11 +156,11 @@
 				</h4>
 			</div>
 			<div class="listre" th:each="m : ${movieRecommend}">
-				<a th:href="@{'/detail/'+${m.no}}"> <img id="poster"
+				<a th:href="@{'/movie/detail/'+${m.no}}"> <img id="poster"
 					th:src="@{'/img/'+${m.poster}}">
 				</a>
 				<div class="container" style="height: 12vh; width: 100%">
-					<a th:href="@{'/detail/'+${m.no}}">
+					<a th:href="@{'/movie/detail/'+${m.no}}">
 						<h4 style="margin: 0;">
 							<strong><span id="title" th:text="${m.title}">영화제목</span></strong>
 						</h4> <span id="genre" th:text="${m.genre}">영화장르</span>
@@ -169,11 +169,11 @@
 			</div>
 			
 			<div class="listre" th:each="d : ${dramaRecommend}">
-				<a th:href="@{'/detail/'+${d.no}}"> <img id="poster"
+				<a th:href="@{'/drama/detail/'+${d.no}}"> <img id="poster"
 					th:src="@{'/img/'+${d.poster}}">
 				</a>
 				<div class="container" style="height: 12vh; width: 100%">
-					<a th:href="@{'/detail/'+${d.no}}">
+					<a th:href="@{'/drama/detail/'+${d.no}}">
 						<h4 style="margin: 0;">
 							<strong><span id="title" th:text="${d.title}">드라마제목</span></strong>
 						</h4> <span id="genre" th:text="${d.genre}">드라마장르</span>
