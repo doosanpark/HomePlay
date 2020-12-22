@@ -39,7 +39,7 @@ public class DetailController {
 	 * String indexTop() { return "redirect:/detail/detail/1"; }
 	 */
 
-	@RequestMapping(value = "/detail/{NO}", method = RequestMethod.GET)
+	@RequestMapping(value = "/movie/detail/{NO}", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable Integer NO, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -59,7 +59,7 @@ public class DetailController {
 		return mav;
 	}
 
-	@RequestMapping(path = "/detail/favorite", method = RequestMethod.POST)
+	@RequestMapping(path = "/movie/detail/favorite", method = RequestMethod.POST)
 	public String favorite(@ModelAttribute Favorite favorite, @RequestParam Integer count, BindingResult bindingResult,
 			Model model, HttpServletRequest request) {
 		
@@ -79,11 +79,11 @@ public class DetailController {
 		
 		
 
-		return "redirect:/detail/" + favorite.getDetail().getNo();
+		return "redirect:/movie/detail/" + favorite.getDetail().getNo();
 
 	}
 
-	@RequestMapping(path = "/detail/{NO}", method = RequestMethod.POST)
+	@RequestMapping(path = "/movie/detail/{NO}", method = RequestMethod.POST)
 	public String review(@ModelAttribute RReview r_review, BindingResult bindingResult, Model model,
 			HttpServletRequest request) {
 		int movie_no = r_review.getDetail().getNo();
@@ -102,7 +102,7 @@ public class DetailController {
 
 		detailRepository.save(detail);
 
-		return "redirect:/detail/" + movie_no;
+		return "redirect:/movie/detail/" + movie_no;
 	}
 
 }
