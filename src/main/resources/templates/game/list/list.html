@@ -1,0 +1,63 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<div id="page-wrapper">
+
+<div>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/game/list//1'}" class="moremi">더보기</a>
+	</div>
+	<ul class="moli">
+		<li th:each="g : ${gameList}" class="listre">
+			<a th:href="@{'detail/' + ${g.no}}">
+				<img th:src="@{'/img/' + ${g.poster}}" alt="게임사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${g.no}}"><span th:text="${g.title}"></span></a>
+			<br>
+			<span th:text="${g.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/game/list//1'}" class="moremi">더보기</a>
+	</div>
+	<ul class="moli">
+		<li th:each="g : ${gameList}" class="listre">
+			<a th:href="@{'detail/' + ${g.no}}">
+				<img th:src="@{'/img/' + ${g.poster}}" alt="게임사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${g.no}}"><span th:text="${g.title}"></span></a>
+			<br>
+			<span th:text="${g.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/game/list//1'}" class="moremi">더보기</a>
+	</div>
+	<ul class="moli">
+		<li th:each="g : ${gameList}" class="listre">
+			<a th:href="@{'detail/' + ${g.no}}">
+				<img th:src="@{'/img/' + ${g.poster}}" alt="게임사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${g.no}}"><span th:text="${g.title}"></span></a>
+			<br>
+			<span th:text="${g.genre}"></span>
+		</li>
+	</ul>
+	<h3><strong>장르표시</strong></h3>
+	<div class="more">
+		<a th:href="@{'/game/list/'}" class="moremi">더보기</a>
+	</div>
+	<ul class="moli">
+		<li th:each="g : ${gameList}" class="listre">
+			<a th:href="@{'detail/' + ${g.no}}">
+				<img th:src="@{'/img/' + ${g.poster}}" alt="게임사진" class="pic">
+			</a>
+			<a th:href="@{'/detail/' + ${g.no}}"><span th:text="${g.title}"></span></a>
+			<br>
+			<span th:text="${g.genre}"></span>
+		</li>
+	</ul>
+</div>
+</div>
