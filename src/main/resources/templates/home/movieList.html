@@ -67,25 +67,25 @@ span {
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
-			<strong>올해도 크리스마스도 케빈과 함께! 연휴 특선 영화</strong>
+			<strong>스릴러 영화만큼 재미있는 한국 스릴러 드라마</strong>
 		</h3>
 		<div class="more">
 			<a th:href="@{'/movie/list/애니메이션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAni}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${dramaThriller}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
 				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a> <br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
-			<strong>오늘만 무료공개! 기간 한정 영화</strong>
+			<strong>연말엔 웃음과 함께!!! 코미디 드라마</strong>
 		</h3>
 		<div class="more">
 			<a th:href="@{'/movie/list/SF/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListSf}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${dramaComedy}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
 				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>

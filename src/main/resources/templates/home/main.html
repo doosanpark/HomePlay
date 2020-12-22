@@ -129,20 +129,20 @@
 					th:text="${movieRecommend[1].title}">영화제목</span>
 			</div>
 			<div id="box">
-				<img th:src="@{'/img/'+${movieRecommend[2].poster}}"
-					th:onclick="|redir(${movieRecommend[2].no})|"> <span
-					th:text="${movieRecommend[2].title}">영화제목</span>
+				<img th:src="@{'/img/'+${dramaRecommend[0].poster}}"
+					th:onclick="|redir(${dramaRecommend[0].no})|"> <span
+					th:text="${dramaRecommend[0].title}">드라마제목</span>
 			</div>
-			<div id="box">
-				<img th:src="@{'/img/'+${movieRecommend[3].poster}}"
-					th:onclick="|redir(${movieRecommend[3].no})|"> <span
-					th:text="${movieRecommend[3].title}">영화제목</span>
-			</div>
+<!-- 			<div id="box"> -->
+<!-- 				<img th:src="@{'/img/'+${movieRecommend[3].poster}}" -->
+<!-- 					th:onclick="|redir(${movieRecommend[3].no})|"> <span -->
+<!-- 					th:text="${movieRecommend[3].title}">영화제목</span> -->
+<!-- 			</div> -->
 		</div>
 		<div class="recommend">
 			<div style="margin-bottom: 20px;">
 				<h4>
-					<strong>당신을 위한 추천영화</strong>
+					<strong>당신을 위한 추천</strong>
 				</h4>
 			</div>
 			<div class="listre" th:each="m : ${movieRecommend}">
@@ -157,6 +157,20 @@
 					</a>
 				</div>
 			</div>
+			
+			<div class="listre" th:each="d : ${dramaRecommend}">
+				<a th:href="@{'/detail/'+${d.no}}"> <img id="poster"
+					th:src="@{'/img/'+${d.poster}}">
+				</a>
+				<div class="container" style="height: 12vh; width: 100%">
+					<a th:href="@{'/detail/'+${d.no}}">
+						<h4 style="margin: 0;">
+							<strong><span id="title" th:text="${d.title}">드라마제목</span></strong>
+						</h4> <span id="genre" th:text="${d.genre}">드라마장르</span>
+					</a>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 
