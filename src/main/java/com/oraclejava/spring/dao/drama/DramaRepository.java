@@ -7,8 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.oraclejava.spring.bean.movie.Drama;
-import com.oraclejava.spring.bean.movie.Movie;
+import com.oraclejava.spring.model.drama.Drama;
 
 public interface DramaRepository extends JpaRepository<Drama, Integer>{
 	 @Query("select m from R_drama m where m.genre like '%' || :genreName || '%' order by m.no") 
