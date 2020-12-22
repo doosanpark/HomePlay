@@ -1,7 +1,5 @@
 package com.oraclejava.spring.model.game;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,5 +28,6 @@ public class Game {
 	private String age_limit;
 	private String poster;
 	private String thumbnail;
-	private Date reg_date;
+	private String reg_date;
+	private String release;
 }
