@@ -49,9 +49,9 @@ span {
 			<a th:href="@{'/movie/list/로맨스/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListRomance}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListRomance}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster	}}" class="pic" /></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/movie/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -61,9 +61,9 @@ span {
 			<a th:href="@{'/movie/list/액션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAction}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListAction}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/movie/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -73,9 +73,9 @@ span {
 			<a th:href="@{'/drama/list/스릴러/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${dramaThriller}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${dramaThriller}" class="listre"><a th:href="@{'/drama/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a> <br> <span
+				th:href="@{'/drama/detail/' + ${m.no}}"><span th:text="${m.title}">드라마제목</span></a> <br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -85,9 +85,9 @@ span {
 			<a th:href="@{'/drama/list/코미디/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${dramaComedy}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${dramaComedy}" class="listre"><a th:href="@{'/drama/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/drama/detail/' + ${m.no}}"><span th:text="${m.title}">드라마제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 	</div>
