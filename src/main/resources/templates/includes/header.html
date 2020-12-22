@@ -108,17 +108,26 @@
 						<li><a href="/account/mypage"><i class="fa fa-user fa-fw"></i>
 								User Profile</a></li>
 
+						<li><a th:if="${session.user_id == 'admin'}"
+							href="/movie/create"><i class="fa fa-user fa-fw"></i> 관리자 페이지</a></li>
+
+
 						<li class="divider"></li>
-						<sec:authorize access="isAuthenticated()" th:if="${session.user_id!=null}" >
-							<form name="logout" action="/account/logout" method="POST" style="margin: 0;">
-								<li><a href="#" onclick="javascript:document.logout.submit();">
-									<i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+						<sec:authorize access="isAuthenticated()"
+							th:if="${session.user_id!=null}">
+							<form name="logout" action="/account/logout" method="POST"
+								style="margin: 0;">
+								<li><a href="#"
+									onclick="javascript:document.logout.submit();"> <i
+										class="fa fa-sign-out fa-fw"></i> Logout
+								</a></li>
 							</form>
 						</sec:authorize>
 
-						<sec:authorize access="isAnonymous()" th:if="${session.user_id==null}" >
+						<sec:authorize access="isAnonymous()"
+							th:if="${session.user_id==null}">
 
-							<li ><a href="/account/login"><i
+							<li><a href="/account/login"><i
 									class="fa fa-sign-out fa-fw"></i> Login</a></li>
 						</sec:authorize>
 					</ul> <!-- /.dropdown-user --></li>
