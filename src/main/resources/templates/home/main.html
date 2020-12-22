@@ -99,7 +99,7 @@
 
 	function redir(no){
 		
-		$(location).attr('href', 'http://localhost:7080/detail/'+no);
+		$(location).attr('href', 'http://localhost:7080'+no);
 		
 	}
 	
@@ -120,25 +120,27 @@
 		<div class="container">
 			<div id="box">
 				<img th:src="@{'/img/'+${movieRecommend[0].poster}}"
-					th:onclick="|redir(${movieRecommend[0].no})|">
+					th:onclick="|redir('/movie/detail/'+${movieRecommend[0].no})|">
 					
 					<span><strong>MOVIE</strong></span>
 					
 					<!-- 
 					 <span
 					th:text="${movieRecommend[0].title}">영화제목</span> -->
+			<button th:onclick="window.location.href='/update?server=${key}'">
+			
 			</div>
 			<div id="box">
-				<img th:src="@{'/img/'+${movieRecommend[1].poster}}"
-					th:onclick="|redir(${movieRecommend[1].no})|"> 
+				<img th:src="@{'/img/'+${dramaRecommend[0].poster}}"
+					th:onclick="|redir('/drama/detail/'+${dramaRecommend[0].no})|"> 
 					<span><strong>Drama</strong></span>
 					
 					<!-- <span
 					th:text="${movieRecommend[1].title}">영화제목</span> -->
 			</div>
 			<div id="box">
-				<img th:src="@{'/img/'+${dramaRecommend[0].poster}}"
-					th:onclick="|redir(${dramaRecommend[0].no})|"> 
+				<img th:src="@{'/img/'+${gameRecommend[0].poster}}"
+					th:onclick="|redir('/game/detail/'+${dramaRecommend[0].no})|"> 
 					<span><strong>Game</strong></span>
 					<!-- <span
 					th:text="${dramaRecommend[0].title}">드라마제목</span> -->
@@ -174,6 +176,19 @@
 				</a>
 				<div class="container" style="height: 12vh; width: 100%">
 					<a th:href="@{'/drama/detail/'+${d.no}}">
+						<h4 style="margin: 0;">
+							<strong><span id="title" th:text="${d.title}">드라마제목</span></strong>
+						</h4> <span id="genre" th:text="${d.genre}">드라마장르</span>
+					</a>
+				</div>
+			</div>
+			
+			<div class="listre" th:each="d : ${gameRecommend}">
+				<a th:href="@{'/game/detail/'+${d.no}}"> <img id="poster"
+					th:src="@{'/img/'+${d.poster}}">
+				</a>
+				<div class="container" style="height: 12vh; width: 100%">
+					<a th:href="@{'/game/detail/'+${d.no}}">
 						<h4 style="margin: 0;">
 							<strong><span id="title" th:text="${d.title}">드라마제목</span></strong>
 						</h4> <span id="genre" th:text="${d.genre}">드라마장르</span>
