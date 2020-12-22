@@ -20,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oraclejava.spring.dao.movie.DetailRepository;
 import com.oraclejava.spring.dao.movie.MovieStaffRepository;
 import com.oraclejava.spring.dao.movie.Movie_favoriteRepository;
-import com.oraclejava.spring.model.movie.Detail;
 import com.oraclejava.spring.model.movie.Favorite;
+import com.oraclejava.spring.model.movie.MDetail;
 import com.oraclejava.spring.model.movie.RReview;
 import com.oraclejava.spring.model.movie.RStaff;
 
@@ -72,9 +72,9 @@ public class DetailController {
 		if (count == 0) {
 
 			
-			Detail detail = detailRepository.findById(favorite.getDetail().getNo()).get();
-			detail.getFavorites().add(favorite);
-			detailRepository.save(detail);
+			MDetail mdetail = detailRepository.findById(favorite.getDetail().getNo()).get();
+			mdetail.getFavorites().add(favorite);
+			detailRepository.save(mdetail);
 		}
 		
 		
@@ -90,7 +90,7 @@ public class DetailController {
 		String review = r_review.getContent();
 		int grade = r_review.getGrade();
 		String title = r_review.getTitle();
-		Detail detail = detailRepository.findById(movie_no).get();
+		MDetail mdetail = detailRepository.findById(movie_no).get();
 
 		Date time = new Date();
 
@@ -98,9 +98,9 @@ public class DetailController {
 		String s_id = (String) session.getAttribute("user_id");
 		int s_no = (int) session.getAttribute("user_no");
 
-		detail.getReview().add(new RReview(s_no, title, review, grade, time, detail, s_id));
+		mdetail.getReview().add(new RReview(s_no, title, review, grade, time, mdetail, s_id));
 
-		detailRepository.save(detail);
+		detailRepository.save(mdetail);
 
 		return "redirect:/movie/detail/" + movie_no;
 	}

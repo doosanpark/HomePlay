@@ -34,7 +34,7 @@ public class RReview {
 
 	@ManyToOne //다대일
 	@JoinColumn(name = "movie_no") // Detail 테이블의 no column과 조인
-	private Detail detail;
+	private MDetail detail;
 	
 	public RReview() {
 		
@@ -49,7 +49,7 @@ public class RReview {
 	}
 
 	public RReview(int member_no, String title, String content, int grade, Date reg_date,
-			Detail detail, String member_id) {
+			MDetail detail, String member_id) {
 		this.member_no = member_no;
 		this.title = title;
 		this.content = content;

@@ -34,7 +34,7 @@ public class Favorite {
 	
 	@ManyToOne //다대일
 	@JoinColumn(name = "rno") // Detail 테이블의 no column과 조인
-	private Detail detail;
+	private MDetail detail;
 	
 	
 }

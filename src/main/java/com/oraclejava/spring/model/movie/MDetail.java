@@ -20,7 +20,7 @@ import lombok.Setter;
 @Table(name = "R_MOVIE")
 @Getter
 @Setter
-public class Detail { 
+public class MDetail { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 	generator = "movieNoGenerator")
@@ -49,7 +49,7 @@ public class Detail {
 	 * reg_date; }
 	 */
 	
-	public Detail() {
+	public MDetail() {
 	}
 
 	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
