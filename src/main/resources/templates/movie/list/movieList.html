@@ -43,7 +43,7 @@ span {
 			<a th:href="@{'/movie/list/로맨스/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListRomance}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListRomance}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic" /></a> <a
 				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
