@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oraclejava.spring.bean.movie.Movie;
 import com.oraclejava.spring.dao.movie.MovieRepository;
+import com.oraclejava.spring.model.movie.Movie;
 
 @Controller
 public class HomeController {

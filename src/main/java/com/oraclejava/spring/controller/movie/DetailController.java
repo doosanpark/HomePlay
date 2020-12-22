@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oraclejava.spring.dao.movie.DetailRepository;
+import com.oraclejava.spring.dao.movie.MovieStaffRepository;
 import com.oraclejava.spring.dao.movie.Movie_favoriteRepository;
-import com.oraclejava.spring.dao.movie.StaffRepository;
 import com.oraclejava.spring.model.movie.Detail;
 import com.oraclejava.spring.model.movie.Favorite;
 import com.oraclejava.spring.model.movie.RReview;
-import com.oraclejava.spring.model.movie.Staff;
+import com.oraclejava.spring.model.movie.RStaff;
 
 @Controller
 public class DetailController {
@@ -32,7 +32,7 @@ public class DetailController {
 	@Autowired
 	private Movie_favoriteRepository favoriteRepository;
 	@Autowired
-	private StaffRepository staffRepository;
+	private MovieStaffRepository staffRepository;
 	/*
 	 * @RequestMapping(value="/detail/detail", method=RequestMethod.GET) public
 	 * String indexTop() { return "redirect:/detail/detail/1"; }
@@ -44,7 +44,7 @@ public class DetailController {
 		
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("user_id");
-		Staff staff = staffRepository.findById(NO).get();
+		RStaff staff = staffRepository.findById(NO).get();
 		int movie_no = staff.getMovie_no();
 		
 		

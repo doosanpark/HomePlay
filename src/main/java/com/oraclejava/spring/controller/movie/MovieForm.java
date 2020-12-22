@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MovieForm {
-
+	private int no;
 	private String title;
 	private String genre;
 	private String summary_title;
