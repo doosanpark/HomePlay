@@ -48,7 +48,7 @@ public class AccountController {
 
 	@RequestMapping(value = { "account/mypage" }, method = RequestMethod.GET)
 	public ModelAndView mypage(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/mypage");
@@ -63,10 +63,18 @@ public class AccountController {
 		List<R_member> user_info = userRepository.findUser(id);
 		mav.addObject("user_info", user_info);
 
+		
+		if(id==null) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('계정 정보가 없습니다.'); history.go(-1);</script>");
+			out.flush();
+		}
+		
 		mav.addObject("msg1", id);
 		mav.addObject("msg2", pass);
 		mav.addObject("msg3", email);
-
+		List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
+		mav.addObject("findFavorite", findFavorite);
 		return mav;
 	}
 
