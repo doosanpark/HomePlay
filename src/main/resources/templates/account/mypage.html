@@ -1,9 +1,4 @@
 <th:block th:replace="includes/header :: header"></th:block>
-<div id="home-wrapper">
-	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
-	<script src="https://kit.fontawesome.com/769921875d.js"
-		crossorigin="anonymous"></script>
 
 	<style>
 .info {
@@ -80,14 +75,16 @@
 
 	<div class="logo">
 		<span class="favorite"><b>보관함</b></span> <span class="fav-detail"><br />최근에
-			담은 영화부터 순서대로 표기됩니다.</span>
+			담은 컨텐츠부터 순서대로 표기됩니다.</span>
 	</div>
 
 	<div th:each="f: ${findFavorite}" align="center">
 		<div>
 			<img th:src="@{'/img_movie/'+${f.poster}}" height="160">
-
+			
+			<p width="100">영화</p>
 			<p width="100" th:text=${f.title}>
+			<p width="100" th:text=${f.genre}>
 		</div>
 	</div>
 </div>
