@@ -1,6 +1,7 @@
 package com.oraclejava.spring.controller.movie;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,13 +45,15 @@ public class DetailController {
 		
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("user_id");
-		RStaff staff = staffRepository.findById(NO).get();
-		int movie_no = staff.getMovie_no();
-		
+		/*
+		 * RStaff staff = staffRepository.findById(NO).get(); int movie_no =
+		 * staff.getMovie_no();
+		 */
+		List<RStaff> staffs = staffRepository.findStaff(NO);
 		
 		mav.setViewName("movie/detail/detail");
 		mav.addObject("detail", detailRepository.findById(NO).get());
-		mav.addObject("staff", staffRepository.findById(movie_no).get());
+		mav.addObject("staff", staffs);
 		mav.addObject("favoriteCount", detailRepository.count_favorite(s_id));
 
 		return mav;

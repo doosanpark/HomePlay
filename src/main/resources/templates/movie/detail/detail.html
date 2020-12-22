@@ -126,7 +126,7 @@ margin-bottom: 75px;
 		<h2 style="font-weight: bolder;">배우 / 제작진</h2>
 
 		<ul class="moli">
-			<li th:each="l:${listStaff}" class="listre"><img alt="사진"
+			<li th:each="l:${staff}" class="listre"><img alt="사진"
 				th:src="@{'/img_movie/' + ${l.photo}}" class="pic"> <br> <span
 				th:text="*{l.name}">이름</span><br> <span th:text="*{l.role}"></span>
 			</li>
