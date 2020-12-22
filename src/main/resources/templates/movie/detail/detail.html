@@ -4,28 +4,6 @@
 	content="width=device-width,initial-scale=1.0,minimum-
  scale=1.0,maximum-scale=1.0,user-scalable=no"
 	charset="UTF-8">
-
-<script>
-	function favoriteUpdate() {
-		alert("관심 등록되었습니다.");
-	}
-	
-	$(document).ready(function(){
-		$('#createObject').click(function(){
-		 var ar=[];
-		    $('.song').each(function(){
-		        if($(this).is(':checked'))
-		        {
-		            ar.push({url:$(this).attr('data'),title:$(this).attr('title')}); 
-		            console.log("ar", ar);
-		        }        
-		    });
-		    alert(JSON.stringify(ar));
-		  });
-		});
-	
-</script>
-
 <style>
 #two {
 	width: 100%;
@@ -70,13 +48,14 @@
 }
 
 .comment {
-	width: 450px;
+	width: 40%;
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
 
 #content{
-	width: 95%;
+	width: 70%;
+	resize: none;
 }
 
 .listre {
@@ -159,46 +138,33 @@
 				<div class="staff_info" th:text="*{l.name}">이름</div>
 				<div class="staff_info" th:text="*{l.role}">역할</div></li>
 		</ul>
-	</div>
-<table>
-  <tr>
-  <td><input data='song_path1' title="title1"  type="checkbox" class="song"></td>
-  <td>song 1</td>
-  <td>Babo Man</td>
-  <td>Content Goes Here</td>
-  </td>
-  </tr>
-  <tr>    
-  <td><input data="song_path2" title="title_2" type="checkbox" class="song" /></td>
-  <td>song 2</td>
-  <td>Rahat Fatah Ali, Hamesh</td>
-  <td>Content Goes Here</td>
-  </tr>
- </table> 
- <input type="button" value="Add" id="createObject"/>
-
+	</div> 
 	<div class="">
 		<div class="titles">댓글 작성</div>
 		<!-- 댓글 작성 기능  -->
+		<button onclick="reviewWrite()" class="reButton" >리뷰작성하기</button>
 		<div class="box">
 			<form method="post" action="">
 				<input type="hidden" name="detail" th:value="${detail.no}">
 
 				<div align="left">
+					<div>
 					<label for="title"> 제목 :</label> 
 					
 					<input type="text" name="title"
 						id="title" class="comment"> <br> 
-						
+					</div>
+					<div>
 						<label for="content">
-						내용 :</label> <textarea name="content" id="content"> <br>
+						내용 :</label> <textarea name="content" id="content" ></textarea> <br>
+					</div>						
 					<label for="grade"> 별점 :</label> <select name="grade" id="grade"><option
 							value=5 selected="selected">5</option>
 						<option value=4>4</option>
 						<option value=3>3</option>
 						<option value=2>2</option>
 						<option value=1>1</option>
-					</select> <input style="" type="submit" value="작성">
+					</select> <input type="submit" value="작성">
 				</div>
 			</form>
 		</div>
@@ -231,3 +197,15 @@
 
 	</div>
 </div>
+<script type="text/javascript">
+		function reviewWrite() {
+			var url = "/movie/detail/review";
+			var w = screen.width;
+			var left = (w - 500) / 2;
+			var h = screen.height;
+			var top = (h - 750) / 2;
+			window.open(url, "ReviewWrite",
+					"width=500,height=650,scrollbars=no,left=" + left + ",top="
+							+ top + "");
+		}
+	</script>
