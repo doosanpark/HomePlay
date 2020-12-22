@@ -48,13 +48,10 @@ public class CreateController {
 		if (bindingResult.hasErrors()) {
 			return "redirect:/movie/create";
 		}
-		if(genre_movie.equals("")) {
-			genre_movie = null;
-		}
-		if(genre_drama.equals("")) {
-			genre_drama = null;
-		}
-		
+		/*
+		 * if(genre_movie.equals("")) { genre_movie = null; } if(genre_drama.equals(""))
+		 * { genre_drama = null; }
+		 */
 		System.out.println(genre_movie);
 		String sourceFileName = form.getThumbnail_image().getOriginalFilename();
 		MultipartFile sourceFile = form.getThumbnail_image();
@@ -66,7 +63,7 @@ public class CreateController {
 		File destFile1 = new File(imageLocation+ sourceFileName1);
 		sourceFile1.transferTo(destFile1);
 
-		if (genre_movie != null) {
+		if (genre_movie != "") {
 			Movie movie = new Movie();
 			movie.setTitle(form.getTitle());
 			movie.setGenre(genre_movie);
@@ -78,9 +75,10 @@ public class CreateController {
 			movie.setScreening(form.getScreening());
 			movie.setReg_date(new Date());
 			movieRepository.save(movie);
+			System.out.println(movie.getNo());
 			
 			return "/movie/createSuccess";
-		}else if(genre_drama != null) {
+		}else if(genre_drama != "") {
 			Drama drama = new Drama();
 			drama.setTitle(form.getTitle());
 			drama.setGenre(genre_drama);
