@@ -63,7 +63,7 @@ public class GameController {
 		model.addAttribute("endIndex", end);
 		model.addAttribute("currentIndex", current);
 		model.addAttribute("genreName", genre);
-		
+		System.out.println("games.getContent() : "+games.getContent());
 		
 		return "game/list/listDetail";
 		

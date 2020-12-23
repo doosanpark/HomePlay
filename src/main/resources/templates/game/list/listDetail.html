@@ -1,0 +1,76 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<style type="text/css">
+.detailList{
+	list-style-type: none;
+}
+.thumb{
+float: left;
+margin-right: 20px;
+}
+.boundary{
+clear: both;
+margin-bottom: 30px;
+}
+.pic{
+width: 99px;
+height: 141px;
+}
+.gameDd dt{
+float: left;
+line-height: 18px;
+}
+.gameDd dd{
+margin: 4px 0 4px 40px;
+}
+.gameTitle{
+float: left;
+}
+</style>
+<div id="page-wrapper"> 	
+	<h3><strong th:text="${genreName}"></strong> <strong>게임</strong></h3>
+	<div>
+		<ul class="detailList">
+		
+			<li th:each="g : ${gameList}">
+				<div class="thumb">
+					<a th:href="@{'/game/detail/' + ${g.no}}">
+						<img th:src="@{'/img/' + ${g.poster}}" class="pic" alt="게임 사진">
+					</a>
+				</div>
+				<dl class="gameTitle">
+					<dt>
+						<a th:href="@{'/game/detail/' + ${g.no}}">
+							<span  th:text="${g.title}"></span>
+						</a>
+					</dt>
+					<dd class="gameDd">
+						<dl>
+							<dt>개요</dt>
+							<dd>
+								<a th:href="@{'/game/list/' + ${g.genre}} + '/1'">
+									<span th:text="${g.genre}"></span>
+								</a>
+							</dd>
+							<dt>연령</dt>
+							<dd>
+								<span th:text="${g.age_limit}"></span>
+							</dd>
+						</dl>
+					</dd>
+				</dl>
+				<hr class="boundary">
+			</li>
+		</ul>
+		<div>
+			<ul class="pagination">
+			<li th:each="i : ${#numbers.sequence(beginIndex, endIndex)}"
+			class="page-item" th:classappend="${currentIndex == i} ? 'active' : '' ">
+				<a class="page-link" th:href="'/movie/list/' + ${genreName} + '/' + ${i} " >
+					<span th:text="${i}"></span>
+				</a>
+			</li>
+		</ul>
+		</div>
+	</div>
+</div>

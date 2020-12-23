@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.oraclejava.spring.model.game.Game;
 
 public interface GameRepository extends JpaRepository<Game, Integer> {
-	@Query("select m from R_game m where m.genre like '%' || :genreName || '%' order by m.no") 
+	@Query("select g from R_game g where g.genre like '%' || :genreName || '%' order by g.no") 
 	List<Game> findGenre(String genreName, Pageable pageable);
   
-    @Query("select m from R_game m where m.genre like '%' || :genreName || '%' order by m.title")
+    @Query("select g from R_game g where g.genre like '%' || :genreName || '%' order by g.title")
     Page<Game> findGenreList(String genreName, Pageable pageable);
 			
 			
