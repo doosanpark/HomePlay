@@ -63,7 +63,7 @@ public class AccountController {
 		List<R_member> user_info = userRepository.findUser(id);
 		mav.addObject("user_info", user_info);
 
-		
+		response.setContentType("text/html; charset=UTF-8");
 		if(id==null) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('계정 정보가 없습니다.'); history.go(-1);</script>");
