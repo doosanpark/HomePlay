@@ -55,9 +55,9 @@ span {
 			<a th:href="@{'/movie/list/액션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAction}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListAction}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/movie/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -67,9 +67,9 @@ span {
 			<a th:href="@{'/movie/list/SF/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListSf}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListSf}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a> <br> <span
+				th:href="@{'/movie/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a> <br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 		<h3>
@@ -79,9 +79,9 @@ span {
 			<a th:href="@{'/movie/list/애니메이션/1'}" class="moremi">더보기</a>
 		</div>
 		<ul class="moli">
-			<li th:each="m : ${movieListAni}" class="listre"><a th:href="@{'/detail/' + ${m.no}}"><img
+			<li th:each="m : ${movieListAni}" class="listre"><a th:href="@{'/movie/detail/' + ${m.no}}"><img
 					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
-				th:href="@{'/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
+				th:href="@{'/movie/detail/' + ${m.no}}"><span th:text="${m.title}">영화제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
 	</div>

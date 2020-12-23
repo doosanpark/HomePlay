@@ -120,7 +120,7 @@
 		<div class="container">
 			<div id="box">
 				<img th:src="@{'/img/'+${movieRecommend[0].poster}}"
-					th:onclick="|redir('/movie/detail/'+${movieRecommend[0].no})|">
+					th:onclick="|redir('/movie/list')|" style="cursor:hand;">
 					
 					<span><strong>MOVIE</strong></span>
 					
@@ -132,7 +132,7 @@
 			</div>
 			<div id="box">
 				<img th:src="@{'/img/'+${dramaRecommend[0].poster}}"
-					th:onclick="|redir('/drama/detail/'+${dramaRecommend[0].no})|"> 
+					th:onclick="|redir('/drama/list')|" style="cursor:hand;">
 					<span><strong>Drama</strong></span>
 					
 					<!-- <span
@@ -140,7 +140,7 @@
 			</div>
 			<div id="box">
 				<img th:src="@{'/img/'+${gameRecommend[0].poster}}"
-					th:onclick="|redir('/game/detail/'+${dramaRecommend[0].no})|"> 
+					th:onclick="|redir('/game/list')|" style="cursor:hand;">
 					<span><strong>Game</strong></span>
 					<!-- <span
 					th:text="${dramaRecommend[0].title}">드라마제목</span> -->

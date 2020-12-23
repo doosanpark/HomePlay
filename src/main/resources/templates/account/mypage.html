@@ -1,91 +1,134 @@
 <th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
 
-	<style>
+<style>
 .info {
-	top: 0;
-	text-align: center;
+	height: 90%;
 	display: flex;
-	margin: 15px;
+	justify-content: space-between;
+	margin-bottom: 50px;
 }
 
-.info .img img {
+.info .img {
 	width: 100%;
-	height: 100%;
-}
-
-
-.logo {
-	padding: 30px;
+	height: 270px;
 	display: flex;
+	flex-direction: column;
+	align-items: right;
 }
 
+#img{
+	height: 270px;
+}
+.logo {
+	margin: 5px 0 20px 0;
+}
 .logo .favorite {
 	font-size: 28px;
+	margin: 5px 0;
 }
 
 .logo .fav-detail {
-	margin-left: 1em; text-align : left;
+	text-align: left;
 	color: grey;
 	text-align: left;
 }
+#page-wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#container{
+	width: 80%;
+	height: 100%;
+	padding: 3% 0;
+}
+.panel-body{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 240px;
+	padding: 20px;
+}
+
+h6{
+	margin: 0;
+}
+
+.locker{
+	display: inline-block;
+}
+
+.content{
+	height: 250px;
+	margin: 20px;
+	text-align:left;
+}
+.movie_info{
+	margin: 5px 0;
+}
+
 </style>
+<div id="page-wrapper">
+	<div id="container">
+		<div class="info">
 
+			<!-- 정보 form -->
+			<div class="col-md-4 col-md-offset-1" style="margin: 0; padding-left:0;" >
+				<div style="margin: 0; width: 250px; height: 270px;" class="login-panel panel panel-default">
+					<div class="panel-heading" style="text-align: center;">
+						<h5 class="panel-title" th:text="${msg1+ '님 환영합니다'}"></h5>
+					</div>
+					<div class="panel-body">
+						<h6>
+							<P th:text="${'User ID : ' + msg1}" />
+						</h6>
+						<h6>
+							<P th:text="${'Password : ' + msg2+'***'}" />
+						</h6>
+						<h6>
+							<P th:text="${'e-mail : ' + msg3}" />
+						</h6>
+						<h6>
+							<p th:text="${'session value : '+ msg4}" />
+						</h6>
 
-
-	<div class="info">
-
-		<!-- 정보 form -->
-		<div class="col-md-4 col-md-offset-1">
-			<div style="margin: 0;" class="login-panel panel panel-default">
-				<div class="panel-heading">
-					<h5 class="panel-title" th:text="${msg1+ '님 환영합니다'}"></h5>
-				</div>
-				<div class="panel-body">
-					<h6>
-						<P th:text="${'User ID : ' + msg1}" />
-					</h6>
-					<h6>
-						<P th:text="${'Password : ' + msg2+'***'}" />
-					</h6>
-					<h6>
-						<P th:text="${'e-mail : ' + msg3}" />
-					</h6>
-					<h6>
-						<p th:text="${'session value : '+ msg4}" />
-					</h6>
-
-					<form action="/account/modify" enctype="multipart/form-data"
-						method="post" th:object="${R_member}">
-						<input class="btn btn-xs btn-success btn-block" type="submit"
-							value="정보수정" name="sc_modify" />
-						<button class="btn btn-xs btn-success btn-block" type="submit"
-							name="logout">로그아웃</button>
-					</form>
+						<form action="/account/modify" enctype="multipart/form-data"
+							method="post" th:object="${R_member}">
+							<input class="btn btn-xs btn-success btn-block" type="submit"
+								value="정보수정" name="sc_modify" />
+							<button class="btn btn-xs btn-success btn-block" type="submit"
+								name="logout">로그아웃</button>
+						</form>
+					</div>
 				</div>
 			</div>
+
+			<!-- 이미지 -->
+			<div class="img">
+				<img id="img" src="/img_movie/MypageImage.jpg" />
+			</div>
+
 		</div>
-		
-		<!-- 이미지 -->
-		<div class="img">
-			<img src="/img_movie/MypageImage.jpg" />
+
+		<hr style="border: solid 1px lightgray; width: 101.5%;">
+
+		<div class="logo">
+			<div class="favorite"><b>보관함</b></div> 
+			<div class="fav-detail">최근에 담은 컨텐츠부터 순서대로 표기됩니다.</div>
 		</div>
-		
-	</div>
 
-	<hr style="border: solid 1px lightgray; width: 101.5%;">
-
-	<div class="logo">
-		<span class="favorite"><b>보관함</b></span> <span class="fav-detail"><br />최근에
-			담은 컨텐츠부터 순서대로 표기됩니다.</span>
-	</div>
-
-	<div th:each="f: ${findFavorite}" align="center">
-		<div>
-			<img th:src="@{'/img_movie/'+${f.poster}}" height="160">
-			
-			<p width="100">영화</p>
-			<p width="100" th:text=${f.title}>
-			<p width="100" th:text=${f.genre}>
+		<div th:each="f: ${findFavorite}" align="center" class="locker">
+			<div class="content">
+				<img th:src="@{'/img_movie/'+${f.poster}}" style="width: 200px; height:160px">
+				<div>
+					<!-- 
+					<div class="movie_info" width="100"><span th:text=${f.category}>카테고리 </span></div>
+					 -->
+					<div class="movie_info" width="100"> <span th:text=${f.title}>제목 </span></div>
+					<div class="movie_info" width="100" th:text=${f.genre}>장르</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
