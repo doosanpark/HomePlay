@@ -180,18 +180,7 @@
 	</div>
 
 	<br>
-	<div class="margins">
-
-		<!-- 출연진 정보 출력 -->
-		<div class="titles">배우 / 제작진</div>
-
-		<ul class="moli">
-			<li th:each="l:${staff}" class="listre"><img alt="사진"
-				th:src="@{'/img_movie/' + ${l.photo}}" class="pic">
-				<div class="staff_info" th:text="*{l.name}">이름</div>
-				<div class="staff_info" th:text="*{l.role}">역할</div></li>
-		</ul>
-	</div> 
+	
 	<div class="">
 	<sec:authorize access="isAuthenticated()"
 							th:if="${session.user_id!=null}">

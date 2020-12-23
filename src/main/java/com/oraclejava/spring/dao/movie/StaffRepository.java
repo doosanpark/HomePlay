@@ -9,7 +9,7 @@ import com.oraclejava.spring.model.contents.RStaff;
 
 public interface StaffRepository extends JpaRepository<RStaff, Integer> {
 
-    @Query("select r from RStaff r where r.movie_no =:id") 
-    List<RStaff> findStaff(int id);
+    @Query("select r from RStaff r where r.title =:title") 
+    List<RStaff> findStaff(String title);
     
 }

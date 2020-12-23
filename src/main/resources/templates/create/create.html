@@ -25,9 +25,10 @@
 	font-weight: bold;
 }
 
-.title {
+.create_container {
 	font-weight: bold;
-	font-size: 18px
+	font-size: 18px;
+	margin: 30px 0;	
 }
 
 .contents {
@@ -35,7 +36,6 @@
 	font-size: 36px;
 	color: #333333;
 }
-
 .genrecss {
 	font-weight: bold;
 	font-size: 18px;
@@ -74,7 +74,7 @@
 }
 
 .form-control {
-	margin-bottom: 0 0 15px 0;
+	margin-bottom: 0 0 30px 0;
 }
 
 .staff {
@@ -90,6 +90,8 @@
 label {
 	min-width: 50px;
 }
+
+
 </style>
 
 
@@ -98,22 +100,24 @@ label {
 		<span class="contents">컨텐츠 정보입력</span>
 	</h2>
 	</br>
-	<form th:action="@{/movie/create}" method="post"
+	<form th:action="@{/content/create}" method="post"
 		enctype="multipart/form-data">
-		<input type="hidden" name="category" id="category" />
-		<div>
-			<span class="category">카테고리</span> <select id="cate">
+		<input type="hidden" />
+		<div class="create_container">
+			<span class="category" >카테고리</span> 
+			<select name="category" id="category">
 				<option value="movie">영화</option>
 				<option value="drama">드라마</option>
 				<option value="game">게임</option>
 			</select>
 		</div>
-		</br>
-		<div class="title">
+		
+		<div class="create_container">
 			<span>제목</span> </br> <input class="title_contents" name="title"
 				type="text" placeholder="내용을 입력해주세요" /></br>
 		</div>
-		</br> <span class="genrecss">장르&nbsp&nbsp</span> <select name="genre_movie"
+		<div class="create_container">
+		<span class="genrecss">장르&nbsp&nbsp</span> <select name="genre"
 			id="genre_movie">
 			<option value="로맨스" selected="selected">로맨스</option>
 			<option value="애니메이션">애니메이션</option>
@@ -126,14 +130,20 @@ label {
 			<option value="멜로">멜로</option>
 			<option value="코미디">코미디</option>
 			<option value="사극">사극</option>
-		</select> </br> </br>
-		<div class="story_title">줄거리 제목</div>
-		<input type="text" class="story_contents" name="summary_title"
-			placeholder="내용을 입력해주세요" /> </br> </br>
-		<div class="story_title">줄거리 내용</div>
-		<input type="text" class="story_contents" name="summary_content"
-			placeholder="내용을 입력해주세요" /> </br> </br>
-		<div>
+		</select> 
+		</div>
+		<div class="create_container">
+			<div class="story_title">줄거리 제목</div>
+			<input type="text" class="story_contents" name="summary_title"
+				placeholder="내용을 입력해주세요" />
+		</div>
+		<div class="create_container">
+			<div class="story_title">줄거리 내용</div>
+			<input type="text" class="story_contents" name="summary_content"
+				placeholder="내용을 입력해주세요" /> 
+		</div>
+			
+		<div class="create_container">
 			<span class="category">연령제한</span> <select name="age_limit">
 				<option>전체</option>
 				<option>7</option>
@@ -142,21 +152,19 @@ label {
 				<option>19</option>
 			</select>
 		</div>
-
-		</br>
+		
 		<div class="poster">
-			포스터 <input type="file" name="poster_image" id="poster_image" /> 썸네일<input
-				type="file" name="thumbnail_image" id="thumbnail_image" />
-
+			포스터&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="poster_image" id="poster_image" /> 
+			썸네일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="thumbnail_image" id="thumbnail_image" />
 		</div>
 
 		<div class="poster">
-			상영여부&nbsp&nbsp&nbsp<label><input type="radio"
-				name="screening" value="Y">Y</label>&nbsp&nbsp <label><input
-				type="radio" name="screening" value="N">N</label>
+			상영여부&nbsp;&nbsp;&nbsp;<label>
+			<input type="radio" name="screening" value="Y">Y</label>&nbsp&nbsp 
+				<label><input type="radio" name="screening" value="N">N</label>
 		</div>
 
-
+<!-- 
 		<input type="button" value="추가" onclick="add_div()"> <br />
 		<div>
 			<div class="staff" id="room_type" style="display: inline-block;">
@@ -182,8 +190,9 @@ label {
 			</div>
 			<div class="staff" id="field" style="display: inline-block;"></div>
 		</div>
-		<input type="button" value="확인"> <input
-			type="submit" value="등록" id="createObject"> </br> </br>
+		
+-->
+	<input type="submit" value="등록" id="createObject"> </br> </br>
 	</form>
 
 </div>

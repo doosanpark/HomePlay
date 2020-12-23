@@ -15,11 +15,12 @@ body {
 	padding: 0 15px;
 	height: 95%;
 	background-color: white;
+	min-height: 900px;
 }
 
 #page-wrapper {
 	padding: 10 15px;
-	min-height: 568px;
+	min-height: 900px;
 	background-color: white;
 }
 
@@ -27,11 +28,12 @@ body {
 	#home-wrapper {
 		padding: 0 15px;
 		height: 95%;
-		min-height: 568px;
+		min-height: 900px;
 		background-color: white;
 	}
 	#page-wrapper {
 		position: inherit;
+		min-height: 900px;
 		margin: 0 0 0 250px;
 		padding: 10 30px;
 		border-left: 1px solid #e7e7e7;

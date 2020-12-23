@@ -1,7 +1,6 @@
-package com.oraclejava.spring.model.movie;
+package com.oraclejava.spring.model.drama;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,14 +12,16 @@ import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.oraclejava.spring.model.movie.Favorite;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "R_MOVIE")
+@Table(name = "R_Drama")
 @Getter
 @Setter
-public class MDetail { 
+public class DDetail { 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,
 	generator = "movieNoGenerator")
@@ -49,12 +50,12 @@ public class MDetail {
 	 * reg_date; }
 	 */
 	
-	public MDetail() {
+	public DDetail() {
 	}
 
 	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
 	@OrderBy("reg_date desc")
-	private List<MReview> review; // r_review 테이블과 조인
+	private List<DReview> review; // r_review 테이블과 조인
 	
 	@OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)  
 	private List<Favorite> favorites; // r_review 테이블과 조인

@@ -1,4 +1,4 @@
-package com.oraclejava.spring.model.movie;
+package com.oraclejava.spring.model.drama;
 
 import java.util.Date;
 
@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "r_review")
-public class RReview {
+public class DReview {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ris")
@@ -34,13 +34,13 @@ public class RReview {
 
 	@ManyToOne //다대일
 	@JoinColumn(name = "movie_no") // Detail 테이블의 no column과 조인
-	private MDetail detail;
+	private DDetail detail;
 	
-	public RReview() {
+	public DReview() {
 		
 	}
 
-	public RReview(int member_no, String title, String content, int grade, Date reg_date) {
+	public DReview(int member_no, String title, String content, int grade, Date reg_date) {
 		this.member_no = member_no;
 		this.title = title;
 		this.content = content;
@@ -48,8 +48,8 @@ public class RReview {
 		this.reg_date = reg_date;
 	}
 
-	public RReview(int member_no, String title, String content, int grade, Date reg_date,
-			MDetail detail, String member_id) {
+	public DReview(int member_no, String title, String content, int grade, Date reg_date,
+			DDetail detail, String member_id) {
 		this.member_no = member_no;
 		this.title = title;
 		this.content = content;

@@ -18,8 +18,7 @@ public class RStaff {
 	@Id 
 	private int no;
 	private String category;
-	private int movie_no;
-	private String movie_title;
+	private String title;
 	private String name;
 	private String role;
 	private String photo;
