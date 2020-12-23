@@ -56,8 +56,42 @@
 .poster {
 	font-weight: bold;
 	font-size: 18px;
+	display: flex;
+	margin: 0 0 20px 0;
 }
 
+#room_type {
+	margin: 0;
+}
+
+.form_group {
+	width: 300px;
+}
+
+#s_photo {
+	border: none;
+	outline: none;
+}
+
+.form-control {
+	margin-bottom: 0 0 15px 0;
+}
+
+.staff{
+	display: inline-block;
+	width: 400px;
+	height: 150px;
+	
+}
+
+.staff_group{
+	display: flex;
+	
+}
+
+label {
+	min-width: 50px;
+}
 
 </style>
 
@@ -67,10 +101,11 @@
 		<span class="contents">컨텐츠 정보입력</span>
 	</h2>
 	</br>
-	<form th:action="@{/movie/create}" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="category" id="category"/>
+	<form th:action="@{/movie/create}" method="post"
+		enctype="multipart/form-data">
+		<input type="hidden" name="category" id="category" />
 		<div>
-			<span class="category" >카테고리</span> <select id="cate">
+			<span class="category">카테고리</span> <select id="cate">
 				<option value="movie">영화</option>
 				<option value="drama">드라마</option>
 				<option value="game">게임</option>
@@ -78,75 +113,111 @@
 		</div>
 		</br>
 		<div class="title">
-			<span>제목</span>
-	
-	</br> <input class="title_contents" name="title" type="text" placeholder="내용을 입력해주세요" /></br>
-</div>
-</br>
- <span  class="genrecss">장르&nbsp&nbsp</span>
- <select name="genre_movie" id="genre_movie">
-				<option value="" selected="selected">장르선택</option>
-				<option value="로맨스">로맨스</option>
-				<option value="애니메이션">애니메이션</option>
-				<option value="액션">액션</option>
-				<option value="코미디">코미디</option>
+			<span>제목</span> </br> <input class="title_contents" name="title"
+				type="text" placeholder="내용을 입력해주세요" /></br>
+		</div>
+		</br> <span class="genrecss">장르&nbsp&nbsp</span> <select name="genre_movie"
+			id="genre_movie">
+			<option value="" selected="selected">장르선택</option>
+			<option value="로맨스">로맨스</option>
+			<option value="애니메이션">애니메이션</option>
+			<option value="액션">액션</option>
+			<option value="코미디">코미디</option>
+		</select> <select name="genre_drama" id="genre_drama" style="display: none;">
+			<option value="" selected="selected">장르선택</option>
+			<option value="코미디">코미디</option>
+			<option value="스릴러">스릴러</option>
+			<option value="멜로">멜로</option>
+			<option value="코미디">코미디</option>
+			<option value="사극">사극</option>
+		</select> </br> </br>
+		<div class="story_title">줄거리 제목</div>
+		<input type="text" class="story_contents" name="summary_title"
+			placeholder="내용을 입력해주세요" /> </br> </br>
+		<div class="story_title">줄거리 내용</div>
+		<input type="text" class="story_contents" name="summary_content"
+			placeholder="내용을 입력해주세요" /> </br> </br>
+		<div>
+			<span class="category">연령제한</span> <select name="age_limit">
+				<option>전체</option>
+				<option>7</option>
+				<option>12</option>
+				<option>15</option>
+				<option>19</option>
 			</select>
-<select name="genre_drama" id="genre_drama" style="display:none;">
-				<option value="" selected="selected">장르선택</option>
-				<option value="코미디">코미디</option>
-				<option value="스릴러">스릴러</option>
-				<option value="멜로">멜로</option>
-				<option value="코미디">코미디</option>
-				<option value="사극">사극</option>
-			</select>			
-</br>
-</br>
-<div class="story_title">줄거리 제목</div>
-<input type="text" class="story_contents" name="summary_title" placeholder="내용을 입력해주세요" />
-</br>
-</br>
-<div class="story_title">줄거리 내용</div>
-<input type="text" class="story_contents" name="summary_content" placeholder="내용을 입력해주세요" />
-</br>
-</br>
-<div>
-	<span class="category">연령제한</span> <select name="age_limit">
-		<option>7</option>
-		<option>12</option>
-		<option>15</option>
-		<option>19</option>
-	</select>
-</div>
+		</div>
 
-</br>
-<div class="poster">
-	포스터<input type="file" name="poster_image" id="poster_image"  value="c:/upload/poster1"/><br>
+		</br>
+		<div class="poster">
+			포스터 <input type="file" name="poster_image" id="poster_image" /> 썸네일<input
+				type="file" name="thumbnail_image" id="thumbnail_image" />
 
-	<div>
-		썸네일<input type="file" name="thumbnail_image" id="thumbnail_image" /><br>
+		</div>
 
-		
-			상영여부&nbsp&nbsp&nbsp<label><input type="radio" name="screening" value="Y">Y</label>&nbsp&nbsp <label><input
+		<div class="poster">
+			상영여부&nbsp&nbsp&nbsp<label><input type="radio"
+				name="screening" value="Y">Y</label>&nbsp&nbsp <label><input
 				type="radio" name="screening" value="N">N</label>
 		</div>
-			<input type="submit" value="등록">
-		</form>
-	</div>
+
+
+		<input type="button" value="추가" onclick="add_div()"> <br />
+		<div>
+			<div class="staff" id="room_type" style="display: inline-block;"> 
 	
+				<div class="form_group">
+					<div class="staff_group">
+						<label for="s_name">이름</label> 
+						<input type="text" id="s_name" name="s_name" class="form-control" />
+					</div>
+					<div class="staff_group">
+						<label for="s_role">역할</label> 
+						<input type="text" id="s_role" name="s_role" class="form-control" />
+					</div>
+					<div class="staff_group">
+						<label for="s_photo">사진</label> 
+						<input type="file" id="s_photo" name="s_photo" class="form-control" />
+					</div>
 	
+				</div>
+	
+				<input type="button" value="삭제" onclick="remove_div(this)">
+	
+			</div>
+			<div class="staff" id="field" style="display: inline-block;"></div>
+		</div>
+
+		<input type="submit" value="등록"> </br> </br>
+	</form>
+
+</div>
+
+
+
+
 <script>
-	$(function(){
-		$("#cate").on("change", function(){
+	function add_div() {
+		var div = document.createElement('div');
+		div.innerHTML = document.getElementById('room_type').innerHTML;
+		document.getElementById('field').appendChild(div);
+	}
+
+	function remove_div(obj) {
+		document.getElementById('field').removeChild(obj.parentNode);
+	}
+
+	$(function() {
+		$("#cate").on("change", function() {
 			//alert(this.value);
-			
+
 			$("#category").val(this.value);
-			if (this.value=="movie") {
+			if (this.value == "movie") {
 				$("#genre_movie").show();
 				$("#genre_drama").hide();
-			} else if (this.value=="drama") {
+			} else if (this.value == "drama") {
 				$("#genre_movie").hide();
 				$("#genre_drama").show();
 			}
 		});
 	});
-</script>	
+</script>
