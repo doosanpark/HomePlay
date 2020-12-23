@@ -193,7 +193,10 @@
 		</ul>
 	</div> 
 	<div class="">
-		<button onclick="reviewWrite()" class="reButton" >리뷰 작성하기</button>		
+	<sec:authorize access="isAuthenticated()"
+							th:if="${session.user_id!=null}">
+		<button onclick="reviewWrite()" class="reButton" >리뷰 작성하기</button>									
+							</sec:authorize>
 		<!-- 댓글 작성 기능  -->
 		<div id="box">
 			<form method="post" action="">
