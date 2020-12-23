@@ -36,11 +36,6 @@
 	border-color: transparent;
 }
 
-.box {
-	border-style: groove;
-	border-radius: 10px;
-	width: 100%;
-}
 
 .box2 {
 	border-style: groove;
@@ -53,10 +48,6 @@
 	margin-top: 5px;
 }
 
-#content{
-	width: 70%;
-	resize: none;
-}
 
 .listre {
 	width: 15%;
@@ -81,16 +72,78 @@
 	width: 100%;
 	height: 180px;
 }
-
 .margins {
 	margin-top: 50px;
 	margin-bottom: 75px;
 }
-
 .staff_info{
 	margin: 5px 0;
 }
 
+#box {
+	/* width: 100%; */
+	border-radius : 10px;
+	position : absolute;
+	left : 40%;
+	top : 600px;
+	display: none;
+	width: 500px;
+	background-color: #fff;
+	box-shadow: 0 10px 10px #BDBDBD;
+}
+.reviewS{
+	display: block;
+	background-color: #000;
+	color: #fff;
+	height: 40px;
+	font-size: 18px;
+	padding: 9px 12px;
+	border-radius : 10px 10px 0 0;
+}
+.reviewCo{
+	padding: 0 30px;
+	text-align: center;
+}
+#content{
+	width: 100%; 
+	resize: none;
+	padding: 7px 9px;
+	height: 80px;
+	border: 0;
+}
+#conte{
+	width: 100%; 
+	height: 90px;
+	margin-bottom: 25px;
+	border: 1px groove #d8d8d8;
+
+}
+.clos{
+	width: 75px;
+	height: 40px;
+	background-color: #fff;
+	border-style: groove;
+	border-radius: 2px;
+}
+.sub{
+	width: 75px;
+	height: 40px;
+	background-color: #ff0080;
+	border-color: #ff0040;
+	border-radius: 2px;
+	color: #fff;
+}
+.reButton{
+	font-size: 15px;
+	background-color: #fff;
+	border-radius: 3px;
+	font-weight: bold;
+	height: 35px;
+}
+.reButton:hover{
+	background-color: #000;
+	color: #fff;
+}
 </style>
 
 <div id="page-wrapper">
@@ -140,13 +193,36 @@
 		</ul>
 	</div> 
 	<div class="">
-		<div class="titles">댓글 작성</div>
+		<button onclick="reviewWrite()" class="reButton" >리뷰 작성하기</button>		
 		<!-- 댓글 작성 기능  -->
-		<button onclick="reviewWrite()" class="reButton" >리뷰작성하기</button>
-		<div class="box">
+		<div id="box">
 			<form method="post" action="">
 				<input type="hidden" name="detail" th:value="${detail.no}">
-
+				<strong class="reviewS">리뷰 등록</strong>
+				<div class="reviewCo">
+					<h3 th:text="${detail.title}" style="font-weight: bold;"></h3>
+					<input type="text" name="title" id="title" class="comment" placeholder="한줄평을 입력해주세요."> <hr> 
+					 <div id="conte">
+					 <textarea name="content" id="content" placeholder="감상평을 남겨주세요 영화와 상관없는 내용은 ㄴㄴ" ></textarea> <br>						
+					 </div>
+					<span> 별점을 선택하세요</span>
+					 <select name="grade" id="grade">
+					 	<option value=5 selected="selected">5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select> 
+					<hr>
+					<input type="button" value="취소" class="clos" onclick="reviewClose()">
+					<input type="submit" value="작성" class="sub">
+				</div>
+			</form>
+		</div>
+<!-- 		<div id="box">
+			<form method="post" action="">
+				<input type="hidden" name="detail" th:value="${detail.no}">
+				<strong>리뷰 등록</strong>
 				<div align="left">
 					<div>
 					<label for="title"> 제목 :</label> 
@@ -164,10 +240,11 @@
 						<option value=3>3</option>
 						<option value=2>2</option>
 						<option value=1>1</option>
-					</select> <input type="submit" value="작성">
+					</select> 
+					<input type="submit" value="작성">
 				</div>
 			</form>
-		</div>
+		</div> -->
 
 
 		<br> <br>
@@ -198,7 +275,24 @@
 	</div>
 </div>
 <script type="text/javascript">
-		function reviewWrite() {
+	
+	/* function reviewWrite(){
+		var view = document.getElementById("box");
+		if(view.style.display == 'none'){
+			view.style.display = 'block';
+		}else{
+			view.style.display = 'none';
+		}
+		
+	} */
+	function reviewWrite(){
+		document.getElementById("box").style.display = "block";		
+	}
+	function reviewClose(){
+		document.getElementById("box").style.display = "none";
+	}
+	
+		/* function reviewWrite() {
 			var url = "/movie/detail/review";
 			var w = screen.width;
 			var left = (w - 500) / 2;
@@ -207,5 +301,5 @@
 			window.open(url, "ReviewWrite",
 					"width=500,height=650,scrollbars=no,left=" + left + ",top="
 							+ top + "");
-		}
+		} */
 	</script>
