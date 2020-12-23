@@ -58,8 +58,6 @@ public class AccountController {
 		String pass = (String) session.getAttribute("user_pass");
 		String email = (String) session.getAttribute("user_email");
 
-		System.out.println("account/mypage get로그인 아이디 "+id);
-
 		List<R_member> user_info = userRepository.findUser(id);
 		mav.addObject("user_info", user_info);
 
@@ -82,7 +80,6 @@ public class AccountController {
 	@RequestMapping(value = "account/mypage", method = RequestMethod.POST)
 	public ModelAndView id_ck(@ModelAttribute R_member form, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		System.out.println("/login/mypage...(ok) : " + form.getId());
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/mypage");
@@ -111,8 +108,6 @@ public class AccountController {
 				mav.addObject("msg3", r_member.getEmail());
 				mav.addObject("msg4", session.getAttribute("user_id"));
 
-				System.out.println("Session...(ok) : " + form.getId());
-
 				String id = (String) session.getAttribute("user_id");
 
 				List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
@@ -135,8 +130,6 @@ public class AccountController {
 	/* 회원가입 화면 구현 */
 	@RequestMapping(value = "account/sc_join", method = RequestMethod.GET)
 	public ModelAndView join() {
-		System.out.println("/join...(ok)");
-
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account/join");
 		return mav;
@@ -150,8 +143,6 @@ public class AccountController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		System.out.println("/join params=db_join...(ok)");
-
 		R_member rmember = new R_member();
 
 		Optional<String> id = Optional.ofNullable(form.getId());
@@ -162,11 +153,6 @@ public class AccountController {
 		String idReg = "^[a-z]+[a-z0-9]{5,19}$";
 		String passReg = "^(?=.*\\d)(?=.*[a-z]).{8,}$"; // 영문 숫자를 포함한 8글자 이상. 특문 제외 (?=.*[~`!@#$%\\^&*()-])
 		Date today = new Date();
-
-		System.out.println("입력받은 id... " + id.get());
-		System.out.println("입력받은 pass... " + pass.get());
-		System.out.println("입력받은 pass2... " + pass2.get());
-		System.out.println("입력받은 email... " + email.get());
 
 		/* ID CHECK */
 		Optional<R_member> rMemberId = userRepository.findById(form.getId());
@@ -181,7 +167,6 @@ public class AccountController {
 			out.println("<script>alert('아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자여야 합니다.'); history.go(-1);</script>");
 			out.flush();
 		}
-
 		/* PASS CHECK */
 		else if (pass.get().isEmpty()) { // PASS 공란 CHECK
 			out.println("<script>alert('패스워드가 공란입니다.'); history.go(-1);</script>");
@@ -204,20 +189,12 @@ public class AccountController {
 			out.flush();
 		} else {
 
-			/* 'no'field는 Sequence 자동 작동 */
-			// rmember.setNo();
-
 			rmember.setId(form.getId());
 			rmember.setPass(form.getPass());
 			rmember.setEmail(form.getEmail());
 			rmember.setReg_date(today);
 
 			userRepository.save(rmember);
-
-			System.out.println(form.getId());
-			System.out.println(form.getPass());
-			System.out.println(form.getEmail());
-			System.out.println(today);
 
 			out.println("<script>alert('축하합니다! 회원가입에 성공하셨습니다.'); location.href = \"/\"; </script>");
 			out.flush();
@@ -246,10 +223,6 @@ public class AccountController {
 		mav1.addObject("id", r_member1.getId());
 		mav1.addObject("pass", r_member1.getPass());
 		mav1.addObject("email", r_member1.getEmail());
-		System.out.println("[CHECK] no : " + r_member1.getNo());
-		System.out.println("[CHECK] id : " + r_member1.getId());
-		System.out.println("[CHECK] pass : " + r_member1.getPass());
-		System.out.println("[CHECK] email : " + r_member1.getEmail());
 
 		return mav1;
 	}
@@ -307,9 +280,6 @@ public class AccountController {
 		ModelAndView mav = new ModelAndView("redirect:/");
 
 		redirAttrs.addFlashAttribute("logoutMessage", "성공적으로 로그아웃 되었습니다.");
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//		out.println("<script>alert('성공적으로 로그아웃 되었습니다.');</script>");
 		System.out.println("Logout complete");
 
 		/* 세션을 끊고 홈으로 돌아간다. */

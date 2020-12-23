@@ -29,7 +29,7 @@ public class MovieController {
             method=RequestMethod.GET)
       public ModelAndView index() {
          ModelAndView mav = new ModelAndView();
-         mav.setViewName("movie/list/movieList");
+         mav.setViewName("contents/movie/list/movieList");
          List<Movie> lists = 
                movieRepository.findGenre("로맨스", PageRequest.of(0, 6));
          List<Movie> lists2 = 
@@ -59,7 +59,7 @@ public class MovieController {
          model.addAttribute("endIndex", end);
          model.addAttribute("currentIndex", current);
          model.addAttribute("genreName", genre);
-         return "movie/list/movieListDetail";
+         return "contents/movie/list/movieListDetail";
       }
       
 }

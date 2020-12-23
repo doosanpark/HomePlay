@@ -60,11 +60,9 @@ public class DetailController {
 //		String title = movieDetailRepository.findById(NO).get().getTitle();
 //		List<RStaff> staffs = staffRepository.findStaff(title);
 
-		mav.setViewName("movie/detail/detail");
+		mav.setViewName("contents/movie/detail/detail");
 		mav.addObject("detail", movieDetailRepository.findById(NO).get());
-		
-		System.out.println("썸네일 : " + movieDetailRepository.findById(NO).get().getPoster());
-		
+
 //		mav.addObject("staff", staffs);
 		mav.addObject("favoriteCount", movieDetailRepository.count_favorite(s_id));
 
@@ -80,12 +78,9 @@ public class DetailController {
 
 		favorite.setId(s_id);
 
-		if (count == 0) {
-
-			MDetail mdetail = movieDetailRepository.findById(favorite.getDetail().getNo()).get();
-			mdetail.getFavorites().add(favorite);
-			movieDetailRepository.save(mdetail);
-		}
+		MDetail mdetail = movieDetailRepository.findById(favorite.getDetail().getNo()).get();
+		mdetail.getFavorites().add(favorite);
+		movieDetailRepository.save(mdetail);
 
 		return "redirect:/movie/detail/" + favorite.getDetail().getNo();
 
@@ -120,12 +115,10 @@ public class DetailController {
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("user_id");
 
-		System.out.println("s_id" + s_id);
-
 //		String title = dramaDetailRepository.findById(NO).get().getTitle();
 //		List<RStaff> staffs = staffRepository.findStaff(title);
 
-		mav.setViewName("drama/detail/detail");
+		mav.setViewName("contents/drama/detail/detail");
 		mav.addObject("detail", dramaDetailRepository.findById(NO).get());
 //		mav.addObject("staff", staffs);
 		mav.addObject("favoriteCount", dramaDetailRepository.count_favorite(s_id));
@@ -141,13 +134,10 @@ public class DetailController {
 		String s_id = (String) session.getAttribute("user_id");
 
 		favorite.setId(s_id);
-
-		if (count == 0) {
-
-			DDetail ddetail = dramaDetailRepository.findById(favorite.getDetail().getNo()).get();
-			ddetail.getFavorites().add(favorite);
-			dramaDetailRepository.save(ddetail);
-		}
+		
+		DDetail ddetail = dramaDetailRepository.findById(favorite.getDetail().getNo()).get();
+		ddetail.getFavorites().add(favorite);
+		dramaDetailRepository.save(ddetail);
 
 		return "redirect:/drama/detail/" + favorite.getDetail().getNo();
 
@@ -182,12 +172,10 @@ public class DetailController {
 		HttpSession session = request.getSession();
 		String s_id = (String) session.getAttribute("user_id");
 
-		System.out.println("s_id" + s_id);
-
 //		String title = gameDetailRepository.findById(NO).get().getTitle();
 //		List<RStaff> staffList = staffRepository.findStaff(title);
 
-		mav.setViewName("game/detail/detail");
+		mav.setViewName("contents/game/detail/detail");
 		mav.addObject("detail", gameDetailRepository.findById(NO).get());
 		// mav.addObject("staff", staffList);
 		mav.addObject("favoriteCount", gameDetailRepository.count_favorite(s_id));
@@ -204,12 +192,9 @@ public class DetailController {
 
 		favorite.setId(s_id);
 
-		if (count == 0) {
-
-			GDetail gdetail = gameDetailRepository.findById(favorite.getDetail().getNo()).get();
-			gdetail.getFavorites().add(favorite);
-			gameDetailRepository.save(gdetail);
-		}
+		GDetail gdetail = gameDetailRepository.findById(favorite.getDetail().getNo()).get();
+		gdetail.getFavorites().add(favorite);
+		gameDetailRepository.save(gdetail);
 
 		return "redirect:/game/detail/" + favorite.getDetail().getNo();
 

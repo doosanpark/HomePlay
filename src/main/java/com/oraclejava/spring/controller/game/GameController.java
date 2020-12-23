@@ -29,7 +29,7 @@ public class GameController {
 			method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("game/list/list");
+		mav.setViewName("contents/game/list/list");
 		List<Game> lists = 
 				gameRepository.findGenre("RPG", PageRequest.of(0, 6));
 		List<Game> lists2 = 
@@ -65,7 +65,7 @@ public class GameController {
 		model.addAttribute("genreName", genre);
 		System.out.println("games.getContent() : "+games.getContent());
 		
-		return "game/list/listDetail";
+		return "contents/game/list/listDetail";
 		
 	}
 	

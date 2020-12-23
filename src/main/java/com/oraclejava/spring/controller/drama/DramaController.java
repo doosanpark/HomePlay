@@ -28,7 +28,7 @@ public class DramaController {
 	@RequestMapping(value="drama/list", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("drama/list/list");
+		mav.setViewName("contents/drama/list/list");
 		List<Drama> list1 = dramaRepository.findGenre("범죄", PageRequest.of(0, 6));
 		List<Drama> list2 = dramaRepository.findGenre("미스터리", PageRequest.of(0, 6));
 		List<Drama> list3 = dramaRepository.findGenre("코미디", PageRequest.of(0, 6));
@@ -53,7 +53,7 @@ public class DramaController {
        model.addAttribute("endIndex", end);
        model.addAttribute("currentIndex", current);
        model.addAttribute("genreName", genre);
-       return "drama/list/listDetail";
+       return "contents/drama/list/listDetail";
     }
 	
 }

@@ -1,0 +1,327 @@
+<th:block th:replace="includes/header :: header"></th:block>
+<th:block th:replace="includes/sider :: sider"></th:block>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-
+ scale=1.0,maximum-scale=1.0,user-scalable=no"
+	charset="UTF-8">
+<style>
+#two {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.left {
+	width: 40%;
+	float: left;
+}
+
+.right {
+	margin-top: 3%;
+	width: 40%;
+	text-align: right;
+}
+
+.titles {
+	margin: 20px 0;
+	font-size: 30px;
+	font-weight: 600;
+}
+
+#favorite {
+	background: url("/img/favorite.jpg");
+	background-repeat: no-repeat;
+	width: 268px;
+	height: 50px;
+	border-color: transparent;
+}
+
+.box2 {
+	border-style: groove;
+	border-radius: 10px;
+}
+
+.comment {
+	width: 40%;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.listre {
+	width: 15%;
+	height: 100%;
+	padding: 0 3% 3% 0;
+	text-align: center;
+}
+
+.pic {
+	width: 150px;
+	padding-bottom: 10px;
+	height: 150px;
+}
+
+.moli li {
+	list-style-type: none;
+}
+
+.moli {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 180px;
+}
+
+.margins {
+	margin-top: 50px;
+	margin-bottom: 75px;
+}
+
+.staff_info {
+	margin: 5px 0;
+}
+
+#box {
+	/* width: 100%; */
+	border-radius: 10px;
+	position: absolute;
+	left: 40%;
+	top: 600px;
+	display: none;
+	width: 500px;
+	background-color: #fff;
+	box-shadow: 0 10px 10px #BDBDBD;
+}
+
+.reviewS {
+	display: block;
+	background-color: #000;
+	color: #fff;
+	height: 40px;
+	font-size: 18px;
+	padding: 9px 12px;
+	border-radius: 10px 10px 0 0;
+}
+
+.reviewCo {
+	padding: 0 30px;
+	text-align: center;
+}
+
+#content {
+	width: 100%;
+	resize: none;
+	padding: 7px 9px;
+	height: 80px;
+	border: 0;
+}
+
+#conte {
+	width: 100%;
+	height: 90px;
+	margin-bottom: 25px;
+	border: 1px groove #d8d8d8;
+}
+
+.clos {
+	width: 75px;
+	height: 40px;
+	background-color: #fff;
+	border-style: groove;
+	border-radius: 2px;
+}
+
+.sub {
+	width: 75px;
+	height: 40px;
+	background-color: #ff0080;
+	border-color: #ff0040;
+	border-radius: 2px;
+	color: #fff;
+}
+
+.reButton {
+	font-size: 15px;
+	background-color: #fff;
+	border-radius: 3px;
+	font-weight: bold;
+	height: 35px;
+}
+
+.reButton:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+#page-wrapper #two {
+	display: flex;
+	justify-content: space-between;
+}
+
+#page-wrapper {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: cetner;
+	align-items: center;
+}
+</style>
+
+<div id="page-wrapper">
+	<div style="width: 90%;">
+		<div id="two" th:object="${detail}">
+			<div class="left">
+				<div class="page-header">
+					<h1>
+						<strong><span th:text="*{title}">TITLE</span><br></strong>
+					</h1>
+					<span th:text="*{genre}" style="margin-left: 5px;">GENRE</span><br>
+				</div>
+				<div>
+					<form method="post" action="favorite">
+						<!-- 관심 등록 기능  -->
+						<input type="hidden" name="count" th:value="${favoriteCount}">
+						<input type="hidden" name="detail.no" th:value="*{no}"> 
+						<input type="submit" value="" name="favorite" id="favorite"
+							onclick="favoriteUpdate();">
+
+					</form>
+					<div class="titles">줄거리</div>
+					<div>
+						<h4 th:text="*{summary_title}" style="font-weight: 600;">SUMMATY_TITLE</h4>
+					</div>
+
+					<div>
+						<span th:text="*{summary_content}">SUMMARY_CONTENT</span>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<img th:src="@{'/img/' + *{poster}}" style="max-height: 600px;"><br>
+			</div>
+
+		</div>
+
+		<br>
+
+		<div class="">
+			<!-- 댓글 작성 기능  -->
+			<div id="box">
+				<form method="post" action="">
+					<input type="hidden" name="detail" th:value="${detail.no}">
+					<strong class="reviewS">리뷰 등록</strong>
+					<div class="reviewCo">
+						<h3 th:text="${detail.title}" style="font-weight: bold;"></h3>
+						<input type="text" name="title" id="title" class="comment"
+							placeholder="한줄평을 입력해주세요.">
+						<hr>
+						<div id="conte">
+							<textarea name="content" id="content"
+								placeholder="감상평을 남겨주세요 영화와 상관없는 내용은 ㄴㄴ"></textarea>
+							<br>
+						</div>
+						<span> 별점을 선택하세요</span> <select name="grade" id="grade">
+							<option value=5 selected="selected">5</option>
+							<option value=4>4</option>
+							<option value=3>3</option>
+							<option value=2>2</option>
+							<option value=1>1</option>
+						</select>
+						<hr>
+						<input type="button" value="취소" class="clos"
+							onclick="reviewClose()"> <input type="submit" value="작성"
+							class="sub">
+					</div>
+				</form>
+			</div>
+			<!-- 		<div id="box">
+			<form method="post" action="">
+				<input type="hidden" name="detail" th:value="${detail.no}">
+				<strong>리뷰 등록</strong>
+				<div align="left">
+					<div>
+					<label for="title"> 제목 :</label> 
+					
+					<input type="text" name="title"
+						id="title" class="comment"> <br> 
+					</div>
+					<div>
+						<label for="content">
+						내용 :</label> <textarea name="content" id="content" ></textarea> <br>
+					</div>						
+					<label for="grade"> 별점 :</label> <select name="grade" id="grade"><option
+							value=5 selected="selected">5</option>
+						<option value=4>4</option>
+						<option value=3>3</option>
+						<option value=2>2</option>
+						<option value=1>1</option>
+					</select> 
+					<input type="submit" value="작성">
+				</div>
+			</form>
+		</div> -->
+
+
+			<br> <br>
+			<div
+				style="display: flex; justify-content: space-between; align-items: end;">
+				<div>
+					<span class="titles">관람객 리뷰</span> <span
+						style="font-size: 20px; margin-bottom: 2px;"
+						th:text="'('+${#lists.size(detail.review)+')'}">리뷰 갯수</span>
+				</div>
+				<sec:authorize access="isAuthenticated()"
+					th:if="${session.user_id!=null}">
+					<button onclick="reviewWrite()" class="reButton">리뷰 작성하기</button>
+				</sec:authorize>
+
+			</div>
+			<!-- 관람객 리뷰 출력 기능  -->
+			<div align="center" th:each="r: ${detail.review}">
+				<hr style="border: solid 1px lightgray; width: 100%;">
+				<div align="left">
+					<span style="font-weight: bold; font-size: large;"
+						th:text="${r.title}">댓글 제목</span> <br> <span
+						th:text="${r.content}">댓글 내용</span>
+				</div>
+				<br>
+
+				<div>
+					<img align="left" th:src="@{'/img/'+ ${r.grade}+'.jpg'}"
+						height="25px;" width="100">
+				</div>
+				<div align="right">
+					<span style="font-weight: bolder;" th:text="${r.member_id}">작성자
+						아이디</span> <span th:text="${r.reg_date}">작성 날짜</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	/* function reviewWrite(){
+		var view = document.getElementById("box");
+		if(view.style.display == 'none'){
+			view.style.display = 'block';
+		}else{
+			view.style.display = 'none';
+		}
+		
+	} */
+	function reviewWrite() {
+		document.getElementById("box").style.display = "block";
+	}
+	function reviewClose() {
+		document.getElementById("box").style.display = "none";
+	}
+
+	/* function reviewWrite() {
+		var url = "/movie/detail/review";
+		var w = screen.width;
+		var left = (w - 500) / 2;
+		var h = screen.height;
+		var top = (h - 750) / 2;
+		window.open(url, "ReviewWrite",
+				"width=500,height=650,scrollbars=no,left=" + left + ",top="
+						+ top + "");
+	} */
+</script>

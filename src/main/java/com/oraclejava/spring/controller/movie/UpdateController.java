@@ -29,7 +29,7 @@ public class UpdateController {
 	private MovieRepository movieRepository;
 
 	// 폰 수정전 현재 DB에 입력된 값 출력
-	@RequestMapping(path = "//create/update/pre/{no}", method = RequestMethod.GET)
+	@RequestMapping(path = "/create/update/pre/{no}", method = RequestMethod.GET)
 	public String updatePre(@PathVariable Integer no, Model model) {
 
 		System.out.println("랄랄ㄹ라");
@@ -51,14 +51,14 @@ public class UpdateController {
 	}
 
 	// 폰 수정
-	@RequestMapping(path = "//create/update/pre/{no}", method = RequestMethod.POST)
+	@RequestMapping(path = "/create/update/pre/{no}", method = RequestMethod.POST)
 	public String contentsUpdate(@ModelAttribute ContentsForm form, BindingResult bindingResult, Model model)
 			throws IllegalStateException, IOException {
 
 		System.out.println("울울울");
 
 		if (bindingResult.hasErrors()) {
-			return "redirect://create/update/pre/" + form.getNo();
+			return "redirect:/create/update/pre/" + form.getNo();
 		}
 
 		Movie movie = new Movie();
