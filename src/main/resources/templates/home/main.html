@@ -183,15 +183,15 @@
 				</div>
 			</div>
 			
-			<div class="listre" th:each="d : ${gameRecommend}">
-				<a th:href="@{'/game/detail/'+${d.no}}"> <img id="poster"
-					th:src="@{'/img/'+${d.poster}}">
+			<div class="listre" th:each="g : ${gameRecommend}">
+				<a th:href="@{'/game/detail/'+${g.no}}"> <img id="poster"
+					th:src="@{'/img/'+${g.poster}}">
 				</a>
 				<div class="container" style="height: 12vh; width: 100%">
-					<a th:href="@{'/game/detail/'+${d.no}}">
+					<a th:href="@{'/game/detail/'+${g.no}}">
 						<h4 style="margin: 0;">
-							<strong><span id="title" th:text="${d.title}">드라마제목</span></strong>
-						</h4> <span id="genre" th:text="${d.genre}">드라마장르</span>
+							<strong><span id="title" th:text="${g.title}">게임제목</span></strong>
+						</h4> <span id="genre" th:text="${g.genre}">게임장르</span>
 					</a>
 				</div>
 			</div>

@@ -90,6 +90,33 @@ span {
 				th:href="@{'/drama/detail/' + ${m.no}}"><span th:text="${m.title}">드라마제목</span></a><br> <span
 				th:text="${m.genre}"></span></li>
 		</ul>
+		
+		<h3>
+			<strong>다른 내가 되어 살아가는 이야기 RPG</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/game/list/RPG/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${gameRPG}" class="listre"><a th:href="@{'/game/detail/' + ${m.no}}"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
+				th:href="@{'/game/detail/' + ${m.no}}"><span th:text="${m.title}">드라마제목</span></a> <br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+		<h3>
+			<strong>친구들과 함께 명승부! 스포츠!</strong>
+		</h3>
+		<div class="more">
+			<a th:href="@{'/game/list/SPORTS/1'}" class="moremi">더보기</a>
+		</div>
+		<ul class="moli">
+			<li th:each="m : ${gameSPORTS}" class="listre"><a th:href="@{'/game/detail/' + ${m.no}}"><img
+					alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic"></a> <a
+				th:href="@{'/game/detail/' + ${m.no}}"><span th:text="${m.title}">드라마제목</span></a><br> <span
+				th:text="${m.genre}"></span></li>
+		</ul>
+		
+		
 	</div>
 
 </div>

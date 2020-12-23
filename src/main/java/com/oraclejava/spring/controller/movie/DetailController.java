@@ -62,6 +62,9 @@ public class DetailController {
 
 		mav.setViewName("movie/detail/detail");
 		mav.addObject("detail", movieDetailRepository.findById(NO).get());
+		
+		System.out.println("썸네일 : " + movieDetailRepository.findById(NO).get().getPoster());
+		
 //		mav.addObject("staff", staffs);
 		mav.addObject("favoriteCount", movieDetailRepository.count_favorite(s_id));
 

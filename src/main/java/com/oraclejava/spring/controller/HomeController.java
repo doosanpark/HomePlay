@@ -18,6 +18,7 @@ import com.oraclejava.spring.dao.drama.DramaRepository;
 import com.oraclejava.spring.dao.game.GameRepository;
 import com.oraclejava.spring.dao.movie.MovieRepository;
 import com.oraclejava.spring.model.drama.Drama;
+import com.oraclejava.spring.model.game.Game;
 import com.oraclejava.spring.model.movie.Movie;
 
 @Controller
@@ -86,11 +87,15 @@ public class HomeController {
 		List<Movie> movieLists2 = movieRepository.findGenre("액션", PageRequest.of(0, 4));
 		List<Drama> dramaLists1 = dramaRepository.findGenre("스릴러", PageRequest.of(0, 4));
 		List<Drama> dramaLists2 = dramaRepository.findGenre("코미디", PageRequest.of(0, 4));
+		List<Game> gameLists1 = gameRepository.findGenre("RPG", PageRequest.of(0, 4));
+		List<Game> gameLists2 = gameRepository.findGenre("SPORTS", PageRequest.of(0, 4));
 
 		rec.addObject("movieListRomance", movieLists1);
 		rec.addObject("movieListAction", movieLists2);
 		rec.addObject("dramaThriller", dramaLists1);
 		rec.addObject("dramaComedy", dramaLists2);
+		rec.addObject("gameRPG", gameLists1);
+		rec.addObject("gameSPORTS", gameLists2);
 
 		return rec;
 	}
