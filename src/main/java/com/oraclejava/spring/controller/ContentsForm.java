@@ -10,6 +10,7 @@ import lombok.Setter;
 public class ContentsForm {
 	private int no;
 	private String title;
+	private String category;
 	private String genre;
 	private String summary_title;
 	private String summary_content;

@@ -10,26 +10,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.oraclejava.spring.controller.ContentsForm;
 import com.oraclejava.spring.dao.drama.DramaRepository;
 import com.oraclejava.spring.dao.movie.MovieRepository;
-import com.oraclejava.spring.model.drama.Drama;
+import com.oraclejava.spring.dao.movie.StaffRepository;
+import com.oraclejava.spring.model.contents.RStaff;
 import com.oraclejava.spring.model.movie.Movie;
 
 @Controller
 public class CreateController {
 	@Autowired
 	private MovieRepository movieRepository;
-	
+
 	@Autowired
 	private DramaRepository dramaRepository;
-	
-	
-	
+
+	@Autowired
+	private StaffRepository staffRepository;
+
 	@Value("${img.absolute.location}")
 	private String imageLocation;
 
@@ -37,67 +39,118 @@ public class CreateController {
 	@RequestMapping(path = "movie/create", method = RequestMethod.GET)
 	public String indexTop() {
 
-		return "/movie/create";
+		return "/create/create";
 	}
 
 	// contents DB추가
 	@RequestMapping(path = "movie/create", method = RequestMethod.POST)
-	public String MovieCreate(@ModelAttribute MovieForm form, BindingResult bindingResult, Model model,
-			String genre_movie, String genre_drama)
+	public String MovieCreate(@ModelAttribute ContentsForm form, BindingResult bindingResult, Model model)
 			throws IllegalStateException, IOException {
 		if (bindingResult.hasErrors()) {
-			return "redirect:/movie/create";
+			return "redirect:/create/create";
 		}
 		/*
 		 * if(genre_movie.equals("")) { genre_movie = null; } if(genre_drama.equals(""))
 		 * { genre_drama = null; }
 		 */
-		System.out.println(genre_movie);
-		String sourceFileName = form.getThumbnail_image().getOriginalFilename();
-		MultipartFile sourceFile = form.getThumbnail_image();
-		File destFile = new File(imageLocation+ sourceFileName);
-		sourceFile.transferTo(destFile);
-		
-		String sourceFileName1 = form.getPoster_image().getOriginalFilename();
-		MultipartFile sourceFile1 = form.getPoster_image();
-		File destFile1 = new File(imageLocation+ sourceFileName1);
-		sourceFile1.transferTo(destFile1);
 
-		if (genre_movie != "") {
-			Movie movie = new Movie();
-			movie.setTitle(form.getTitle());
-			movie.setGenre(genre_movie);
-			movie.setSummary_title(form.getSummary_title());
-			movie.setSummary_content(form.getSummary_content());
-			movie.setAge_limit(form.getAge_limit());
-			movie.setPoster(sourceFileName1);
-			movie.setThumbnail(sourceFileName);
-			movie.setScreening(form.getScreening());
-			movie.setReg_date(new Date());
-			movieRepository.save(movie);
-			System.out.println(movie.getNo());
+		// 썸네일 저장
+		String thumbnailName = form.getThumbnail_image().getOriginalFilename();
+		MultipartFile thumnail = form.getThumbnail_image();
+		File destThumbnail = new File(imageLocation + "/thumbnail" + thumbnailName);
+		thumnail.transferTo(destThumbnail);
+
+		// 포스터 저장
+		String posterName = form.getPoster_image().getOriginalFilename();
+		MultipartFile poster = form.getPoster_image();
+		File destPoster = new File(imageLocation + "/poster" + posterName);
+		poster.transferTo(destPoster);
+
+		// 스태프 사진'들'저장
+		MultipartFile[] photos = form.getS_photo();
+		String[] names = form.getS_name();
+		String[] roles = form.getS_role();
+		for (int i = 0; i < photos.length; i++) {
+			String photoName = photos[i].getOriginalFilename();
+			MultipartFile photo = photos[i];
+			File destPhoto = new File(imageLocation + "/photo" + photoName);
+			poster.transferTo(destPhoto);
+
+			String name = names[i];
+			String role = roles[i];
+
+			RStaff staff = new RStaff();
+			String category = "";
+			switch (form.getCategory()) {
+			case "영화":
+				category = "m";
+				break;
+			case "드라마":
+				category = "d";
+				break;
+			case "게임":
+				category = "g";
+				break;
+			default:
+				break;
+			}
+
+			staff.setCategory(category);
+			staff.setName(name);
+			staff.setNo(form.getNo());
+			staff.setPhoto(photoName);
+			staff.setReg_date(new Date());
+			staff.setRole(role);
 			
-			return "/movie/createSuccess";
-		}else if(genre_drama != "") {
-			Drama drama = new Drama();
-			drama.setTitle(form.getTitle());
-			drama.setGenre(genre_drama);
-			drama.setSummary_title(form.getSummary_title());
-			drama.setSummary_content(form.getSummary_content());
-			drama.setAge_limit(form.getAge_limit());
-			drama.setPoster(sourceFileName1);
-			drama.setThumbnail(sourceFileName);
-			drama.setScreening(form.getScreening());
-			drama.setReg_date(new Date());
-			dramaRepository.save(drama);
-			
-			return "/movie/createSuccess";
-		}else {
-			
-			return "/";
+			staffRepository.save(staff);
 		}
-	}
-	
 
-	
+		Movie movie = new Movie();
+		movie.setTitle(form.getTitle());
+		movie.setGenre(form.getGenre());
+		movie.setSummary_title(form.getSummary_title());
+		movie.setSummary_content(form.getSummary_content());
+		movie.setAge_limit(form.getAge_limit());
+		movie.setPoster(posterName);
+		movie.setThumbnail(thumbnailName);
+		movie.setScreening(form.getScreening());
+		movie.setReg_date(new Date());
+		movieRepository.save(movie);
+
+		return "";
+
+//		if (genre_movie != "") {
+//			Movie movie = new Movie();
+//			movie.setTitle(form.getTitle());
+//			movie.setGenre(genre_movie);
+//			movie.setSummary_title(form.getSummary_title());
+//			movie.setSummary_content(form.getSummary_content());
+//			movie.setAge_limit(form.getAge_limit());
+//			movie.setPoster(sourceFileName1);
+//			movie.setThumbnail(sourceFileName);
+//			movie.setScreening(form.getScreening());
+//			movie.setReg_date(new Date());
+//			movieRepository.save(movie);
+//			
+//			return "/create/createSuccess";
+//		}else if(genre_drama != "") {
+//			Drama drama = new Drama();
+//			drama.setTitle(form.getTitle());
+//			drama.setGenre(genre_drama);
+//			drama.setSummary_title(form.getSummary_title());
+//			drama.setSummary_content(form.getSummary_content());
+//			drama.setAge_limit(form.getAge_limit());
+//			drama.setPoster(sourceFileName1);
+//			drama.setThumbnail(sourceFileName);
+//			drama.setScreening(form.getScreening());
+//			drama.setReg_date(new Date());
+//			dramaRepository.save(drama);
+//			
+//			return "/create/createSuccess";
+//		}else {
+//			
+//			return "/";
+//		}
+	}
+
 }

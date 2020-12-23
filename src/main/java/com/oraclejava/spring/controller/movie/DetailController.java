@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oraclejava.spring.dao.movie.DetailRepository;
-import com.oraclejava.spring.dao.movie.MovieStaffRepository;
+import com.oraclejava.spring.dao.movie.StaffRepository;
 import com.oraclejava.spring.dao.movie.Movie_favoriteRepository;
+import com.oraclejava.spring.model.contents.RStaff;
 import com.oraclejava.spring.model.movie.Favorite;
 import com.oraclejava.spring.model.movie.MDetail;
 import com.oraclejava.spring.model.movie.RReview;
-import com.oraclejava.spring.model.movie.RStaff;
 
 @Controller
 public class DetailController {
@@ -33,7 +33,7 @@ public class DetailController {
 	@Autowired
 	private Movie_favoriteRepository favoriteRepository;
 	@Autowired
-	private MovieStaffRepository staffRepository;
+	private StaffRepository staffRepository;
 	/*
 	 * @RequestMapping(value="/detail/detail", method=RequestMethod.GET) public
 	 * String indexTop() { return "redirect:/detail/detail/1"; }

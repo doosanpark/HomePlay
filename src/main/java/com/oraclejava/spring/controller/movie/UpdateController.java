@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.oraclejava.spring.controller.ContentsForm;
 import com.oraclejava.spring.dao.movie.MovieRepository;
 import com.oraclejava.spring.model.movie.Movie;
 
@@ -28,13 +29,13 @@ public class UpdateController {
 	private MovieRepository movieRepository;
 
 	// 폰 수정전 현재 DB에 입력된 값 출력
-	@RequestMapping(path = "/movie/update/pre/{no}", method = RequestMethod.GET)
+	@RequestMapping(path = "//create/update/pre/{no}", method = RequestMethod.GET)
 	public String updatePre(@PathVariable Integer no, Model model) {
 
 		System.out.println("랄랄ㄹ라");
 
 		Movie movie = movieRepository.findById(no).get();
-		MovieForm form = new MovieForm();
+		ContentsForm form = new ContentsForm();
 		form.setNo(movie.getNo());
 		form.setTitle(movie.getTitle());
 		form.setGenre(movie.getGenre());
@@ -46,18 +47,18 @@ public class UpdateController {
 		form.setScreening(movie.getScreening());
 		model.addAttribute("movie", form);
 
-		return "movie/update";
+		return "/create/update";
 	}
 
 	// 폰 수정
-	@RequestMapping(path = "/movie/update/pre/{no}", method = RequestMethod.POST)
-	public String contentsUpdate(@ModelAttribute MovieForm form, BindingResult bindingResult, Model model)
+	@RequestMapping(path = "//create/update/pre/{no}", method = RequestMethod.POST)
+	public String contentsUpdate(@ModelAttribute ContentsForm form, BindingResult bindingResult, Model model)
 			throws IllegalStateException, IOException {
 
 		System.out.println("울울울");
 
 		if (bindingResult.hasErrors()) {
-			return "redirect:/movie/update/pre/" + form.getNo();
+			return "redirect://create/update/pre/" + form.getNo();
 		}
 
 		Movie movie = new Movie();
@@ -84,7 +85,7 @@ public class UpdateController {
 		movie.setReg_date(new Date());
 		movieRepository.save(movie);
 
-		return "movie/updateSuccess";
+		return "/create/updateSuccess";
 
 	}
 

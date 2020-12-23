@@ -1,4 +1,4 @@
-package com.oraclejava.spring.model.movie;
+package com.oraclejava.spring.model.contents;
 
 import java.util.Date;
 
@@ -17,12 +17,12 @@ public class RStaff {
 
 	@Id 
 	private int no;
-
+	private String category;
+	private int movie_no;
+	private String movie_title;
 	private String name;
 	private String role;
 	private String photo;
 	private Date reg_date;
-	private int movie_no;
-	
 	
 }
