@@ -28,6 +28,7 @@ public class Game {
 	private String age_limit;
 	private String poster;
 	private String thumbnail;
+	private String screening;
 	private String reg_date;
-	private String release;
+	
 }
