@@ -77,22 +77,19 @@
 	margin-bottom: 0 0 15px 0;
 }
 
-.staff{
+.staff {
 	display: inline-block;
 	width: 400px;
 	height: 150px;
-	
 }
 
-.staff_group{
+.staff_group {
 	display: flex;
-	
 }
 
 label {
 	min-width: 50px;
 }
-
 </style>
 
 
@@ -118,8 +115,7 @@ label {
 		</div>
 		</br> <span class="genrecss">장르&nbsp&nbsp</span> <select name="genre_movie"
 			id="genre_movie">
-			<option value="" selected="selected">장르선택</option>
-			<option value="로맨스">로맨스</option>
+			<option value="로맨스" selected="selected">로맨스</option>
 			<option value="애니메이션">애니메이션</option>
 			<option value="액션">액션</option>
 			<option value="코미디">코미디</option>
@@ -163,31 +159,31 @@ label {
 
 		<input type="button" value="추가" onclick="add_div()"> <br />
 		<div>
-			<div class="staff" id="room_type" style="display: inline-block;"> 
-	
+			<div class="staff" id="room_type" style="display: inline-block;">
+
 				<div class="form_group">
 					<div class="staff_group">
-						<label for="s_name">이름</label> 
-						<input type="text" id="s_name" name="s_name" class="form-control" />
+						<label for="s_name">이름</label> <input type="text" id="s_name"
+							name="s_name" class="form-control" />
 					</div>
 					<div class="staff_group">
-						<label for="s_role">역할</label> 
-						<input type="text" id="s_role" name="s_role" class="form-control" />
+						<label for="s_role">역할</label> <input type="text" id="s_role"
+							name="s_role" class="form-control" />
 					</div>
 					<div class="staff_group">
-						<label for="s_photo">사진</label> 
-						<input type="file" id="s_photo" name="s_photo" class="form-control" />
+						<label for="s_photo">사진</label> <input type="file" id="s_photo"
+							name="s_photo" class="form-control" />
 					</div>
-	
+
 				</div>
-	
+
 				<input type="button" value="삭제" onclick="remove_div(this)">
-	
+
 			</div>
 			<div class="staff" id="field" style="display: inline-block;"></div>
 		</div>
-
-		<input type="submit" value="등록"> </br> </br>
+		<input type="button" value="확인"> <input
+			type="submit" value="등록" id="createObject"> </br> </br>
 	</form>
 
 </div>
@@ -196,6 +192,32 @@ label {
 
 
 <script>
+	$(document).ready(function() {
+		$('#createObject').click(function() {
+			var name = [];
+			var role = [];
+			var photo = [];
+			$('#s_name').each(function() {
+				name.push({
+					name : $(this).val()
+				});
+			});
+			$('#s_role').each(function() {
+				role.push({
+					role : $(this).val()
+				});
+			});
+			$('#s_photo').each(function() {
+				photo.push({
+					photo : $(this).val()
+				});
+			});
+// 			console.log("name", name);
+// 			console.log("role", role);
+// 			console.log("photo", photo);
+		});
+	});
+
 	function add_div() {
 		var div = document.createElement('div');
 		div.innerHTML = document.getElementById('room_type').innerHTML;
