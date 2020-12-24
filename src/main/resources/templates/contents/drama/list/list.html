@@ -78,19 +78,6 @@ span {
 			<span th:text="${d.genre}"></span>
 		</li>
 	</ul>
-	<h3><strong>장르표시</strong></h3>
-	<div class="more">
-		<a th:href="@{'/drama/list/'}" class="moremi">더보기</a>
-	</div>
-	<ul class="moli">
-		<li th:each="d : ${dramaListComi}" class="listre">
-			<a th:href="@{'detail/' + ${d.no}}">
-				<img th:src="@{'/img/' + ${d.poster}}" alt="드라마사진" class="pic">
-			</a>
-			<a th:href="@{'/detail/' + ${d.no}}"><span th:text="${d.title}"></span></a>
-			<br>
-			<span th:text="${d.genre}"></span>
-		</li>
-	</ul>
+	
 </div>
 </div>
