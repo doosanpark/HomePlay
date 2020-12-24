@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "r_review")
+@Table(name = "r_dreview")
 public class DReview {
 
 	@Id 
@@ -33,7 +33,7 @@ public class DReview {
 	private String member_id;
 
 	@ManyToOne //다대일
-	@JoinColumn(name = "movie_no") // Detail 테이블의 no column과 조인
+	@JoinColumn(name = "drama_no") // Detail 테이블의 no column과 조인
 	private DDetail detail;
 	
 	public DReview() {

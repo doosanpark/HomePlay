@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "r_review")
+@Table(name = "r_mreview")
 public class MReview {
 
 	@Id 
