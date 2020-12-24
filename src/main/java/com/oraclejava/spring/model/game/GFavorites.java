@@ -1,4 +1,4 @@
-package com.oraclejava.spring.model.movie;
+package com.oraclejava.spring.model.game;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,8 +8,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Entity(name="v_fm")
-public class Favorites {
+@Entity(name="v_fmg")
+public class GFavorites {
 	@Id
 	private int sn;
 	private String id;

@@ -77,6 +77,7 @@ public class DetailController {
 		String s_id = (String) session.getAttribute("user_id");
 
 		favorite.setId(s_id);
+		favorite.setCategory("m");
 
 		MDetail mdetail = movieDetailRepository.findById(favorite.getDetail().getNo()).get();
 		mdetail.getFavorites().add(favorite);
@@ -134,6 +135,7 @@ public class DetailController {
 		String s_id = (String) session.getAttribute("user_id");
 
 		favorite.setId(s_id);
+		favorite.setCategory("d");
 		
 		DDetail ddetail = dramaDetailRepository.findById(favorite.getDetail().getNo()).get();
 		ddetail.getFavorites().add(favorite);
@@ -191,7 +193,8 @@ public class DetailController {
 		String s_id = (String) session.getAttribute("user_id");
 
 		favorite.setId(s_id);
-
+		favorite.setCategory("g");
+		
 		GDetail gdetail = gameDetailRepository.findById(favorite.getDetail().getNo()).get();
 		gdetail.getFavorites().add(favorite);
 		gameDetailRepository.save(gdetail);

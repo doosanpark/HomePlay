@@ -17,12 +17,14 @@
 	align-items: right;
 }
 
-#img{
+#img {
 	height: 270px;
 }
+
 .logo {
 	margin: 5px 0 20px 0;
 }
+
 .logo .favorite {
 	font-size: 28px;
 	margin: 5px 0;
@@ -33,17 +35,20 @@
 	color: grey;
 	text-align: left;
 }
-#page-wrapper{
+
+#page-wrapper {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-#container{
+
+#container {
 	width: 80%;
 	height: 100%;
 	padding: 3% 0;
 }
-.panel-body{
+
+.panel-body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -51,31 +56,43 @@
 	padding: 20px;
 }
 
-h6{
+h6 {
 	margin: 0;
 }
 
-.locker{
+.locker {
 	display: inline-block;
 }
 
-.content{
-	height: 250px;
+.content {
+	height: 260px;
 	margin: 20px;
-	text-align:left;
+	text-align: left;
 }
-.movie_info{
+
+.favorites {
+	min-height: 70px;
+}
+
+.movie_info {
 	margin: 5px 0;
 }
 
+.titles {
+	margin: 20px 0;
+	font-size: 20px;
+	font-weight: 600;
+}
 </style>
 <div id="page-wrapper">
 	<div id="container">
 		<div class="info">
 
 			<!-- 정보 form -->
-			<div class="col-md-4 col-md-offset-1" style="margin: 0; padding-left:0;" >
-				<div style="margin: 0; width: 250px; height: 270px;" class="login-panel panel panel-default">
+			<div class="col-md-4 col-md-offset-1"
+				style="margin: 0; padding-left: 0;">
+				<div style="margin: 0; width: 250px; height: 270px;"
+					class="login-panel panel panel-default">
 					<div class="panel-heading" style="text-align: center;">
 						<h5 class="panel-title" th:text="${msg1+ '님 환영합니다'}"></h5>
 					</div>
@@ -106,7 +123,7 @@ h6{
 
 			<!-- 이미지 -->
 			<div class="img">
-				<img id="img" src="/img_movie/MypageImage.jpg" />
+				<img id="img" src="/img/MypageImage.jpg" />
 			</div>
 
 		</div>
@@ -114,21 +131,85 @@ h6{
 		<hr style="border: solid 1px lightgray; width: 101.5%;">
 
 		<div class="logo">
-			<div class="favorite"><b>보관함</b></div> 
-			<div class="fav-detail">최근에 담은 컨텐츠부터 순서대로 표기됩니다.</div>
+			<div class="favorite">
+				<b>보관함</b>
+			</div>
 		</div>
 
-		<div th:each="f: ${findFavorite}" align="center" class="locker">
-			<div class="content">
-				<img th:src="@{'/img_movie/'+${f.poster}}" style="width: 200px; height:160px">
-				<div>
-					<!-- 
+
+		<!-- 영화 -->
+		<div class="favorites">
+			<div>
+				<span class="titles">영화</span> <span
+					style="font-size: 20px; margin-bottom: 2px;"
+					th:text="'('+${#lists.size(mFindFavorite)+')'}">드라마 갯수</span>
+			</div>
+			<div th:each="f: ${mFindFavorite}" align="center" class="locker">
+				<div class="content">
+					<img th:src="@{'/img/'+${f.poster}}"
+						style="width: 200px; height: 160px">
+					<div>
+						<!-- 
 					<div class="movie_info" width="100"><span th:text=${f.category}>카테고리 </span></div>
 					 -->
-					<div class="movie_info" width="100"> <span th:text=${f.title}>제목 </span></div>
-					<div class="movie_info" width="100" th:text=${f.genre}>장르</div>
+						<div class="movie_info" width="100">
+							<span th:text=${f.title}>제목 </span>
+						</div>
+						<div class="movie_info" width="100" th:text=${f.genre}>장르</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
+		<!-- 드라마 -->
+		<div class="favorites">
+			<div>
+				<span class="titles">드라마</span> <span
+					style="font-size: 20px; margin-bottom: 2px;"
+					th:text="'('+${#lists.size(dFindFavorite)+')'}">드라마 갯수</span>
+			</div>
+			<div th:each="f: ${dFindFavorite}" align="center" class="locker">
+				<div class="content">
+					<img th:src="@{'/img/'+${f.poster}}"
+						style="width: 200px; height: 160px">
+					<div>
+						<!-- 
+					<div class="movie_info" width="100"><span th:text=${f.category}>카테고리 </span></div>
+					 -->
+						<div class="movie_info" width="100">
+							<span th:text=${f.title}>제목 </span>
+						</div>
+						<div class="movie_info" width="100" th:text=${f.genre}>장르</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 게임 -->
+		<div class="favorites">
+			<div>
+				<span class="titles">게임</span> <span
+					style="font-size: 20px; margin-bottom: 2px;"
+					th:text="'('+${#lists.size(gFindFavorite)+')'}">드라마 갯수</span>
+			</div>
+			<div th:each="f: ${gFindFavorite}" align="center" class="locker">
+				<div class="content">
+					<img th:src="@{'/img/'+${f.poster}}"
+						style="width: 200px; height: 160px">
+					<div>
+						<!-- 
+					<div class="movie_info" width="100"><span th:text=${f.category}>카테고리 </span></div>
+					 -->
+						<div class="movie_info" width="100">
+							<span th:text=${f.title}>제목 </span>
+						</div>
+						<div class="movie_info" width="100" th:text=${f.genre}>장르</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>

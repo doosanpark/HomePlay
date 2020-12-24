@@ -3,7 +3,7 @@ package com.oraclejava.spring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.oraclejava.spring.dao.movie.FavoritesRepository;
+import com.oraclejava.spring.dao.movie.MovieFavoritesRepository;
 
 
 @Controller
@@ -12,7 +12,7 @@ public class MyPageController {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	private FavoritesRepository favoritesRepository;
+	private MovieFavoritesRepository favoritesRepository;
 
 	
 //	@RequestMapping(value = { "account/mypage" }, method = RequestMethod.GET)

@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.oraclejava.spring.dao.movie.FavoritesRepository;
+import com.oraclejava.spring.dao.drama.DramaFavoritesRepository;
+import com.oraclejava.spring.dao.game.GameFavoritesRepository;
+import com.oraclejava.spring.dao.movie.MovieFavoritesRepository;
+import com.oraclejava.spring.model.drama.DFavorites;
+import com.oraclejava.spring.model.game.GFavorites;
 import com.oraclejava.spring.model.member.R_member;
-import com.oraclejava.spring.model.movie.Favorites;
+import com.oraclejava.spring.model.movie.MFavorites;
 
 @Controller
 public class AccountController {
@@ -33,7 +37,11 @@ public class AccountController {
 	@Autowired
 	private HttpServletResponse HttpServletResponse;
 	@Autowired
-	private FavoritesRepository favoritesRepository;
+	private MovieFavoritesRepository mFavoritesRepository;
+	@Autowired
+	private GameFavoritesRepository gFavoritesRepository;
+	@Autowired
+	private DramaFavoritesRepository dFavoritesRepository;
 
 	/* 로그인 화면 구현 */
 	@RequestMapping(value = "account/login", method = RequestMethod.GET)
@@ -71,8 +79,12 @@ public class AccountController {
 		mav.addObject("msg1", id);
 		mav.addObject("msg2", pass);
 		mav.addObject("msg3", email);
-		List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
-		mav.addObject("findFavorite", findFavorite);
+		List<MFavorites> mFindFavorite = mFavoritesRepository.findFavorite(id);
+		List<DFavorites> dFindFavorite = dFavoritesRepository.findFavorite(id);
+		List<GFavorites> gFindFavorite = gFavoritesRepository.findFavorite(id);
+		mav.addObject("mFindFavorite", mFindFavorite);
+		mav.addObject("dFindFavorite", dFindFavorite);
+		mav.addObject("gFindFavorite", gFindFavorite);
 		return mav;
 	}
 
@@ -110,8 +122,12 @@ public class AccountController {
 
 				String id = (String) session.getAttribute("user_id");
 
-				List<Favorites> findFavorite = favoritesRepository.findFavorite(id);
-				mav.addObject("findFavorite", findFavorite);
+				List<MFavorites> mFindFavorite = mFavoritesRepository.findFavorite(id);
+				List<DFavorites> dFindFavorite = dFavoritesRepository.findFavorite(id);
+				List<GFavorites> gFindFavorite = gFavoritesRepository.findFavorite(id);
+				mav.addObject("mFindFavorite", mFindFavorite);
+				mav.addObject("dFindFavorite", dFindFavorite);
+				mav.addObject("gFindFavorite", gFindFavorite);
 
 			} else {
 				out.println("<script>alert('아이디 혹은 비밀번호가 다릅니다.'); history.go(-1);</script>");

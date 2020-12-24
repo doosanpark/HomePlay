@@ -23,10 +23,11 @@ public class Favorite {
 	private int sn;
 	
 	private String id;
-	
+	private String category;
 
-	public Favorite(String id) {
+	public Favorite(String id, String category) {
 		this.id = id;
+		this.category = category;
 	}
 	
 	public Favorite() {

@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
-import com.oraclejava.spring.model.movie.Favorites;
+import com.oraclejava.spring.model.movie.MFavorites;
 
-public interface FavoritesRepository extends JpaRepository<Favorites, Integer>{
+public interface MovieFavoritesRepository extends JpaRepository<MFavorites, Integer>{
 
 	 @Query("select v from v_fm v where v.id = :user_id")
-		List<Favorites> findFavorite(String user_id);
+		List<MFavorites> findFavorite(String user_id);
 
 }
