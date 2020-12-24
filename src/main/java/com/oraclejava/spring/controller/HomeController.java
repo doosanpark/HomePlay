@@ -41,9 +41,12 @@ public class HomeController {
 		List M_lists = movieRepository.findAll(); // 영화 리스트
 		List D_lists = dramaRepository.findAll(); // 드라마 리스트
 		List G_lists = gameRepository.findAll(); // 게임 리스트
-//		Collections.shuffle(M_lists); // 영화 리스트 내 값 랜덤으로 순서 재배치
-//		Collections.shuffle(D_lists); // 드라마 리스트 내 값 랜덤으로 순서 재배치
+		Collections.shuffle(M_lists); // 영화 리스트 내 값 랜덤으로 순서 재배치
+		Collections.shuffle(D_lists); // 드라마 리스트 내 값 랜덤으로 순서 재배치
+		Collections.shuffle(G_lists); // 드라마 리스트 내 값 랜덤으로 순서 재배치	
 
+		
+		
 		// 총 영화 리스트 중 2개 항목만 리스트에 저장
 		int M_listLen = M_lists.size();
 		for (int i = 1; i <= M_listLen - 2; i++) {

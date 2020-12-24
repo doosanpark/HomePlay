@@ -57,13 +57,13 @@ public class CreateController {
 		//썸네일 저장
 		String thumbnailName = form.getThumbnail_image().getOriginalFilename();
 		MultipartFile thumnail = form.getThumbnail_image();
-		File destThumbnail = new File(imageLocation+"thumbnail/"+ thumbnailName);
+		File destThumbnail = new File(imageLocation+ thumbnailName);
 		thumnail.transferTo(destThumbnail);
 		
 		//포스터 저장
 		String posterName = form.getPoster_image().getOriginalFilename();
 		MultipartFile poster = form.getPoster_image();
-		File destPoster = new File(imageLocation+"poster/"+ posterName);
+		File destPoster = new File(imageLocation+posterName);
 		poster.transferTo(destPoster);
 		
 		//스태프 사진'들'저장
