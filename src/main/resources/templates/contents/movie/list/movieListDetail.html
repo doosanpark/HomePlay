@@ -33,13 +33,13 @@ float: left;
 	<ul class="detailList">
 		<li th:each="m:${movieList}" >
 			<div class="thumb">
-				<a th:href="@{'/detail/' + ${m.no}}">
+				<a th:href="@{'/movie/detail/' + ${m.no}}">
 					<img alt="사진" th:src="@{'/img/' + ${m.poster}}" class="pic" />
 				</a>
 			</div>
 				<dl class="movieTitle">
 					<dt>
-						<a th:href="@{'/detail/' + ${m.no}}">
+						<a th:href="@{'/movie/detail/' + ${m.no}}">
 							<span th:text="${m.title}" >영화제목</span><br>
 						</a>
 					</dt>

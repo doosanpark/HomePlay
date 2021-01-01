@@ -274,6 +274,13 @@ public class AccountController {
 		mav.addObject("msg2", form.getPass());
 		mav.addObject("msg3", form.getEmail());
 		mav.addObject("msg4", s_id);
+		
+		List<MFavorites> mFindFavorite = mFavoritesRepository.findFavorite(s_id);
+		List<DFavorites> dFindFavorite = dFavoritesRepository.findFavorite(s_id);
+		List<GFavorites> gFindFavorite = gFavoritesRepository.findFavorite(s_id);
+		mav.addObject("mFindFavorite", mFindFavorite);
+		mav.addObject("dFindFavorite", dFindFavorite);
+		mav.addObject("gFindFavorite", gFindFavorite);
 
 		return mav;
 	}
@@ -304,13 +311,14 @@ public class AccountController {
 
 	/* 정보 삭제 로직 구현 */
 	@RequestMapping(params = "del_member", value = "account/modify", method = RequestMethod.POST)
-	public String modify(@ModelAttribute R_member form) {
+	public String modify(@ModelAttribute R_member form, HttpSession session) {
 		System.out.println("삭제 메소드 del_member가 실행되었습니다.");
 
 		/* 업데이트할 대상 레코드를 검색한다. */
 		/* 실행 ID가 Admin인지 확인하는 절차 필요 */
 		userRepository.deleteById(form.getNo());
-
+		session.invalidate();
+		
 		return "redirect:/home";
 
 	}
